@@ -3,10 +3,10 @@ package service;
 import java.util.List;
 
 import model.Task;
-import retrofit.Callback;
-import retrofit.http.GET;
+import retrofit2.Call;
+import retrofit2.http.GET;
 
 public interface TaskService {
-    @GET("/task/all")
-    void getAll(Callback<List<Task>> cb);
+    @GET("test/task/all")
+    Call<List<Task>> getAll();
 }

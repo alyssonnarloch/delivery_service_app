@@ -7,9 +7,9 @@ import android.util.Log;
 import java.util.List;
 
 import model.Task;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import service.ServiceGenerator;
 import service.TaskService;
 
@@ -20,21 +20,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String URL_PATH = "task/all";
-
-        TaskService client = ServiceGenerator.createService(TaskService.class, URL_PATH);
-        client.getAll(new Callback<List<Task>>() {
+        TaskService client = ServiceGenerator.createService(TaskService.class, "TOKEN_LOCO_123");
+        Call<List<Task>> call = client.getAll();
+        call.enqueue(new Callback<List<Task>>() {
             @Override
-            public void success(List<Task> tasks, Response response) {
-                for(Task t : tasks) {
-                   Log.v("TASK", t.getId() + " - " + t.getName());
+            public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
+                if (response.isSuccessful()) {
+                    for(Task task : response.body()) {
+                        Log.i("TASK", task.getName());
+                    }
+                } else {
+                    Log.i("TASK ERROR", "Não deuuuuuuuuuuuuuuuuuuu");
+                    Log.i("TASK ERROR", response.message());
                 }
-                Log.v("IRRRAAAAAAAAAAAA", "FOOOOOOOOOOOOOOOOI");
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.v("IRRRAAAAAAAAAAAA", "NÃO FOI =(");
+            public void onFailure(Call<List<Task>> call, Throwable t) {
+                // something went completely south (like no internet connection)
+                Log.d("Error", t.getMessage());
             }
         });
 
