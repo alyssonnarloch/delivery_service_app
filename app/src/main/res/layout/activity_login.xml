@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.narlocks.delivery_service_app.activity.LoginActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:weightSum="1"
+        android:padding="12dp"
+        android:elevation="1dp">
+
+        <TextView
+            android:text="Bem vindo ao Pedreirão"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:gravity="bottom|center_horizontal"
+            android:layout_weight="0.40" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/etEmail"
+            android:hint="E-mail"
+            android:layout_margin="4dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etPassword"
+            android:hint="Senha"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:text="Entrar"
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btLogin"
+            android:layout_margin="4dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:text="Sou novo por aqui"
+            android:layout_width="218dp"
+            android:id="@+id/btNewUser"
+            android:layout_margin="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:onClick="onClickUserSelection" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

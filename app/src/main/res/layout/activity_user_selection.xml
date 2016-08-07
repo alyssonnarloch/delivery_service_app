@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_user_selection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.narlocks.delivery_service_app.activity.UserSelectionActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:padding="12dp"
+        android:weightSum="1">
+
+        <TextView
+            android:text="Selecione o tipo da sua conta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAlignment="center"
+            android:layout_weight="0.26"
+            android:gravity="bottom|center_vertical" />
+
+        <Button
+            android:text="Quero buscar um prestador de serviços"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btTypeClient"
+            android:layout_margin="4dp"
+            android:onClick="onClickTypeClient" />
+
+        <Button
+            android:text="Quero oferecer meus serviços"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btTypeServiceProvider"
+            android:layout_margin="4dp"
+            android:onClick="onClickTypeServiceProvider" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

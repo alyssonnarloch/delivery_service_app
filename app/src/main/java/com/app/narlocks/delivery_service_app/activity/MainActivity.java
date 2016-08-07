@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.app.narlocks.delivery_service_app.R;
 import com.app.narlocks.delivery_service_app.model.Task;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 import com.app.narlocks.delivery_service_app.service.TaskService;

@@ -9,6 +9,7 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private City city;
+    private int cityId;
     private String zipCode;
     private String address;
     private int number;
@@ -56,6 +57,14 @@ public class User implements Serializable {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     public String getZipCode() {

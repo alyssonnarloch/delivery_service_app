@@ -13,7 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface ServiceFavorite {
+public interface FavoriteService {
 
     @GET("favorite/services_provider/client_id")
     Call<List<ServiceProvider>> getServicesProvider(@Path("client_id") int clientId);

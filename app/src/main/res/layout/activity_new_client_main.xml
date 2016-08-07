@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_client_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.narlocks.delivery_service_app.activity.NewClientMainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:padding="4dp">
+
+        <TextView
+            android:text="Seus dados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etName"
+            android:layout_margin="4dp"
+            android:hint="Nome completo" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_margin="4dp"
+            android:hint="E-mail" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/etPhone"
+            android:layout_margin="4dp"
+            android:hint="Telefone" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:ems="10"
+            android:id="@+id/etZipCode"
+            android:layout_margin="4dp"
+            android:hint="CEP" />
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoCompleteTextView"
+            android:layout_margin="4dp"
+            android:hint="Cidade" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etAddress"
+            android:layout_margin="4dp"
+            android:hint="Endereço" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editText7"
+            android:layout_margin="4dp"
+            android:hint="Senha"
+            android:fontFamily="sans-serif" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etPasswordConfirmation"
+            android:layout_margin="4dp"
+            android:hint="Confirmação de Senha"
+            android:fontFamily="sans-serif" />
+
+        <Button
+            android:text="Continuar"
+            android:layout_width="256dp"
+            android:layout_height="48dp"
+            android:id="@+id/btContinue"
+            android:layout_gravity="center_horizontal"
+            android:onClick="onClickProfileImage" />
+
+        <Button
+            android:text="Cancelar"
+            android:layout_width="256dp"
+            android:layout_height="48dp"
+            android:id="@+id/btCancel"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

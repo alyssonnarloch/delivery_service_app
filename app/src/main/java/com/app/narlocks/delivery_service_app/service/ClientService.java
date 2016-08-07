@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface ServiceClient {
+public interface ClientService {
 
     @GET("client/{id}")
     Call<Client> getById(@Path("id") int id);
