@@ -20,7 +20,6 @@ public class NewClientProfileActivity extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profilePicture;
-    public static boolean isActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +34,6 @@ public class NewClientProfileActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i("PROFILE", "RESUME");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        isActive = true;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        isActive = false;
     }
 
     public void onImageGalleryClicked(View view) {
