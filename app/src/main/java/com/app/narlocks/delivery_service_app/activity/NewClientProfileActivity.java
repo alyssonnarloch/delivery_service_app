@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.narlocks.delivery_service_app.model.Client;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -20,11 +22,14 @@ public class NewClientProfileActivity extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profilePicture;
+    private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_client_profile);
+
+        client = (Client) getIntent().getSerializableExtra("clientObj");
 
         profilePicture = (ImageView) findViewById(R.id.ivProfileImage);
         Log.i("PROFILE", "CREATE");

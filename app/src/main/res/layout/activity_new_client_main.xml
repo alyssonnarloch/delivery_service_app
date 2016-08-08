@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionBar.Title"
             android:textAlignment="center" />
 
         <EditText
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/etEmail"
             android:layout_margin="4dp"
             android:hint="E-mail" />
 
@@ -78,9 +78,18 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/etNumber"
+            android:hint="Número"
+            android:layout_margin="4dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText7"
+            android:id="@+id/etPassword"
             android:layout_margin="4dp"
             android:hint="Senha"
             android:fontFamily="sans-serif" />
@@ -95,20 +104,29 @@
             android:hint="Confirmação de Senha"
             android:fontFamily="sans-serif" />
 
-        <Button
-            android:text="Continuar"
-            android:layout_width="256dp"
-            android:layout_height="48dp"
-            android:id="@+id/btContinue"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onClickProfileImage" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:text="Cancelar"
-            android:layout_width="256dp"
-            android:layout_height="48dp"
-            android:id="@+id/btCancel"
-            android:layout_gravity="center_horizontal" />
+            <Button
+                android:text="Continuar"
+                android:layout_width="150dp"
+                android:layout_height="42dp"
+                android:id="@+id/button"
+                android:layout_gravity="center_horizontal"
+                android:onClick="onClickProfileImage" />
+
+            <Button
+                android:text="Cancelar"
+                android:layout_width="150dp"
+                android:layout_height="42dp"
+                android:id="@+id/btCancel"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

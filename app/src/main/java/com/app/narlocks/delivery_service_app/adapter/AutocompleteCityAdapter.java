@@ -93,7 +93,7 @@ public class AutocompleteCityAdapter extends ArrayAdapter implements Filterable 
             String name = "Cidade " + i;
             c.setName(name);
 
-            Log.i("TESTEEEEEEEE", term + " - " + name);
+            //Log.i("TESTEEEEEEEE", term + " - " + name);
 
             if(name.contains(term)) {
                 cities.add(c);
