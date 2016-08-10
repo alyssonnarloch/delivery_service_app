@@ -3,6 +3,7 @@ package com.app.narlocks.delivery_service_app.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Client;
 
 import java.io.File;
@@ -21,7 +23,7 @@ import java.io.InputStream;
 public class NewClientProfileActivity extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
-    private ImageView profilePicture;
+    private ImageView ivProfilePicture;
     private Client client;
 
     @Override
@@ -31,7 +33,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
 
         client = (Client) getIntent().getSerializableExtra("clientObj");
 
-        profilePicture = (ImageView) findViewById(R.id.ivProfileImage);
+        ivProfilePicture = (ImageView) findViewById(R.id.ivProfileImage);
         Log.i("PROFILE", "CREATE");
     }
 
@@ -67,7 +69,14 @@ public class NewClientProfileActivity extends AppCompatActivity {
 
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
 
-                    profilePicture.setImageBitmap(image);
+                    /** TESTE MAROTO
+                     String encoded = Image.bitmapToBase64(image);
+                     Bitmap decodedImage = Image.base64ToBitmap(encoded);
+                     ivProfilePicture.setImageBitmap(decodedImage);
+                     //Log.i("##### BASE 64 #####", Image.bitmapToBase64(image));
+                     */
+
+                    ivProfilePicture.setImageBitmap(image);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(this, "Não foi possível carregar a imagem", Toast.LENGTH_LONG).show();
                 }
@@ -75,11 +84,14 @@ public class NewClientProfileActivity extends AppCompatActivity {
         }
     }
 
-    void onClickFinish(View view) {
+    public void onClickFinish(View view) {
+        BitmapDrawable drawable = (BitmapDrawable) ivProfilePicture.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
 
+        String encodedImage = Image.bitmapToBase64(bitmap);
     }
 
-    void onClickBack(View view) {
+    public void onClickBack(View view) {
         Intent i = new Intent(NewClientProfileActivity.this, NewClientMainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);

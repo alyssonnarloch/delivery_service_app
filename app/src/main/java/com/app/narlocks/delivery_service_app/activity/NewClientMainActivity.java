@@ -1,6 +1,7 @@
 package com.app.narlocks.delivery_service_app.activity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -27,6 +28,7 @@ public class NewClientMainActivity extends AppCompatActivity {
     private EditText etPassword;
     private EditText etPasswordConfirmation;
     AutoCompleteTextView acCity;
+
     private int selectedCityId = 0;
     private String selectedCityName;
 
@@ -62,10 +64,7 @@ public class NewClientMainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.i("TEXTO INPUT", s + "");
-                Log.i("TEXTO SELECIONADO", selectedCityName + "");
                 if(selectedCityName != null && !selectedCityName.equals(s.toString())) {
-                    Log.i("VERIFICAÇÃO", "ENTROU");
                     selectedCityId = 0;
                 }
             }
@@ -84,16 +83,15 @@ public class NewClientMainActivity extends AppCompatActivity {
     }
 
     public void onClickProfileImage(View view) {
-        Log.i("CIDADE ID", selectedCityId + "");
-        Client client = getClientByView(view);
+        //Client client = getClientByView(view);
 
-        if(validate(client)) {
+       // if(validate(client)) {
             Intent i = new Intent(NewClientMainActivity.this, NewClientProfileActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            i.putExtra("clientObj", client);
+            //i.putExtra("clientObj", client);
 
             startActivity(i);
-        }
+        //}
     }
 
     private void getDataViewContent(View view) {
@@ -112,6 +110,7 @@ public class NewClientMainActivity extends AppCompatActivity {
 
         Client client = new Client();
 
+        client.setName(etName.getText().toString());
         client.setEmail(etEmail.getText().toString());
         client.setPhone(etPhone.getText().toString());
         client.setZipCode(etZipCode.getText().toString());
@@ -126,36 +125,59 @@ public class NewClientMainActivity extends AppCompatActivity {
         }
         client.setNumber(number);
         client.setPassword(etPassword.getText().toString());
+        client.setPasswordConfirmation(etPasswordConfirmation.getText().toString());
 
         return client;
     }
 
     private boolean validate(Client client) {
         boolean valid = true;
+        Resources res = getResources();
 
         if(client.getName() == null || client.getName().equals("")) {
             valid = false;
-            etName.setError("Obrigatório");
+            etName.setError(res.getString(R.string.validation_required));
         }
 
         if(client.getEmail() == null || client.getEmail().equals("")) {
             valid = false;
-            etEmail.setError("Obrigatório");
+            etEmail.setError(res.getString(R.string.validation_required));
         }
 
         if(client.getPhone() == null || client.getPhone().equals("")) {
             valid = false;
-            etPhone.setError("Obrigatório");
+            etPhone.setError(res.getString(R.string.validation_required));
         }
 
         if(client.getZipCode() == null || client.getZipCode().equals("")) {
             valid = false;
-            etZipCode.setError("Obrigatório");
+            etZipCode.setError(res.getString(R.string.validation_required));
         }
 
         if(client.getCityId() == 0) {
             valid = false;
-            acCity.setError("Obrigatório");
+            acCity.setError(res.getString(R.string.validation_required));
+        }
+
+        if(client.getAddress() == null || client.getAddress().equals("")) {
+            valid = false;
+            etAddress.setError(res.getString(R.string.validation_required));
+        }
+
+        if(client.getNumber() == 0) {
+            valid = false;
+            etNumber.setError(res.getString(R.string.validation_required));
+        }
+
+        if(client.getPassword() == null || client.getPassword().equals("")) {
+            valid = false;
+            etPassword.setError(res.getString(R.string.validation_required));
+        } else if(client.getPasswordConfirmation() == null || client.getPasswordConfirmation().equals("")) {
+            valid = false;
+            etPasswordConfirmation.setError(res.getString(R.string.validation_required));
+        } else if(!client.getPassword().equals(client.getPasswordConfirmation())) {
+            valid = false;
+            etPasswordConfirmation.setError(res.getString(R.string.validation_password_confirmation));
         }
 
         return valid;

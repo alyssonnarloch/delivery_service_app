@@ -4,4 +4,7 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="validation_required">Obrigatório</string>
+    <string name="validation_password_confirmation">Confirmação diferente da senha</string>
 </resources>

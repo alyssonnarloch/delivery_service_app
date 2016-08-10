@@ -56,7 +56,7 @@
             android:layout_height="42dp"
             android:id="@+id/btFinish"
             android:layout_gravity="center_horizontal"
-            android:onClick="onClickProfileImage" />
+            android:onClick="onClickFinish" />
 
         <Button
             android:text="Voltar"

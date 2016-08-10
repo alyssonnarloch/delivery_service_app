@@ -15,6 +15,7 @@ public class User implements Serializable {
     private int number;
     private String profileImage;
     private String password;
+    private String passwordConfirmation;
 
     public User() {
     }
@@ -59,9 +60,7 @@ public class User implements Serializable {
         this.city = city;
     }
 
-    public int getCityId() {
-        return cityId;
-    }
+    public int getCityId() { return cityId; }
 
     public void setCityId(int cityId) {
         this.cityId = cityId;
@@ -106,4 +105,8 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPasswordConfirmation() { return passwordConfirmation; }
+
+    public void setPasswordConfirmation(String passwordConfirmation) { this.passwordConfirmation = passwordConfirmation; }
 }
