@@ -13,12 +13,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Client;
+import com.app.narlocks.delivery_service_app.service.ClientService;
+import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewClientProfileActivity extends AppCompatActivity {
 
@@ -88,12 +96,63 @@ public class NewClientProfileActivity extends AppCompatActivity {
         BitmapDrawable drawable = (BitmapDrawable) ivProfilePicture.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
 
-        String encodedImage = Image.bitmapToBase64(bitmap);
+        String encodedProfilePicture = Image.bitmapToBase64(bitmap);
+
+        client.setProfileImage(encodedProfilePicture);
+
+        save();
     }
 
     public void onClickBack(View view) {
         Intent i = new Intent(NewClientProfileActivity.this, NewClientMainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
+    }
+
+    public void backLogin() {
+        Intent i = new Intent(NewClientProfileActivity.this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
+    }
+
+    public void save() {
+        ClientService service = ServiceGenerator.createService(ClientService.class);
+
+        /*Call<ResponseBody> call = service.save(client.getName(),
+                client.getEmail(),
+                client.getPhone(),
+                client.getZipCode(),
+                client.getCityId(),
+                client.getAddress(),
+                client.getNumber(),
+                client.getPassword(),
+                client.getProfileImage());*/
+
+        Call<ResponseBody> call = service.save("Xiturvs",
+                "xiturvs@gmail.com",
+                "(41) 88902759",
+                "82840-070",
+                5756,
+                "",
+                10,
+                "123456789",
+                "imagemzin_marots");
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() != 200) {
+                    Toast.makeText(NewClientProfileActivity.this, ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(NewClientProfileActivity.this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show();
+                    backLogin();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(NewClientProfileActivity.this, "Ocorreu um erro ao salvar o cliente.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -50,7 +50,7 @@ public class ServiceGenerator {
 
                     Log.i("URL******", request.url().toString());
 
-                    if(response.code() == 200 && !request.url().toString().contains("save")) {
+                    if (response.code() == 200 && !request.url().toString().contains("save")) {
                         TaskService client = ServiceGenerator.createService(TaskService.class, "");
                         Call<Task> callTask = client.save("ALYSSON MUITO LOUCO");
                         Task task = callTask.execute().body();
@@ -70,7 +70,9 @@ public class ServiceGenerator {
         }
 
         OkHttpClient client = httpClient.build();
-        Retrofit retrofit = builder.client(client).build();
+        Retrofit retrofit = builder.client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         return retrofit.create(serviceClass);
     }
 
