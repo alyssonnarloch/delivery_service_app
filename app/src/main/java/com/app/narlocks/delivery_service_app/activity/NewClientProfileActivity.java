@@ -118,7 +118,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
     public void save() {
         ClientService service = ServiceGenerator.createService(ClientService.class);
 
-        /*Call<ResponseBody> call = service.save(client.getName(),
+        Call<ResponseBody> call = service.save(client.getName(),
                 client.getEmail(),
                 client.getPhone(),
                 client.getZipCode(),
@@ -126,9 +126,9 @@ public class NewClientProfileActivity extends AppCompatActivity {
                 client.getAddress(),
                 client.getNumber(),
                 client.getPassword(),
-                client.getProfileImage());*/
+                client.getProfileImage());
 
-        Call<ResponseBody> call = service.save("Xiturvs",
+        /*Call<ResponseBody> call = service.save("Xiturvs",
                 "xiturvs@gmail.com",
                 "(41) 88902759",
                 "82840-070",
@@ -136,7 +136,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
                 "",
                 10,
                 "123456789",
-                "imagemzin_marots");
+                "imagemzin_marots");*/
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

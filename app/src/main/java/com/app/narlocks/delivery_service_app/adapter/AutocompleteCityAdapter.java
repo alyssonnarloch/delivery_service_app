@@ -13,9 +13,13 @@ import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.model.City;
+import com.app.narlocks.delivery_service_app.service.CityService;
+import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
 
 public class AutocompleteCityAdapter extends ArrayAdapter implements Filterable {
 
@@ -85,21 +89,19 @@ public class AutocompleteCityAdapter extends ArrayAdapter implements Filterable 
     }
 
     private List<City> getCities(String term) {
-        List<City> cities = new ArrayList();
-
-        for(int i = 0; i < 10; i++) {
-            City c = new City();
-            c.setId(i);
-            String name = "Cidade " + i;
-            c.setName(name);
-
-            //Log.i("TESTEEEEEEEE", term + " - " + name);
-
-            if(name.contains(term)) {
-                cities.add(c);
-            }
+        if(term != null && term.length() < 3) {
+            return new ArrayList<City>();
         }
 
-        return cities;
+        try {
+            CityService service = ServiceGenerator.createService(CityService.class);
+            Call<List<City>> call = service.getByName(term);
+
+            return call.execute().body();
+        } catch (Exception ex) {
+            Log.i("ERRO getCities();", ex.getMessage());
+        }
+
+        return new ArrayList<City>();
     }
 }

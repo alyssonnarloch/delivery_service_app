@@ -83,18 +83,20 @@ public class NewClientMainActivity extends AppCompatActivity {
     }
 
     public void onClickProfileImage(View view) {
-        //Client client = getClientByView(view);
-        Client client = new Client();
-        //if(validate(client)) {
+        Client client = getClientByView(view);
+        //Client client = new Client();
+        if(validate(client)) {
             Intent i = new Intent(NewClientMainActivity.this, NewClientProfileActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("clientObj", client);
 
             startActivity(i);
-        //}
+        }
     }
 
     private void getDataViewContent(View view) {
+        etName = (EditText) findViewById(R.id.etName);
+        etEmail = (EditText) findViewById(R.id.etEmail);
         etPhone = (EditText) findViewById(R.id.etPhone);
         etZipCode = (EditText) findViewById(R.id.etZipCode);
         etAddress = (EditText) findViewById(R.id.etAddress);
