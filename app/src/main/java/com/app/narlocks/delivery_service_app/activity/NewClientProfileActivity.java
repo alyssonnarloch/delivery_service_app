@@ -46,8 +46,18 @@ public class NewClientProfileActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("PROFILE", "NEW INTENT");
+        setIntent(intent);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+
+        client = (Client) getIntent().getSerializableExtra("clientObj");
+
         Log.i("PROFILE", "RESUME");
     }
 
@@ -117,7 +127,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
 
     public void save() {
         ClientService service = ServiceGenerator.createService(ClientService.class);
-
+Log.i("EMAIL LOCO",  client.getEmail());
         Call<ResponseBody> call = service.save(client.getName(),
                 client.getEmail(),
                 client.getPhone(),
@@ -146,6 +156,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(NewClientProfileActivity.this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show();
                     backLogin();
+                    finish();
                 }
             }
 

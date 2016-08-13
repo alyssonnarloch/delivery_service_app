@@ -77,6 +77,13 @@ public class NewClientMainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("MAIN", "NEW INTENT");
+        setIntent(intent);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         Log.i("MAIN", "RESUME");

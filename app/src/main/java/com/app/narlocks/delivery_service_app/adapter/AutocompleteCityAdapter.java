@@ -12,6 +12,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
+import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.City;
 import com.app.narlocks.delivery_service_app.service.CityService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 
 public class AutocompleteCityAdapter extends ArrayAdapter implements Filterable {
 
@@ -97,7 +99,13 @@ public class AutocompleteCityAdapter extends ArrayAdapter implements Filterable 
             CityService service = ServiceGenerator.createService(CityService.class);
             Call<List<City>> call = service.getByName(term);
 
-            return call.execute().body();
+            Response response = call.execute();
+
+            if(response.code() == 200) {
+                return (List<City>) response.body();
+            } else {
+                Log.i("OMGGGGGGGGG", ErrorConversor.getErrorMessage(response.errorBody()));
+            }
         } catch (Exception ex) {
             Log.i("ERRO getCities();", ex.getMessage());
         }
