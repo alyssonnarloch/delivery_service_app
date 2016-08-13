@@ -23,6 +23,8 @@
         <activity android:name=".UserSelectionActivity" />
         <activity android:name=".NewClientMainActivity" />
         <activity android:name=".NewClientProfileActivity" />
+        <activity android:name=".NewServiceProviderMainActivity" />
+        <activity android:name=".NewServiceProviderProfileActivity"></activity>
     </application>
 
 </manifest>

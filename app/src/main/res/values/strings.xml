@@ -7,4 +7,12 @@
 
     <string name="validation_required">Obrigatório</string>
     <string name="validation_password_confirmation">Confirmação diferente da senha</string>
+
+    <string name="client_save_ok">Cadastro efetuado com sucesso.</string>
+    <string name="client_save_fail">Ocorreu um erro ao salvar o cliente.</string>
+
+    <string name="service_provider_save_ok">Cadastro efetuado com sucesso.</string>
+    <string name="service_provider_save_fail">Ocorreu um erro ao salvar o prestador de serviços.</string>
+
+    <string name="image_upload_fail">Não foi possível carregar a imagem.</string>
 </resources>

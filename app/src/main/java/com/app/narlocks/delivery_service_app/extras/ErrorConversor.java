@@ -23,7 +23,11 @@ public class ErrorConversor {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            errorMessage = "Erro ao converter o retorno.";
+            try {
+                errorMessage = errorBody.string();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         return errorMessage;

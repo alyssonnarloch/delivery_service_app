@@ -16,9 +16,12 @@ public class UserSelectionActivity extends AppCompatActivity {
     void onClickTypeClient(View view) {
         Intent i = new Intent(UserSelectionActivity.this, NewClientMainActivity.class);
         startActivity(i);
+        finish();
     }
 
     void onClickTypeServiceProvider(View view) {
-
+        Intent i = new Intent(UserSelectionActivity.this, NewServiceProviderMainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

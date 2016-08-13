@@ -104,7 +104,7 @@ public class AutocompleteCityAdapter extends ArrayAdapter implements Filterable 
             if(response.code() == 200) {
                 return (List<City>) response.body();
             } else {
-                Log.i("OMGGGGGGGGG", ErrorConversor.getErrorMessage(response.errorBody()));
+                Log.i("CITY ADAPTER " + response.code(), ErrorConversor.getErrorMessage(response.errorBody()));
             }
         } catch (Exception ex) {
             Log.i("ERRO getCities();", ex.getMessage());
