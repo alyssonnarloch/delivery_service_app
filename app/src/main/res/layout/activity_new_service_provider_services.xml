@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_service_provider_services"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.narlocks.delivery_service_app.activity.NewServiceProviderServicesActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:weightSum="1"
+        android:padding="4dp"
+        android:clipToPadding="false">
+
+        <TextView
+            android:text="Principais serviços"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionBar.Title"
+            android:layout_weight="0.09"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <ListView android:id="@+id/listView1" android:layout_width="match_parent"
+            android:layout_height="157dp"
+            tools:layout_editor_absoluteY="24dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_weight="0.63"
+            android:hint="Conte um pouco sobre sua experiência..."
+            android:gravity="top"
+            android:layout_margin="4dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="bottom|center">
+
+            <Button
+                android:text="Continuar"
+                android:layout_width="150dp"
+                android:layout_height="42dp"
+                android:id="@+id/button"
+                android:layout_gravity="bottom|center_horizontal"
+                android:onClick="onClickNext" />
+
+            <Button
+                android:text="Cancelar"
+                android:layout_width="150dp"
+                android:layout_height="42dp"
+                android:id="@+id/btCancel"
+                android:layout_gravity="bottom|center_horizontal"
+                android:onClick="onClickCancel" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

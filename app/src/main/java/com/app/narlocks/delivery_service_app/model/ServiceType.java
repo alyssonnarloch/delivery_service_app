@@ -6,8 +6,15 @@ public class ServiceType implements Serializable {
 
     private int id;
     private String name;
+    private boolean selected;
 
     public ServiceType() {
+    }
+
+    public ServiceType(int id, String name, boolean selected) {
+        this.id = id;
+        this.name = name;
+        this.selected = selected;
     }
 
     public int getId() {
@@ -24,5 +31,13 @@ public class ServiceType implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
