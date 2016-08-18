@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/ExternalTheme">
-        <activity android:name=".NewServiceProviderServicesActivity">
+        <activity android:name=".LoginActivity">
+        <!--<activity android:name=".NewServiceProviderServicesActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +26,8 @@
         <activity android:name=".NewClientProfileActivity" />
         <activity android:name=".NewServiceProviderMainActivity" />
         <activity android:name=".NewServiceProviderProfileActivity" />
-        <!--<activity android:name=".NewServiceProviderServicesActivity"></activity>-->
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".NewServiceProviderServicesActivity"></activity>
+        <!--<activity android:name=".LoginActivity"></activity>-->
     </application>
 
 </manifest>

@@ -28,17 +28,18 @@
             tools:layout_editor_absoluteX="0dp"
             android:gravity="center_vertical|center_horizontal" />
 
-        <ListView android:id="@+id/listView1" android:layout_width="match_parent"
+        <ListView android:id="@+id/lvServiceTypes" android:layout_width="match_parent"
             android:layout_height="157dp"
             tools:layout_editor_absoluteY="24dp"
-            tools:layout_editor_absoluteX="0dp" />
+            tools:layout_editor_absoluteX="0dp"
+            android:paddingTop="32dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/etExperienceDescription"
             android:layout_weight="0.63"
             android:hint="Conte um pouco sobre sua experiência..."
             android:gravity="top"

@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
-import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
-import com.app.narlocks.delivery_service_app.service.ServiceProviderService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,8 +26,7 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView ivProfilePicture;
     private ServiceProvider serviceProvider;
-
-    Resources res;
+    private Resources res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +34,6 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_service_provider_profile);
 
         res = getResources();
-
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfileImage);
@@ -101,14 +97,18 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickFinish(View view) {
+    public void onClickNext(View view) {
         BitmapDrawable drawable = (BitmapDrawable) ivProfilePicture.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
 
         String encodedProfilePicture = Image.bitmapToBase64(bitmap);
         serviceProvider.setProfileImage(encodedProfilePicture);
 
-        save();
+        Intent i = new Intent(NewServiceProviderProfileActivity.this, NewServiceProviderServicesActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("serviceProviderObj", serviceProvider);
+
+        startActivity(i);
     }
 
     public void onClickBack(View view) {
@@ -121,39 +121,5 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
         Intent i = new Intent(NewServiceProviderProfileActivity.this, LoginActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
-    }
-
-    public void save() {
-        ServiceProviderService service = ServiceGenerator.createService(ServiceProviderService.class);
-
-        /*
-        Call<ResponseBody> call = service.save(serviceProvider.getName(),
-                serviceProvider.getEmail(),
-                serviceProvider.getPhone(),
-                serviceProvider.getZipCode(),
-                serviceProvider.getCityId(),
-                serviceProvider.getAddress(),
-                serviceProvider.getNumber(),
-                serviceProvider.getPassword(),
-                serviceProvider.getProfileImage());
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() != 200) {
-                    Toast.makeText(NewServiceProviderProfileActivity.this, ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(NewServiceProviderProfileActivity.this, res.getString(R.string.service_provider_save_ok), Toast.LENGTH_LONG).show();
-                    backLogin();
-                    finish();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(NewServiceProviderProfileActivity.this, res.getString(R.string.service_provider_save_fail), Toast.LENGTH_LONG).show();
-            }
-        });
-        */
     }
 }

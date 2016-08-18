@@ -96,4 +96,8 @@ public class ServiceProvider extends User {
     public void setQualificationAvg(double qualificationAvg) {
         this.qualificationAvg = qualificationAvg;
     }
+
+    public void addServiceType(ServiceType serviceType) {
+        this.serviceTypes.add(serviceType);
+    }
 }
