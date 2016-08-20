@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="160dp"
+    android:layout_height="190dp"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/ivThumbnailPortfolio"
+        android:layout_width="144dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageButton
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@mipmap/ic_delete_sweep_black_24dp"
+        android:id="@+id/ibRemoveImage"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

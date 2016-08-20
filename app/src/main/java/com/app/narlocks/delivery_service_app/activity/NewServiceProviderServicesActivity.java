@@ -5,11 +5,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.adapter.CheckboxServiceTypesAdapter;
 import com.app.narlocks.delivery_service_app.async_task.ServiceTypeTask;
@@ -52,7 +50,7 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         getServiceProviderByView(view);
 
         if(validate()) {
-
+            etExperienceDescription.setError(null);
         }
     }
 
@@ -82,10 +80,7 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         CheckBox ck = (CheckBox) findViewById(R.id.check);
         if(this.serviceProvider.getServiceTypes().size() == 0) {
             valid = false;
-
-            ck.setError(res.getString(R.string.validation_required));
-        } else {
-            ck.setError(null);
+            etExperienceDescription.setError(res.getString(R.string.service_provider_service_type_required));
         }
 
         if(this.serviceProvider.getExperienceDescription() == null || this.serviceProvider.getExperienceDescription().equals("") || this.serviceProvider.getExperienceDescription().equals(" ")){
@@ -102,15 +97,19 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         ListView lvServiceType = (ListView) findViewById(R.id.lvServiceTypes);
         lvServiceType.setAdapter(dataAdapter);
 
+        /*
         lvServiceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                etExperienceDescription.setError(null);
+
                 ServiceType serviceType = (ServiceType) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),
                         "Clicked on Row: " + serviceType.getName(),
                         Toast.LENGTH_LONG).show();
             }
         });
-
+        */
     }
 }
