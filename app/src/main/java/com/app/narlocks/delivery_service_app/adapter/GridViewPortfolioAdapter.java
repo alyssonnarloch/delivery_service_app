@@ -3,6 +3,9 @@ package com.app.narlocks.delivery_service_app.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.app.narlocks.delivery_service_app.activity.DisplayImageActivity;
 import com.app.narlocks.delivery_service_app.activity.R;
+import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.ImageItem;
 
 import java.util.List;
@@ -47,6 +52,33 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
             holder = new ViewHolder();
             holder.image = (ImageView) row.findViewById(R.id.ivThumbnailPortfolio);
             holder.removeButton = (ImageButton) row.findViewById(R.id.ibRemoveImage);
+            holder.removeButton.setTag(position);
+
+           holder.image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ImageView imageView = (ImageView) v;
+
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
+                    Bitmap imageBitmap = bitmapDrawable.getBitmap();
+
+                    Intent i = new Intent(context, DisplayImageActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    i.putExtra("imageBase64", Image.bitmapToBase64(imageBitmap));
+
+                    context.startActivity(i);
+                }
+            });
+
+            holder.removeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("TAG MAROTA", (Integer) v.getTag() + "");
+                    int position = (Integer) v.getTag();
+                    data.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
 
             row.setTag(holder);
         } else {
@@ -55,12 +87,6 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
 
         ImageItem imageItem = (ImageItem) data.get(position);
         holder.image.setImageBitmap(imageItem.getImage());
-        holder.removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("HAAAAAAAAAAAAAA", "VOU REMOVER VOCÊ MUA HA HA HA!");
-            }
-        });
 
         return row;
     }

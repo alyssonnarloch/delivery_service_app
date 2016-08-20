@@ -88,8 +88,6 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
                     imageItems.add(imageItem);
                     gvAdapter = new GridViewPortfolioAdapter(this, R.layout.image_layout, imageItems);
                     gvPortfolioImages.setAdapter(gvAdapter);
-
-                    //ivProfilePicture.setImageBitmap(image);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(this, res.getString(R.string.image_upload_fail), Toast.LENGTH_LONG).show();
                 }

@@ -27,7 +27,8 @@
         <activity android:name=".NewServiceProviderProfileActivity" />
         <activity android:name=".NewServiceProviderServicesActivity" />
         <activity android:name=".LoginActivity" />
-        <!--<activity android:name=".NewServiceProviderPortfolioActivity"></activity>-->
+        <!-- <activity android:name=".NewServiceProviderPortfolioActivity"></activity> -->
+        <activity android:name=".DisplayImageActivity"></activity>
     </application>
 
 </manifest>

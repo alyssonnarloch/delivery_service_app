@@ -2,7 +2,9 @@ package com.app.narlocks.delivery_service_app.model;
 
 import android.graphics.Bitmap;
 
-public class ImageItem {
+import java.io.Serializable;
+
+public class ImageItem implements Serializable{
 
     private Bitmap image;
 
