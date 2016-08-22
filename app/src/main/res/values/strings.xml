@@ -14,6 +14,7 @@
     <string name="service_provider_save_ok">Cadastro efetuado com sucesso.</string>
     <string name="service_provider_save_fail">Ocorreu um erro ao salvar o prestador de serviços.</string>
     <string name="service_provider_service_type_required">Selecione um tipo de serviço</string>
+    <string name="service_provider_areas_required">Adicione uma cidade</string>
 
     <string name="image_upload_fail">Não foi possível carregar a imagem.</string>
 </resources>

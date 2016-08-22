@@ -28,6 +28,8 @@ public class NewServiceProviderMainActivity extends AppCompatActivity {
     private EditText etPasswordConfirmation;
     AutoCompleteTextView acCity;
 
+    AutocompleteCityAdapter adapter;
+
     private int selectedCityId = 0;
     private String selectedCityName;
 
@@ -40,7 +42,7 @@ public class NewServiceProviderMainActivity extends AppCompatActivity {
 
         res = getResources();
 
-        final AutocompleteCityAdapter adapter = new AutocompleteCityAdapter(this,android.R.layout.simple_dropdown_item_1line);
+        adapter = new AutocompleteCityAdapter(this,android.R.layout.simple_dropdown_item_1line);
 
         acCity = (AutoCompleteTextView) findViewById(R.id.acCity);
         acCity.setInputType(InputType.TYPE_CLASS_TEXT);

@@ -100,4 +100,16 @@ public class ServiceProvider extends User {
     public void addServiceType(ServiceType serviceType) {
         this.serviceTypes.add(serviceType);
     }
+
+    public void addProfilePortfolioSrc(String src) {
+        this.profilePortfolioSrc.add(src);
+    }
+
+    public void addOccupationAreaId(int cityId) {
+        this.occupationAreaIds.add(cityId);
+    }
+
+    public void addServiceTypeId(int serviceTypeId) {
+        this.serviceTypeIds.add(serviceTypeId);
+    }
 }

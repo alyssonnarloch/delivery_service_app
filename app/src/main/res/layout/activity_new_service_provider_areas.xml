@@ -2,47 +2,52 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_new_service_provider_portfolio"
+    android:id="@+id/activity_new_service_provider_areas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.narlocks.delivery_service_app.activity.NewServiceProviderPortfolioActivity">
+    tools:context="com.app.narlocks.delivery_service_app.activity.NewServiceProviderAreasActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp"
         android:padding="4dp">
 
         <TextView
-            android:text="Portfolio"
+            android:text="Disponibilidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
             android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionBar.Title"
             android:textAlignment="center" />
 
-        <ImageButton
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:src="@mipmap/ic_add_box_black_24dp"
-            android:id="@+id/ibNewImage"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onClickNewImage" />
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <CheckBox
+            android:text="Está disponível para novos serviços?"
             android:layout_width="match_parent"
-            android:layout_height="438dp">
+            android:layout_height="wrap_content"
+            android:id="@+id/cbAvailable"
+            android:layout_margin="4dp" />
 
-            <GridView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/gvPortfolioImages"
-                android:numColumns="2"
-                android:gravity="center" />
-        </LinearLayout>
+        <TextView
+            android:text="Áreas de Atuação"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionBar.Title"
+            android:textAlignment="center" />
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/acCity"
+            android:layout_margin="4dp" />
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="358dp"
+            android:layout_margin="4dp"
+            android:numColumns="1"
+            android:id="@+id/gvSelectedCities" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -54,9 +59,10 @@
                 android:text="Continuar"
                 android:layout_width="150dp"
                 android:layout_height="42dp"
-                android:id="@+id/button"
+                android:id="@+id/btNext"
                 android:layout_gravity="center_horizontal"
                 android:onClick="onClickNext" />
+
 
             <Button
                 android:text="Voltar"

@@ -52,6 +52,7 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
         super.onResume();
 
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
+        ivProfilePicture = (ImageView) findViewById(R.id.ivProfileImage);
 
         Log.i("PROFILE", "RESUME");
     }
@@ -81,13 +82,6 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
                     inputStream = getContentResolver().openInputStream(imageUri);
 
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
-
-                    /** TESTE MAROTO
-                     String encoded = Image.bitmapToBase64(image);
-                     Bitmap decodedImage = Image.base64ToBitmap(encoded);
-                     ivProfilePicture.setImageBitmap(decodedImage);
-                     //Log.i("##### BASE 64 #####", Image.bitmapToBase64(image));
-                     */
 
                     ivProfilePicture.setImageBitmap(image);
                 } catch (FileNotFoundException e) {

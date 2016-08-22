@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="44dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvName"
+        android:layout_weight="0.80"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center_vertical"
+        android:text="Curitiba" />
+
+    <ImageButton
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@mipmap/ic_delete_sweep_black_24dp"
+        android:id="@+id/ibRemove"
+        android:layout_gravity="center_vertical" />
+</LinearLayout>

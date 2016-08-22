@@ -40,6 +40,13 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         setIntent(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
+    }
+
     public void setServiceTypes(List<ServiceType> listServiceTypes) {
         this.serviceTypes = listServiceTypes;
 
@@ -51,11 +58,25 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
 
         if(validate()) {
             etExperienceDescription.setError(null);
+
+            for(ServiceType serviceType : serviceTypes) {
+                serviceProvider.addServiceTypeId(serviceType.getId());
+            }
+
+            Intent i = new Intent(NewServiceProviderServicesActivity.this, NewServiceProviderAreasActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            i.putExtra("serviceProviderObj", serviceProvider);
+
+            startActivity(i);
         }
     }
 
-    public void onClickCancel(View view) {
+    public void onClickBack(View view) {
+        Intent i = new Intent(NewServiceProviderServicesActivity.this, NewServiceProviderProfileActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("serviceProviderObj", serviceProvider);
 
+        startActivity(i);
     }
 
     private void getDataViewContent(View view) {
@@ -96,20 +117,5 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
 
         ListView lvServiceType = (ListView) findViewById(R.id.lvServiceTypes);
         lvServiceType.setAdapter(dataAdapter);
-
-        /*
-        lvServiceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                etExperienceDescription.setError(null);
-
-                ServiceType serviceType = (ServiceType) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(),
-                        "Clicked on Row: " + serviceType.getName(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        */
     }
 }
