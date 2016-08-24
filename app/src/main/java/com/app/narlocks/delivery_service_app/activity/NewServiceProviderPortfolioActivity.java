@@ -158,8 +158,11 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
         HashMap<String, String> portfolioSrcs = new HashMap();
 
         serviceTypesIds.put("service_type[0]", "1");
-        serviceTypesIds.put("occupation_area[0]", "5756");
-        serviceTypesIds.put("profile_portfolio[0]", "adhasuod78a6d8as7d6asdjha");
+        serviceTypesIds.put("service_type[1]", "2");
+        occupationAreasIds.put("occupation_area[0]", "5756");
+        occupationAreasIds.put("occupation_area[1]", "5659");
+        portfolioSrcs.put("profile_portfolio[0]", "15");
+        portfolioSrcs.put("profile_portfolio[1]", "16");
 
         Call<ResponseBody> call = service.save(serviceProvider.getName(),
                 serviceProvider.getEmail(),
@@ -170,9 +173,14 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
                 serviceProvider.getNumber(),
                 serviceProvider.getPassword(),
                 serviceProvider.getProfileImage(),
-                serviceTypesIds,
+                //serviceTypesIds,
+                serviceProvider.getServiceTypeIds(),
                 serviceProvider.getExperienceDescription(),
-                serviceProvider.isAvailable());
+                serviceProvider.isAvailable(),
+                //occupationAreasIds,
+                serviceProvider.getOccupationAreaIds(),
+                //portfolioSrcs);
+                serviceProvider.getProfilePortfolioSrc());
 
         Log.i("TESTEEEE", "OEEEE");
 

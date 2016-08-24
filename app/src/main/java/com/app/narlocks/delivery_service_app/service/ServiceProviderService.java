@@ -3,12 +3,10 @@ package com.app.narlocks.delivery_service_app.service;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -31,13 +29,13 @@ public interface ServiceProviderService {
                             @Field("number") int number,
                             @Field("password") String password,
                             @Field("profile_image") String profileImage,
-                            //@Field("service_type[]") List<Integer> serviceTypesId,
-                            @FieldMap(encoded = true) Map<String, String> serviceTypesId,
+                            @Field("service_type[]") List<Integer> serviceTypesId,
+                            //@FieldMap Map<String, String> serviceTypesId,
                             @Field("experience_description") String experienceDescription,
-                            @Field("available") boolean available);
-                            //@Field("occupation_area") List<Integer> occupationAreas,
+                            @Field("available") boolean available,
+                            @Field("occupation_area[]") List<Integer> occupationAreas,
                             //@FieldMap Map<String, String> occupationAreas,
-                            //@Field("profile_portfolio[]") List<String> profilePortfolio);
+                            @Field("profile_portfolio[]") List<String> profilePortfolio);
                             //@FieldMap Map<String, String> profilePortfolio);
 
     @FormUrlEncoded
