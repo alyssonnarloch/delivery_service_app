@@ -12,17 +12,12 @@ import okhttp3.ResponseBody;
 public class ErrorConversor {
 
     private Gson gson;
-    private Resources res;
 
     public static String getErrorMessage(ResponseBody errorBody) {
         Gson gson = new Gson();
         String errorMessage = "";
 
         try {
-            if(errorBody.string() == null || errorBody.string().equals("")) {
-                return "Erro ao executar chamada";
-            }
-
             Map<String, String> errors = gson.fromJson(errorBody.string(), Map.class);
 
             for(Map.Entry<String, String> entry : errors.entrySet()) {

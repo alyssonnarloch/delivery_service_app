@@ -30,13 +30,10 @@ public interface ServiceProviderService {
                             @Field("password") String password,
                             @Field("profile_image") String profileImage,
                             @Field("service_type[]") List<Integer> serviceTypesId,
-                            //@FieldMap Map<String, String> serviceTypesId,
                             @Field("experience_description") String experienceDescription,
                             @Field("available") boolean available,
                             @Field("occupation_area[]") List<Integer> occupationAreas,
-                            //@FieldMap Map<String, String> occupationAreas,
                             @Field("profile_portfolio[]") List<String> profilePortfolio);
-                            //@FieldMap Map<String, String> profilePortfolio);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/main")

@@ -8,13 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.adapter.GridViewPortfolioAdapter;
+import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.ImageItem;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
@@ -23,10 +23,8 @@ import com.app.narlocks.delivery_service_app.service.ServiceProviderService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -92,12 +90,11 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
         if (validate()) {
             for (ImageItem imageItem : imageItems) {
                 serviceProvider.addProfilePortfolioSrc(Image.bitmapToBase64(imageItem.getImage()));
-
             }
 
             save();
         } else {
-            Toast.makeText(NewServiceProviderPortfolioActivity.this, "Selecione uma imagem plx", Toast.LENGTH_LONG).show();
+            Toast.makeText(NewServiceProviderPortfolioActivity.this, res.getString(R.string.portfolio_required), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -111,7 +108,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
 
     public void backLogin() {
         Intent i = new Intent(NewServiceProviderPortfolioActivity.this, LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 
@@ -153,17 +150,6 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
     private void save() {
         ServiceProviderService service = ServiceGenerator.createService(ServiceProviderService.class);
 
-        HashMap<String, String> serviceTypesIds = new HashMap();
-        HashMap<String, String> occupationAreasIds = new HashMap();
-        HashMap<String, String> portfolioSrcs = new HashMap();
-
-        serviceTypesIds.put("service_type[0]", "1");
-        serviceTypesIds.put("service_type[1]", "2");
-        occupationAreasIds.put("occupation_area[0]", "5756");
-        occupationAreasIds.put("occupation_area[1]", "5659");
-        portfolioSrcs.put("profile_portfolio[0]", "15");
-        portfolioSrcs.put("profile_portfolio[1]", "16");
-
         Call<ResponseBody> call = service.save(serviceProvider.getName(),
                 serviceProvider.getEmail(),
                 serviceProvider.getPhone(),
@@ -173,29 +159,17 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
                 serviceProvider.getNumber(),
                 serviceProvider.getPassword(),
                 serviceProvider.getProfileImage(),
-                //serviceTypesIds,
                 serviceProvider.getServiceTypeIds(),
                 serviceProvider.getExperienceDescription(),
                 serviceProvider.isAvailable(),
-                //occupationAreasIds,
                 serviceProvider.getOccupationAreaIds(),
-                //portfolioSrcs);
                 serviceProvider.getProfilePortfolioSrc());
-
-        Log.i("TESTEEEE", "OEEEE");
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() != 200) {
-
-                    try {
-                        Log.i("ERROOOOOOOOOO", response.code() + " UUUUUUUUUU");
-                    Log.i("ERROOOOOOOOOO", response.errorBody().string());
-                        Toast.makeText(NewServiceProviderPortfolioActivity.this, response.errorBody().string(), Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Toast.makeText(NewServiceProviderPortfolioActivity.this, ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(NewServiceProviderPortfolioActivity.this, res.getString(R.string.client_save_ok), Toast.LENGTH_LONG).show();
                     backLogin();

@@ -45,7 +45,7 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
         View row = convertView;
         ViewHolder holder = null;
 
-        if(row == null) {
+        if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
@@ -54,12 +54,12 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
             holder.removeButton = (ImageButton) row.findViewById(R.id.ibRemoveImage);
             holder.removeButton.setTag(position);
 
-           holder.image.setOnClickListener(new View.OnClickListener() {
+            holder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ImageView imageView = (ImageView) v;
 
-                    BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
                     Bitmap imageBitmap = bitmapDrawable.getBitmap();
 
                     Intent i = new Intent(context, DisplayImageActivity.class);

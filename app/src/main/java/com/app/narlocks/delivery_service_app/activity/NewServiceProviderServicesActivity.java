@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -14,8 +14,10 @@ import com.app.narlocks.delivery_service_app.async_task.ServiceTypeTask;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.model.ServiceType;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class NewServiceProviderServicesActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     private List<ServiceType> serviceTypes;
     private Resources res;
     private EditText etExperienceDescription;
+    private CheckboxServiceTypesAdapter serviceTypesAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
 
         this.res = getResources();
         this.serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
+
+        serviceTypesAdapter = new CheckboxServiceTypesAdapter(this, R.layout.checkbox_layout, new ArrayList());
+
         new ServiceTypeTask(NewServiceProviderServicesActivity.this).execute();
     }
 
@@ -56,12 +62,8 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     public void onClickNext(View view) {
         getServiceProviderByView(view);
 
-        if(validate()) {
+        if (validate()) {
             etExperienceDescription.setError(null);
-
-            for(ServiceType serviceType : serviceTypes) {
-                serviceProvider.addServiceTypeId(serviceType.getId());
-            }
 
             Intent i = new Intent(NewServiceProviderServicesActivity.this, NewServiceProviderAreasActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -88,9 +90,14 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
 
         this.serviceProvider.setExperienceDescription(etExperienceDescription.getText().toString());
         this.serviceProvider.setServiceTypes(new HashSet<ServiceType>());
-        for(ServiceType serviceType : this.serviceTypes) {
-            if(serviceType.isSelected()) {
-                this.serviceProvider.addServiceType(serviceType);
+
+        Map teste = this.serviceTypesAdapter.getServiceTypesCheck();
+
+        Log.i("VISH", "VUASH");
+
+        for (Map.Entry<Integer, Boolean> entryServiceType : this.serviceTypesAdapter.getServiceTypesCheck().entrySet()) {
+            if (entryServiceType.getValue() == true && !this.serviceProvider.getServiceTypeIds().contains(entryServiceType.getKey())) {
+                this.serviceProvider.addServiceTypeId(entryServiceType.getKey());
             }
         }
     }
@@ -98,13 +105,12 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
 
-        CheckBox ck = (CheckBox) findViewById(R.id.check);
-        if(this.serviceProvider.getServiceTypes().size() == 0) {
+        if (this.serviceProvider.getServiceTypeIds().size() == 0) {
             valid = false;
             etExperienceDescription.setError(res.getString(R.string.service_provider_service_type_required));
         }
 
-        if(this.serviceProvider.getExperienceDescription() == null || this.serviceProvider.getExperienceDescription().equals("") || this.serviceProvider.getExperienceDescription().equals(" ")){
+        if (this.serviceProvider.getExperienceDescription() == null || this.serviceProvider.getExperienceDescription().equals("") || this.serviceProvider.getExperienceDescription().equals(" ")) {
             valid = false;
             etExperienceDescription.setError(res.getString(R.string.validation_required));
         }
@@ -113,9 +119,9 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     }
 
     private void displayServiceTypesView() {
-        CheckboxServiceTypesAdapter dataAdapter = new CheckboxServiceTypesAdapter(this, R.layout.checkbox_layout, serviceTypes);
+        serviceTypesAdapter = new CheckboxServiceTypesAdapter(this, R.layout.checkbox_layout, serviceTypes);
 
         ListView lvServiceType = (ListView) findViewById(R.id.lvServiceTypes);
-        lvServiceType.setAdapter(dataAdapter);
+        lvServiceType.setAdapter(serviceTypesAdapter);
     }
 }

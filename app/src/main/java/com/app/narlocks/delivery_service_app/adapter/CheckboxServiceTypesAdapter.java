@@ -12,16 +12,20 @@ import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.model.ServiceType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CheckboxServiceTypesAdapter extends ArrayAdapter<ServiceType> {
 
     private List<ServiceType> serviceTypes;
+    private Map<Integer, Boolean> serviceTypesCheck;
 
     public CheckboxServiceTypesAdapter(Context context, int textViewResourceId, List<ServiceType> serviceTypes) {
         super(context, textViewResourceId, serviceTypes);
         this.serviceTypes = new ArrayList();
         this.serviceTypes.addAll(serviceTypes);
+        this.serviceTypesCheck = new HashMap();
     }
 
     private class ViewHolder {
@@ -50,6 +54,8 @@ public class CheckboxServiceTypesAdapter extends ArrayAdapter<ServiceType> {
                     ServiceType serviceType = (ServiceType) cb.getTag();
 
                     serviceType.setSelected(cb.isChecked());
+
+                    serviceTypesCheck.put(serviceType.getId(), cb.isChecked());
                 }
             });
         } else {
@@ -63,5 +69,9 @@ public class CheckboxServiceTypesAdapter extends ArrayAdapter<ServiceType> {
         holder.name.setTag(serviceType);
 
         return convertView;
+    }
+
+    public Map<Integer, Boolean> getServiceTypesCheck() {
+        return this.serviceTypesCheck;
     }
 }
