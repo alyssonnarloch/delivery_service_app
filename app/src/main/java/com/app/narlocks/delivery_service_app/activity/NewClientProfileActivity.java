@@ -125,7 +125,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
 
     public void backLogin() {
         Intent i = new Intent(NewClientProfileActivity.this, LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 

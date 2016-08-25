@@ -107,6 +107,7 @@ public class NewClientMainActivity extends AppCompatActivity {
 
     public void onClickCancel(View view) {
         Intent i = new Intent(NewClientMainActivity.this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
     }
