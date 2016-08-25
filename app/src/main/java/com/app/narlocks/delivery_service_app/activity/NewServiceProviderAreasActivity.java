@@ -102,8 +102,16 @@ public class NewServiceProviderAreasActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
+        serviceProvider.setOccupationAreaIds(new ArrayList());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewServiceProviderAreasActivity.this, NewServiceProviderServicesActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("serviceProviderObj", serviceProvider);
+        startActivity(i);
     }
 
     public void onClickNext(View view) {
@@ -121,14 +129,6 @@ public class NewServiceProviderAreasActivity extends AppCompatActivity {
 
             startActivity(i);
         }
-    }
-
-    public void onClickBack(View view) {
-        Intent i = new Intent(NewServiceProviderAreasActivity.this, NewServiceProviderServicesActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.putExtra("serviceProviderObj", serviceProvider);
-
-        startActivity(i);
     }
 
     private boolean validate() {

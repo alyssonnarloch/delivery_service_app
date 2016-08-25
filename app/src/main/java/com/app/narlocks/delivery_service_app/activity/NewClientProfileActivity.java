@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -47,24 +46,27 @@ public class NewClientProfileActivity extends AppCompatActivity {
         client = (Client) getIntent().getSerializableExtra("clientObj");
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfileImage);
-        Log.i("PROFILE", "CREATE");
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.i("PROFILE", "NEW INTENT");
         setIntent(intent);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         client = (Client) getIntent().getSerializableExtra("clientObj");
-
-        Log.i("PROFILE", "RESUME");
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewClientProfileActivity.this, NewClientMainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
+    }
+
 
     public void onImageGalleryClicked(View view) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -91,14 +93,6 @@ public class NewClientProfileActivity extends AppCompatActivity {
                     inputStream = getContentResolver().openInputStream(imageUri);
 
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
-
-                    /** TESTE MAROTO
-                     String encoded = Image.bitmapToBase64(image);
-                     Bitmap decodedImage = Image.base64ToBitmap(encoded);
-                     ivProfilePicture.setImageBitmap(decodedImage);
-                     //Log.i("##### BASE 64 #####", Image.bitmapToBase64(image));
-                     */
-
                     ivProfilePicture.setImageBitmap(image);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(this, res.getString(R.string.image_upload_fail), Toast.LENGTH_LONG).show();
@@ -115,12 +109,6 @@ public class NewClientProfileActivity extends AppCompatActivity {
         client.setProfileImage(encodedProfilePicture);
 
         save();
-    }
-
-    public void onClickBack(View view) {
-        Intent i = new Intent(NewClientProfileActivity.this, NewClientMainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(i);
     }
 
     public void backLogin() {

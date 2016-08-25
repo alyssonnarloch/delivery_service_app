@@ -62,15 +62,22 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-
         setIntent(intent);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
+        serviceProvider.setProfilePortfolioSrc(new ArrayList());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewServiceProviderPortfolioActivity.this, NewServiceProviderAreasActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("serviceProviderObj", serviceProvider);
+        startActivity(i);
     }
 
     public void onClickNewImage(View view) {
@@ -96,14 +103,6 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
         } else {
             Toast.makeText(NewServiceProviderPortfolioActivity.this, res.getString(R.string.portfolio_required), Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void onClickBack(View view) {
-        Intent i = new Intent(NewServiceProviderPortfolioActivity.this, NewServiceProviderAreasActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.putExtra("serviceProviderObj", serviceProvider);
-
-        startActivity(i);
     }
 
     public void backLogin() {

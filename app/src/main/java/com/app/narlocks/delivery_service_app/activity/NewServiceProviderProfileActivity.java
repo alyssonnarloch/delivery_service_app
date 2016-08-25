@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,15 +34,12 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
 
         res = getResources();
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
-
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfileImage);
-        Log.i("PROFILE", "CREATE");
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.i("PROFILE", "NEW INTENT");
         setIntent(intent);
     }
 
@@ -53,8 +49,13 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
 
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfileImage);
+    }
 
-        Log.i("PROFILE", "RESUME");
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewServiceProviderProfileActivity.this, NewServiceProviderMainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
     }
 
     public void onImageGalleryClicked(View view) {
@@ -102,12 +103,6 @@ public class NewServiceProviderProfileActivity extends AppCompatActivity {
         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         i.putExtra("serviceProviderObj", serviceProvider);
 
-        startActivity(i);
-    }
-
-    public void onClickBack(View view) {
-        Intent i = new Intent(NewServiceProviderProfileActivity.this, NewServiceProviderMainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
     }
 

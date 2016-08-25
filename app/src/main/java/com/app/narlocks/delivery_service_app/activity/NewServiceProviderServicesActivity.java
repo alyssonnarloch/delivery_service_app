@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -49,13 +48,21 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
+        serviceProvider.setServiceTypeIds(new ArrayList());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewServiceProviderServicesActivity.this, NewServiceProviderProfileActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("serviceProviderObj", serviceProvider);
+
+        startActivity(i);
     }
 
     public void setServiceTypes(List<ServiceType> listServiceTypes) {
         this.serviceTypes = listServiceTypes;
-
         displayServiceTypesView();
     }
 
@@ -73,14 +80,6 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickBack(View view) {
-        Intent i = new Intent(NewServiceProviderServicesActivity.this, NewServiceProviderProfileActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.putExtra("serviceProviderObj", serviceProvider);
-
-        startActivity(i);
-    }
-
     private void getDataViewContent(View view) {
         etExperienceDescription = (EditText) findViewById(R.id.etExperienceDescription);
     }
@@ -91,12 +90,8 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         this.serviceProvider.setExperienceDescription(etExperienceDescription.getText().toString());
         this.serviceProvider.setServiceTypes(new HashSet<ServiceType>());
 
-        Map teste = this.serviceTypesAdapter.getServiceTypesCheck();
-
-        Log.i("VISH", "VUASH");
-
         for (Map.Entry<Integer, Boolean> entryServiceType : this.serviceTypesAdapter.getServiceTypesCheck().entrySet()) {
-            if (entryServiceType.getValue() == true && !this.serviceProvider.getServiceTypeIds().contains(entryServiceType.getKey())) {
+            if (entryServiceType.getValue() == true) {
                 this.serviceProvider.addServiceTypeId(entryServiceType.getKey());
             }
         }

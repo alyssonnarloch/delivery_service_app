@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -40,10 +39,7 @@ public class NewClientMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_client_main);
 
         res = getResources();
-
-        Log.i("MAIN", "CREATE");
-
-        final AutocompleteCityAdapter adapter = new AutocompleteCityAdapter(this,android.R.layout.simple_dropdown_item_1line);
+        final AutocompleteCityAdapter adapter = new AutocompleteCityAdapter(this, android.R.layout.simple_dropdown_item_1line);
 
         acCity = (AutoCompleteTextView) findViewById(R.id.acCity);
         acCity.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -68,7 +64,7 @@ public class NewClientMainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(selectedCityName != null && !selectedCityName.equals(s.toString())) {
+                if (selectedCityName != null && !selectedCityName.equals(s.toString())) {
                     selectedCityId = 0;
                 }
             }
@@ -83,33 +79,32 @@ public class NewClientMainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.i("MAIN", "NEW INTENT");
         setIntent(intent);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("MAIN", "RESUME");
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewClientMainActivity.this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+        finish();
     }
 
     public void onClickNext(View view) {
         Client client = getClientByView(view);
 
-        if(validate(client)) {
+        if (validate(client)) {
             Intent i = new Intent(NewClientMainActivity.this, NewClientProfileActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("clientObj", client);
 
             startActivity(i);
         }
-    }
-
-    public void onClickCancel(View view) {
-        Intent i = new Intent(NewClientMainActivity.this, LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
-        finish();
     }
 
     private void getDataViewContent(View view) {
@@ -151,48 +146,48 @@ public class NewClientMainActivity extends AppCompatActivity {
     private boolean validate(Client client) {
         boolean valid = true;
 
-        if(client.getName() == null || client.getName().equals("")) {
+        if (client.getName() == null || client.getName().equals("")) {
             valid = false;
             etName.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getEmail() == null || client.getEmail().equals("")) {
+        if (client.getEmail() == null || client.getEmail().equals("")) {
             valid = false;
             etEmail.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getPhone() == null || client.getPhone().equals("")) {
+        if (client.getPhone() == null || client.getPhone().equals("")) {
             valid = false;
             etPhone.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getZipCode() == null || client.getZipCode().equals("")) {
+        if (client.getZipCode() == null || client.getZipCode().equals("")) {
             valid = false;
             etZipCode.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getCityId() == 0) {
+        if (client.getCityId() == 0) {
             valid = false;
             acCity.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getAddress() == null || client.getAddress().equals("")) {
+        if (client.getAddress() == null || client.getAddress().equals("")) {
             valid = false;
             etAddress.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getNumber() == 0) {
+        if (client.getNumber() == 0) {
             valid = false;
             etNumber.setError(res.getString(R.string.validation_required));
         }
 
-        if(client.getPassword() == null || client.getPassword().equals("")) {
+        if (client.getPassword() == null || client.getPassword().equals("")) {
             valid = false;
             etPassword.setError(res.getString(R.string.validation_required));
-        } else if(client.getPasswordConfirmation() == null || client.getPasswordConfirmation().equals("")) {
+        } else if (client.getPasswordConfirmation() == null || client.getPasswordConfirmation().equals("")) {
             valid = false;
             etPasswordConfirmation.setError(res.getString(R.string.validation_required));
-        } else if(!client.getPassword().equals(client.getPasswordConfirmation())) {
+        } else if (!client.getPassword().equals(client.getPasswordConfirmation())) {
             valid = false;
             etPasswordConfirmation.setError(res.getString(R.string.validation_password_confirmation));
         }

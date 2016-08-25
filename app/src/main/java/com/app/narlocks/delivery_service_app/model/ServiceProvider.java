@@ -106,10 +106,14 @@ public class ServiceProvider extends User {
     }
 
     public void addOccupationAreaId(int cityId) {
-        this.occupationAreaIds.add(cityId);
+        if (!this.occupationAreaIds.contains(cityId)) {
+            this.occupationAreaIds.add(cityId);
+        }
     }
 
     public void addServiceTypeId(int serviceTypeId) {
-        this.serviceTypeIds.add(serviceTypeId);
+        if (!this.serviceTypeIds.contains(serviceTypeId)) {
+            this.serviceTypeIds.add(serviceTypeId);
+        }
     }
 }

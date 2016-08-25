@@ -42,7 +42,7 @@ public class NewServiceProviderMainActivity extends AppCompatActivity {
 
         res = getResources();
 
-        adapter = new AutocompleteCityAdapter(this,android.R.layout.simple_dropdown_item_1line);
+        adapter = new AutocompleteCityAdapter(this, android.R.layout.simple_dropdown_item_1line);
 
         acCity = (AutoCompleteTextView) findViewById(R.id.acCity);
         acCity.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -67,7 +67,7 @@ public class NewServiceProviderMainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(selectedCityName != null && !selectedCityName.equals(s.toString())) {
+                if (selectedCityName != null && !selectedCityName.equals(s.toString())) {
                     selectedCityId = 0;
                 }
             }
@@ -90,23 +90,24 @@ public class NewServiceProviderMainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(NewServiceProviderMainActivity.this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+        finish();
+    }
+
     public void onClickNext(View view) {
         ServiceProvider serviceProvider = getServiceProviderByView(view);
 
-        if(validate(serviceProvider)) {
+        if (validate(serviceProvider)) {
             Intent i = new Intent(NewServiceProviderMainActivity.this, NewServiceProviderProfileActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("serviceProviderObj", serviceProvider);
 
             startActivity(i);
         }
-    }
-
-    public void onClickCancel(View view) {
-        Intent i = new Intent(NewServiceProviderMainActivity.this, LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
-        finish();
     }
 
     private void getDataViewContent(View view) {
@@ -144,52 +145,52 @@ public class NewServiceProviderMainActivity extends AppCompatActivity {
 
         return serviceProvider;
     }
-    
+
     private boolean validate(ServiceProvider serviceProvider) {
         boolean valid = true;
 
-        if(serviceProvider.getName() == null || serviceProvider.getName().equals("")) {
+        if (serviceProvider.getName() == null || serviceProvider.getName().equals("")) {
             valid = false;
             etName.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getEmail() == null || serviceProvider.getEmail().equals("")) {
+        if (serviceProvider.getEmail() == null || serviceProvider.getEmail().equals("")) {
             valid = false;
             etEmail.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getPhone() == null || serviceProvider.getPhone().equals("")) {
+        if (serviceProvider.getPhone() == null || serviceProvider.getPhone().equals("")) {
             valid = false;
             etPhone.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getZipCode() == null || serviceProvider.getZipCode().equals("")) {
+        if (serviceProvider.getZipCode() == null || serviceProvider.getZipCode().equals("")) {
             valid = false;
             etZipCode.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getCityId() == 0) {
+        if (serviceProvider.getCityId() == 0) {
             valid = false;
             acCity.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getAddress() == null || serviceProvider.getAddress().equals("")) {
+        if (serviceProvider.getAddress() == null || serviceProvider.getAddress().equals("")) {
             valid = false;
             etAddress.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getNumber() == 0) {
+        if (serviceProvider.getNumber() == 0) {
             valid = false;
             etNumber.setError(res.getString(R.string.validation_required));
         }
 
-        if(serviceProvider.getPassword() == null || serviceProvider.getPassword().equals("")) {
+        if (serviceProvider.getPassword() == null || serviceProvider.getPassword().equals("")) {
             valid = false;
             etPassword.setError(res.getString(R.string.validation_required));
-        } else if(serviceProvider.getPasswordConfirmation() == null || serviceProvider.getPasswordConfirmation().equals("")) {
+        } else if (serviceProvider.getPasswordConfirmation() == null || serviceProvider.getPasswordConfirmation().equals("")) {
             valid = false;
             etPasswordConfirmation.setError(res.getString(R.string.validation_required));
-        } else if(!serviceProvider.getPassword().equals(serviceProvider.getPasswordConfirmation())) {
+        } else if (!serviceProvider.getPassword().equals(serviceProvider.getPasswordConfirmation())) {
             valid = false;
             etPasswordConfirmation.setError(res.getString(R.string.validation_password_confirmation));
         }
