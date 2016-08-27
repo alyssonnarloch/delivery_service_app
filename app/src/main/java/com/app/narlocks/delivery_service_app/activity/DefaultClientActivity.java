@@ -11,7 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.app.narlocks.delivery_service_app.extras.Image;
+import com.app.narlocks.delivery_service_app.session.SessionManager;
 
 public class DefaultClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,10 +57,16 @@ public class DefaultClientActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.default_client, menu);
 
-        TextView tvUserName = (TextView) findViewById(R.id.tvUserName);;
-        //TextView tvUserEmail;
+        SessionManager session = new SessionManager(getApplicationContext());
 
-        tvUserName.setText("Alyssao");
+        TextView tvUserName = (TextView) findViewById(R.id.tvUserName);;
+        TextView tvUserEmail = (TextView) findViewById(R.id.tvUserEmail);
+        ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+
+        tvUserName.setText(session.getUserName());
+        tvUserEmail.setText(session.getUserEmail());
+        ivProfileImage.setImageBitmap(Image.base64ToBitmap(session.getUserProfileImage()));
+
         return true;
     }
 

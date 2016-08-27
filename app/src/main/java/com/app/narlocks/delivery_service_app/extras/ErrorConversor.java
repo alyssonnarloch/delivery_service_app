@@ -1,7 +1,5 @@
 package com.app.narlocks.delivery_service_app.extras;
 
-import android.content.res.Resources;
-
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -18,7 +16,13 @@ public class ErrorConversor {
         String errorMessage = "";
 
         try {
-            Map<String, String> errors = gson.fromJson(errorBody.string(), Map.class);
+            String errorBodyMsg = errorBody.string();
+
+            if(!errorBodyMsg.contains("{") && !errorBodyMsg.contains("}")) {
+                return errorBodyMsg;
+            }
+
+            Map<String, String> errors = gson.fromJson(errorBodyMsg, Map.class);
 
             for(Map.Entry<String, String> entry : errors.entrySet()) {
                 errorMessage += entry.getValue() + "\n";
