@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/btLogin"
             android:layout_margin="4dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="onClickLogin" />
 
         <Button
             android:text="Sou novo por aqui"

@@ -12,25 +12,49 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/ExternalTheme">
-        <activity android:name=".LoginActivity"
-            android:screenOrientation = "portrait">
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:screenOrientation = "portrait" />
-        <activity android:name=".UserSelectionActivity" android:screenOrientation = "portrait" />
-        <activity android:name=".NewClientMainActivity" android:screenOrientation = "portrait" />
-        <activity android:name=".NewClientProfileActivity" android:screenOrientation = "portrait" />
-        <activity android:name=".NewServiceProviderMainActivity" android:screenOrientation = "portrait" />
-        <activity android:name=".NewServiceProviderProfileActivity" android:screenOrientation = "portrait" />
-        <activity android:name=".NewServiceProviderServicesActivity" android:screenOrientation = "portrait" />
-        <!--<activity android:name=".LoginActivity" />-->
-        <activity android:name=".NewServiceProviderPortfolioActivity" android:screenOrientation = "portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserSelectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewClientMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewClientProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewServiceProviderMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewServiceProviderProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewServiceProviderServicesActivity"
+            android:screenOrientation="portrait" />
+        <!-- <activity android:name=".LoginActivity" /> -->
+        <activity
+            android:name=".NewServiceProviderPortfolioActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".DisplayImageActivity" />
-        <activity android:name=".NewServiceProviderAreasActivity" android:screenOrientation = "portrait" />
+        <activity
+            android:name=".NewServiceProviderAreasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DefaultClientActivity"
+            android:label="@string/title_activity_default_client"
+            android:theme="@style/ExternalTheme" />
+        <activity android:name=".ClientMainActivity"></activity>
     </application>
 
 </manifest>

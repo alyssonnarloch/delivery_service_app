@@ -13,6 +13,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
+    void onClickLogin(View view) {
+        Intent i = new Intent(LoginActivity.this, DefaultClientActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
+    }
+
     void onClickUserSelection(View view) {
         Intent i = new Intent(LoginActivity.this, UserSelectionActivity.class);
         startActivity(i);

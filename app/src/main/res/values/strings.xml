@@ -19,4 +19,20 @@
     <string name="portfolio_required">Selecione ao menos uma imagem</string>
 
     <string name="image_upload_fail">Não foi possível carregar a imagem</string>
+    <string name="title_activity_default_client">DefaultClientActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Menu -->
+    <string name="menu_my_projects">Meus Projetos</string>
+    <string name="menu_search_service_provider">Buscar Prestador</string>
+    <string name="menu_favorite_service_provider">Prestadores Favoritos</string>
+    <string name="menu_evaluation">Avaliações Recebidas</string>
+    <string name="menu_exit">Sair</string>
 </resources>
