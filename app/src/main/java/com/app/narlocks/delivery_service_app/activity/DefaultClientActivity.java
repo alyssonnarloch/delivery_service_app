@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,7 +71,7 @@ public class DefaultClientActivity extends AppCompatActivity
                 Fragment fragment = new ClientDetailsFragment();
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -105,7 +104,7 @@ public class DefaultClientActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navMyProjects) {
-            fragment = new TestFragment();
+            fragment = new ClientProjectsFragment();
         }
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();

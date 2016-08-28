@@ -1,6 +1,5 @@
 package com.app.narlocks.delivery_service_app.activity;
 
-
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.adapter.EvaluationListAdapter;
+import com.app.narlocks.delivery_service_app.adapter.ProjectListAdapter;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -22,13 +21,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClientEvaluationsFragment extends Fragment {
+public class ClientProjectsFragment extends Fragment {
 
     private SessionManager session;
     private Resources res;
-    private ListView lvClientEvaluations;
+    private ListView lvClientProjects;
 
-    public ClientEvaluationsFragment() {
+    public ClientProjectsFragment() {
 
     }
 
@@ -36,11 +35,11 @@ public class ClientEvaluationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_client_evaluations, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_projects, container, false);
 
         res = getResources();
         session = new SessionManager(getActivity());
-        lvClientEvaluations = (ListView) view.findViewById(R.id.lvClientEvaluations);
+        lvClientProjects = (ListView) view.findViewById(R.id.lvClientProjects);
 
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
         Call<List<Project>> projectCall = projectService.clientEvaluations(session.getUserId());
@@ -50,8 +49,8 @@ public class ClientEvaluationsFragment extends Fragment {
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
                 if(response.code() == 200) {
                     List<Project> clientProjects = response.body();
-                    EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), clientProjects);
-                    lvClientEvaluations.setAdapter(adapter);
+                    ProjectListAdapter adapter = new ProjectListAdapter(getActivity(), clientProjects);
+                    lvClientProjects.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }
@@ -66,6 +65,5 @@ public class ClientEvaluationsFragment extends Fragment {
 
         return view;
     }
-
 
 }

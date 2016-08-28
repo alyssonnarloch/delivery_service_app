@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Client;
@@ -75,7 +76,7 @@ public class ClientDetailsFragment extends Fragment {
                 Fragment fragment = new ClientEvaluationsFragment();
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
                 DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -107,13 +108,13 @@ public class ClientDetailsFragment extends Fragment {
                     tvCity.setText(client.getCity().getName());
                     tvAddress.setText(client.getAddress() + ", " + client.getNumber());
                 } else {
-
+                    Toast.makeText(getActivity(), res.getString(R.string.service_client_fail), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Client> call, Throwable t) {
-
+                Toast.makeText(getActivity(), res.getString(R.string.service_client_fail), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -146,13 +147,13 @@ public class ClientDetailsFragment extends Fragment {
 
                     setStarsEvaluation(averageEvaluation);
                 } else {
-
+                    Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Project>> call, Throwable t) {
-
+                Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
             }
         });
     }

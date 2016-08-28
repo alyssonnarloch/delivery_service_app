@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="4dp">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="122dp"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="110dp"
-            android:layout_height="100dp"
-            android:src="@mipmap/ic_face_black_48dp"
-            android:id="@+id/ivProfileImageEvaluation"
-            android:layout_gravity="center_horizontal"
-            android:padding="6dp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/llStars"
-            android:gravity="center_horizontal|center"></LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvNameValuer"
-            android:padding="4dp"
+            android:id="@+id/tvTitle"
             android:textSize="18sp"
             android:textStyle="normal|bold"
-            android:gravity="left" />
+            android:padding="4dp" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tvEvaluationDescription"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content"
+            android:id="@+id/tvServiceProviderName"
+            android:textSize="18sp"
+            android:padding="4dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPeriod"
+            android:textSize="14sp"
+            android:padding="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/ic_star_half_black_24dp"
+            android:id="@+id/ivProjectStatus"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.app.narlocks.delivery_service_app.activity;
+package com.app.narlocks.delivery_service_app.adapter;
 
 
 import android.content.Context;
@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Project;
 
 import java.util.List;
 
-public class ProjectListAdapter extends ArrayAdapter<Project> {
+public class EvaluationListAdapter extends ArrayAdapter<Project> {
 
     private static class ViewHolder {
         ImageView ivProfileImageEvaluation;
@@ -24,8 +25,8 @@ public class ProjectListAdapter extends ArrayAdapter<Project> {
         TextView tvEvaluationDescription;
     }
 
-    public ProjectListAdapter(Context contex, List<Project> projects) {
-        super(contex, 0, projects);
+    public EvaluationListAdapter(Context context, List<Project> projects) {
+        super(context, 0, projects);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ProjectListAdapter extends ArrayAdapter<Project> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.project_list_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.evaluation_list_layout, parent, false);
 
             viewHolder.ivProfileImageEvaluation = (ImageView) convertView.findViewById(R.id.ivProfileImageEvaluation);
             viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);

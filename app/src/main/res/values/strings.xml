@@ -47,4 +47,10 @@
     <string name="address">Endereço</string>
     <string name="evaluation">avaliação</string>
     <string name="evaluations">avaliações</string>
+
+    <!-- Service Failure -->
+    <string name="service_project_fail">Falha ao executar ProjectService</string>
+    <string name="service_client_fail">Falha ao executar ProjectService</string>
+    <string name="service_service_provider_fail">Falha ao executar ProjectServiceProvider</string>
+    <string name="service_city_fail">Falha ao executar CityService</string>
 </resources>
