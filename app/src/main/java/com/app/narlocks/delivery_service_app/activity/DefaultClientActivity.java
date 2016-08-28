@@ -9,8 +9,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,13 +23,10 @@ public class DefaultClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_client);
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,13 +58,26 @@ public class DefaultClientActivity extends AppCompatActivity
 
         SessionManager session = new SessionManager(getApplicationContext());
 
-        TextView tvUserName = (TextView) findViewById(R.id.tvUserName);;
+        TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
         TextView tvUserEmail = (TextView) findViewById(R.id.tvUserEmail);
         ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
 
         tvUserName.setText(session.getUserName());
         tvUserEmail.setText(session.getUserEmail());
         ivProfileImage.setImageBitmap(Image.base64ToBitmap(session.getUserProfileImage()));
+
+        ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ClientDetailsFragment();
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
 
         return true;
     }
@@ -95,7 +107,7 @@ public class DefaultClientActivity extends AppCompatActivity
         if (id == R.id.navMyProjects) {
             fragment = new TestFragment();
         }
-        if(fragment != null) {
+        if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
         }

@@ -52,6 +52,10 @@ public class LoginActivity extends AppCompatActivity {
                         SessionManager session = new SessionManager(getApplicationContext());
                         session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage());
 
+                        if(user.getType() != null && user.getType().equals("client")) {
+
+                        }
+
                         Intent i = new Intent(LoginActivity.this, DefaultClientActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(i);

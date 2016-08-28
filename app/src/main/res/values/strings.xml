@@ -37,4 +37,12 @@
     <string name="menu_favorite_service_provider">Prestadores Favoritos</string>
     <string name="menu_evaluation">Avaliações Recebidas</string>
     <string name="menu_exit">Sair</string>
+
+    <!-- Labels -->
+    <string name="email">E-mail</string>
+    <string name="phone">Telefone</string>
+    <string name="zip_code">CEP</string>
+    <string name="state">Estado</string>
+    <string name="city">Cidade</string>
+    <string name="address">Endereço</string>
 </resources>
