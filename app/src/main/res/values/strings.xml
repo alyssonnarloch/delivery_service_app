@@ -45,4 +45,6 @@
     <string name="state">Estado</string>
     <string name="city">Cidade</string>
     <string name="address">Endereço</string>
+    <string name="evaluation">avaliação</string>
+    <string name="evaluations">avaliações</string>
 </resources>

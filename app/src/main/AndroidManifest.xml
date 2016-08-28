@@ -53,6 +53,7 @@
         <activity
             android:name=".DefaultClientActivity"
             android:label="@string/title_activity_default_client"
+            android:screenOrientation="portrait"
             android:theme="@style/ExternalTheme" />
         <activity android:name=".ClientMainActivity"></activity>
     </application>
