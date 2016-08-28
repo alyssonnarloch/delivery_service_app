@@ -4,6 +4,9 @@ package com.app.narlocks.delivery_service_app.activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +69,19 @@ public class ClientDetailsFragment extends Fragment {
 
         setClientData(session.getUserId());
 
+        tvEvaluation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ClientEvaluationsFragment();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+
+                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
         return view;
     }
 
@@ -125,9 +141,9 @@ public class ClientDetailsFragment extends Fragment {
                     }
 
                     if(numProjects != 0) {
-                        averageEvaluation = sum / numProjects;
+                        averageEvaluation = sum / (double) numProjects;
                     }
-                    
+
                     setStarsEvaluation(averageEvaluation);
                 } else {
 
@@ -147,7 +163,7 @@ public class ClientDetailsFragment extends Fragment {
         for(int i = 1; i <= intPart; i++) {
             ImageView ivStar = new ImageView(getActivity());
 
-            if(i == intPart && qualification > 1 && qualification <= (i + 0.9)) {
+            if(i == intPart && qualification > i && qualification <= (i + 0.9)) {
                 ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
             } else {
                 ivStar.setImageResource(R.mipmap.ic_star_black_24dp);

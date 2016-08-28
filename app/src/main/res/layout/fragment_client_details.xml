@@ -42,36 +42,6 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal">
-
-               <!--
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/ic_star_black_24dp"
-                    android:id="@+id/ivStar1" />
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/ic_star_black_24dp"
-                    android:id="@+id/ivStar2" />
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/ic_star_black_24dp"
-                    android:id="@+id/ivStar3" />
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/ic_star_black_24dp"
-                    android:id="@+id/ivStar4" />
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/ic_star_black_24dp"
-                    android:id="@+id/ivStar5" />-->
             </LinearLayout>
 
             <TextView
