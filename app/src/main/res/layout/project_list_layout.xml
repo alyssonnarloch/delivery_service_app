@@ -46,7 +46,7 @@
 
         <ImageView
             android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_height="88dp"
             android:src="@mipmap/ic_star_half_black_24dp"
             android:id="@+id/ivProjectStatus"
             android:layout_gravity="center_horizontal" />

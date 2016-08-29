@@ -10,7 +10,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="2dp">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -22,28 +23,32 @@
                 android:layout_height="46dp"
                 android:src="@mipmap/ic_schedule_black_24dp"
                 android:id="@+id/ivAwaiting"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:padding="2dp" />
 
             <ImageView
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:src="@mipmap/ic_block_black_24dp"
                 android:id="@+id/ivRefused"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:padding="2dp" />
 
             <ImageView
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:src="@mipmap/ic_hourglass_empty_black_24dp"
                 android:id="@+id/ivExecution"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:padding="2dp" />
 
             <ImageView
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:src="@mipmap/ic_hourglass_full_black_24dp"
                 android:id="@+id/ivFinished"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:padding="2dp" />
         </LinearLayout>
 
         <ListView

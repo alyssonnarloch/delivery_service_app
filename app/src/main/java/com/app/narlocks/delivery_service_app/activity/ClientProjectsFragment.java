@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,11 +22,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClientProjectsFragment extends Fragment {
+public class ClientProjectsFragment extends Fragment implements View.OnClickListener {
 
     private SessionManager session;
     private Resources res;
     private ListView lvClientProjects;
+    private ImageView ivAwaiting;
+    private ImageView ivRefused;
+    private ImageView ivExecution;
+    private ImageView ivFinished;
 
     public ClientProjectsFragment() {
 
@@ -40,9 +45,24 @@ public class ClientProjectsFragment extends Fragment {
         res = getResources();
         session = new SessionManager(getActivity());
         lvClientProjects = (ListView) view.findViewById(R.id.lvClientProjects);
+        ivAwaiting = (ImageView) view.findViewById(R.id.ivAwaiting);
+        ivRefused = (ImageView) view.findViewById(R.id.ivRefused);
+        ivExecution = (ImageView) view.findViewById(R.id.ivExecution);
+        ivFinished = (ImageView) view.findViewById(R.id.ivFinished);
 
+        ivAwaiting.setOnClickListener(this);
+        ivRefused.setOnClickListener(this);
+        ivExecution.setOnClickListener(this);
+        ivFinished.setOnClickListener(this);
+
+        listProjectsByStatus(0);
+
+        return view;
+    }
+
+    private void listProjectsByStatus(int status){
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
-        Call<List<Project>> projectCall = projectService.clientEvaluations(session.getUserId());
+        Call<List<Project>> projectCall = projectService.clientProjects(session.getUserId(), status);
 
         projectCall.enqueue(new Callback<List<Project>>() {
             @Override
@@ -61,9 +81,23 @@ public class ClientProjectsFragment extends Fragment {
                 Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
             }
         });
-
-
-        return view;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ivAwaiting:
+                listProjectsByStatus(Project.AWATING);
+                break;
+            case R.id.ivRefused:
+                listProjectsByStatus(Project.REFUSED);
+                break;
+            case R.id.ivExecution:
+                listProjectsByStatus(Project.EXECUTION);
+                break;
+            case R.id.ivFinished:
+                listProjectsByStatus(Project.FINISHED);
+                break;
+        }
+    }
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
+import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class ProjectListAdapter extends ArrayAdapter<Project> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.evaluation_list_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.project_list_layout, parent, false);
 
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
@@ -50,7 +51,7 @@ public class ProjectListAdapter extends ArrayAdapter<Project> {
 
         viewHolder.tvTitle.setText(project.getTitle());
         viewHolder.tvServiceProviderName.setText(project.getServiceProvider().getName());
-        //viewHolder.tvPeriod.setText(project.getStartAt());
+        viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;
 

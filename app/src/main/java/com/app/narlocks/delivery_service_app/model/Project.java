@@ -24,6 +24,11 @@ public class Project implements Serializable {
     private ProjectStatus status;
     private List<ProjectPortfolio> portfolio;
 
+    public static final int AWATING = 1;
+    public static final int REFUSED = 2;
+    public static final int EXECUTION = 3;
+    public static final int FINISHED = 4;
+
     public Project(int id) {
         this.portfolio = new ArrayList();
     }
