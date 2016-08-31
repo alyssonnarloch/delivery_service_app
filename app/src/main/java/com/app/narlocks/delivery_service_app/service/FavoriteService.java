@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 
 public interface FavoriteService {
 
-    @GET("favorite/services_provider/client_id")
+    @GET("favorite/services_provider/{client_id}")
     Call<List<ServiceProvider>> getServicesProvider(@Path("client_id") int clientId);
 
     @GET("favorite/{client_id}/{service_provider_id}")

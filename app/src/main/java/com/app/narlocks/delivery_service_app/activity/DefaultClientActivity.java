@@ -105,7 +105,10 @@ public class DefaultClientActivity extends AppCompatActivity
 
         if (id == R.id.navMyProjects) {
             fragment = new ClientProjectsFragment();
+        } else if(id == R.id.navFavoriteServiceProvider) {
+            fragment = new FavoritesFragment();
         }
+
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();

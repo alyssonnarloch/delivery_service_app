@@ -63,7 +63,6 @@ public class ClientEvaluationsFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
