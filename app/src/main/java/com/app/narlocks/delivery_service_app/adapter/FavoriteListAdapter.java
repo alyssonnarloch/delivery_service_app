@@ -2,6 +2,8 @@ package com.app.narlocks.delivery_service_app.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.activity.R;
+import com.app.narlocks.delivery_service_app.activity.ServiceProviderDetailsFragment;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
@@ -27,32 +30,50 @@ import retrofit2.Response;
 public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
 
     private Resources res;
+    private FragmentManager fragmentManager;
 
     private static class ViewHolder {
+        LinearLayout llRow;
         ImageView ivServiceProviderProfile;
         TextView tvServiceProviderName;
         TextView tvExperienceDescription;
         LinearLayout llStars;
     }
 
-    public FavoriteListAdapter(Context context, List<ServiceProvider> serviceProviders) {
+    public FavoriteListAdapter(Context context, List<ServiceProvider> serviceProviders, FragmentManager fragmentManager) {
         super(context, 0, serviceProviders);
-        res = getContext().getResources();
+        this.res = getContext().getResources();
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final ViewHolder viewHolder;
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.favorite_list_layout, parent, false);
 
+            viewHolder.llRow = (LinearLayout) convertView.findViewById(R.id.llRow);
             viewHolder.ivServiceProviderProfile = (ImageView) convertView.findViewById(R.id.ivServiceProviderProfile);
             viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
             viewHolder.tvExperienceDescription = (TextView) convertView.findViewById(R.id.tvExperienceDescription);
             viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);
+
+            viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle arguments = new Bundle();
+                    ServiceProvider serviceProvider = getItem(position);
+                    arguments.putInt("serviceProviderId", serviceProvider.getId());
+
+                    ServiceProviderDetailsFragment fragment = new ServiceProviderDetailsFragment();
+                    fragment.setArguments(arguments);
+
+                    fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+                }
+            });
 
             convertView.setTag(viewHolder);
         } else {

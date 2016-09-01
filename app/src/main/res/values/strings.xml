@@ -47,6 +47,14 @@
     <string name="address">Endereço</string>
     <string name="evaluation">avaliação</string>
     <string name="evaluations">avaliações</string>
+    <string name="experience_description">Experiência</string>
+    <string name="service_types">Serviços prestados</string>
+    <string name="occupation_areas">Áreas de atuação</string>
+    <string name="portfolio">Portifólio</string>
+    <string name="projects">Projetos</string>
+    <string name="make_contract">Contratar</string>
+    <string name="interested">Tenho interesse</string>
+
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

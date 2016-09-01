@@ -49,7 +49,7 @@ public class FavoritesFragment extends Fragment {
             public void onResponse(Call<List<ServiceProvider>> call, Response<List<ServiceProvider>> response) {
                 if(response.code() == 200) {
                     List<ServiceProvider> serviceProviders = response.body();
-                    FavoriteListAdapter adapter = new FavoriteListAdapter(getActivity(), serviceProviders);
+                    FavoriteListAdapter adapter = new FavoriteListAdapter(getActivity(), serviceProviders, getActivity().getSupportFragmentManager());
                     lvFavorites.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_service_provider_fail), Toast.LENGTH_LONG).show();

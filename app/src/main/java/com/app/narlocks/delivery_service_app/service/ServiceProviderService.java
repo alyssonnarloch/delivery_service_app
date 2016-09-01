@@ -16,7 +16,7 @@ import retrofit2.http.Path;
 public interface ServiceProviderService {
 
     @GET("service_provider/{id}")
-    Call<List<ServiceProvider>> getById(@Path("id") int id);
+    Call<ServiceProvider> getById(@Path("id") int id);
 
     @FormUrlEncoded
     @POST("service_provider/new")
