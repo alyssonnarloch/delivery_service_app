@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="-350dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -275,15 +276,16 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/llPortfolio">
 
                     <ImageView
                         android:id="@+id/ivPortfolio"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
                         android:foregroundGravity="center"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@mipmap/ic_photo_library_black_24dp" />
 
                     <TextView
                         android:id="@+id/tvPortfolio"
@@ -299,15 +301,16 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/llProjects">
 
                     <ImageView
                         android:id="@+id/ivProjects"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
                         android:foregroundGravity="center"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@mipmap/ic_developer_board_black_24dp" />
 
                     <TextView
                         android:id="@+id/tvProjects"
@@ -323,15 +326,16 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/llMakeContract">
 
                     <ImageView
                         android:id="@+id/ivMakeContract"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
                         android:foregroundGravity="center"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@mipmap/ic_near_me_black_24dp" />
 
                     <TextView
                         android:id="@+id/tvMakeContract"
@@ -347,15 +351,16 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/llIntrested">
 
                     <ImageView
                         android:id="@+id/ivInterested"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="38dp"
                         android:layout_weight="1.94"
                         android:foregroundGravity="center"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@mipmap/ic_star_border_black_24dp" />
 
                     <TextView
                         android:id="@+id/tvInterested"

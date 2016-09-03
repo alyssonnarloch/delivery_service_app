@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         res = getResources();
     }
 
-    void onClickLogin(View view) {
+    public void onClickLogin(View view) {
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 

@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.City;
+import com.app.narlocks.delivery_service_app.model.ClientServiceProviderFavorite;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.model.ServiceType;
+import com.app.narlocks.delivery_service_app.service.FavoriteService;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 import com.app.narlocks.delivery_service_app.service.ServiceProviderService;
@@ -26,6 +28,7 @@ import com.app.narlocks.delivery_service_app.session.SessionManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +37,10 @@ public class ServiceProviderDetailsFragment extends Fragment {
 
     private SessionManager session;
     private LinearLayout llStars;
+    private LinearLayout llPortfolio;
+    private LinearLayout llProjects;
+    private LinearLayout llMakeContract;
+    private LinearLayout llInterested;
     private ImageView ivProfileImageDetail;
     private TextView tvEvaluation;
     private TextView tvName;
@@ -46,7 +53,10 @@ public class ServiceProviderDetailsFragment extends Fragment {
     private TextView tvExperienceDescription;
     private ListView lvServiceTypes;
     private ListView lvOccupationAreas;
+    private ImageView ivInterested;
     Resources res;
+    private boolean isFavorite;
+    private ClientServiceProviderFavorite favorite;
 
     public ServiceProviderDetailsFragment() {
 
@@ -58,7 +68,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_service_provider_details, container, false);
 
-        int serviceProviderId = getArguments().getInt("serviceProviderId");
+        final int serviceProviderId = getArguments().getInt("serviceProviderId");
 
         res = getResources();
         session = new SessionManager(getActivity());
@@ -76,18 +86,72 @@ public class ServiceProviderDetailsFragment extends Fragment {
         tvExperienceDescription = (TextView) view.findViewById(R.id.tvExperienceDescription);
         lvServiceTypes = (ListView) view.findViewById(R.id.lvServiceTypes);
         lvOccupationAreas = (ListView) view.findViewById(R.id.lvOccupationAreas);
+        llPortfolio = (LinearLayout) view.findViewById(R.id.llPortfolio);
+        llProjects = (LinearLayout) view.findViewById(R.id.llProjects);
+        llMakeContract = (LinearLayout) view.findViewById(R.id.llMakeContract);
+        llInterested = (LinearLayout) view.findViewById(R.id.llIntrested);
+        ivInterested = (ImageView) view.findViewById(R.id.ivInterested);
 
         setServiceProviderData(serviceProviderId);
+
+        llInterested.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteService favoriteService = ServiceGenerator.createService(FavoriteService.class);
+                Call<ResponseBody> favoriteCall = null;
+
+                if(!isFavorite) {
+                    favoriteCall = favoriteService.save(session.getUserId(), serviceProviderId);
+                    favoriteCall.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if(response.code() == 200) {
+                                ivInterested.setImageResource(R.mipmap.ic_star_border_black_24dp);
+                            } else {
+                                Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    if(favorite != null) {
+                        favoriteCall = favoriteService.delete(favorite.getId());
+                        favoriteCall.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.code() == 200) {
+                                    ivInterested.setImageResource(R.mipmap.ic_star_border_black_24dp);
+                                } else {
+                                    Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                }
+            }
+        });
 
         return view;
     }
 
-    private void setServiceProviderData(int id) {
+    private void setServiceProviderData(int serviceProviderId) {
         ServiceProviderService serviceProviderService = ServiceGenerator.createService(ServiceProviderService.class);
-        Call<ServiceProvider> serviceProviderCall = serviceProviderService.getById(id);
+        Call<ServiceProvider> serviceProviderCall = serviceProviderService.getById(serviceProviderId);
 
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
-        Call<List<Project>> projectCall = projectService.serviceProviderEvaluations(id);
+        Call<List<Project>> projectCall = projectService.serviceProviderEvaluations(serviceProviderId);
+
+        FavoriteService favoriteService = ServiceGenerator.createService(FavoriteService.class);
+        Call<ClientServiceProviderFavorite> favoriteCall = favoriteService.getFavorite(session.getUserId(), serviceProviderId);
 
         serviceProviderCall.enqueue(new Callback<ServiceProvider>() {
             @Override
@@ -112,7 +176,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                         serviceTypesName.add(" - " + serviceType.getName());
                     }
 
-                    for(City city : serviceProvider.getOccupationAreas()) {
+                    for (City city : serviceProvider.getOccupationAreas()) {
                         occupationAreaName.add(" - " + city.getName());
                     }
 
@@ -168,6 +232,29 @@ public class ServiceProviderDetailsFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Project>> call, Throwable t) {
                 Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        favoriteCall.enqueue(new Callback<ClientServiceProviderFavorite>() {
+            @Override
+            public void onResponse(Call<ClientServiceProviderFavorite> call, Response<ClientServiceProviderFavorite> response) {
+                if (response.code() == 200) {
+                    favorite = response.body();
+
+                    if (favorite != null) {
+                        isFavorite = true;
+                        ivInterested.setImageResource(R.mipmap.ic_star_black_24dp);
+                    } else {
+                        isFavorite = false;
+                    }
+                } else {
+                    Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ClientServiceProviderFavorite> call, Throwable t) {
+                Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
             }
         });
     }
