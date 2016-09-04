@@ -71,7 +71,7 @@ public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
                     ServiceProviderDetailsFragment fragment = new ServiceProviderDetailsFragment();
                     fragment.setArguments(arguments);
 
-                    fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
                 }
             });
 

@@ -16,6 +16,8 @@
     <string name="service_provider_service_type_required">Selecione um tipo de serviço</string>
     <string name="service_provider_areas_required">Adicione uma cidade</string>
 
+    <string name="project_save_ok">Projecto cadastrado com sucesso</string>
+
     <string name="portfolio_required">Selecione ao menos uma imagem</string>
 
     <string name="image_upload_fail">Não foi possível carregar a imagem</string>
@@ -54,7 +56,8 @@
     <string name="projects">Projetos</string>
     <string name="make_contract">Contratar</string>
     <string name="interested">Tenho interesse</string>
-
+    <string name="project_data">Dados do projeto</string>
+    <string name="use_my_address">Utilizar endereço residencial</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

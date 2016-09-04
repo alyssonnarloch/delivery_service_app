@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                         User user = response.body();
 
                         SessionManager session = new SessionManager(getApplicationContext());
-                        session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage());
+                        session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage(), user.getZipCode(), user.getCity().getId(), user.getCity().getName(), user.getAddress(), user.getNumber());
 
                         if(user.getType() != null && user.getType().equals("client")) {
 

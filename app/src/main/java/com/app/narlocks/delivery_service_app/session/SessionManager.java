@@ -17,6 +17,11 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_ZIP_CODE = "zipCode";
+    public static final String KEY_CITY_ID = "cityId";
+    public static final String KEY_CITY_NAME = "cityName";
+    public static final String KEY_ADDRESS = "address";
+    public static final String KEY_NUMBER = "number";
     public static final String KEY_PROFILE_IMAGE = "profile_image";
     public static final String KEY_ID = "id";
 
@@ -26,10 +31,15 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void createLoginSession(int id, String name, String email, String profileImage) {
+    public void createLoginSession(int id, String name, String email, String profileImage, String zipCode, int cityId, String cityName, String address, int number) {
         editor.putBoolean(IS_LOGIN, true);
         editor.putInt(KEY_ID, id);
+        editor.putString(KEY_ZIP_CODE, zipCode);
+        editor.putInt(KEY_CITY_ID, cityId);
         editor.putString(KEY_NAME, name);
+        editor.putString(KEY_CITY_NAME, cityName);
+        editor.putString(KEY_ADDRESS, address);
+        editor.putInt(KEY_NUMBER, number);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PROFILE_IMAGE, profileImage);
 
@@ -68,6 +78,20 @@ public class SessionManager {
         return 0;
     }
 
+    public int getUserCityId() {
+        if (this.isLoggedIn()) {
+            return pref.getInt(KEY_CITY_ID, 0);
+        }
+        return 0;
+    }
+
+    public int getUserNumber() {
+        if (this.isLoggedIn()) {
+            return pref.getInt(KEY_NUMBER, 0);
+        }
+        return 0;
+    }
+
     public String getUserName() {
         if (this.isLoggedIn()) {
             return pref.getString(KEY_NAME, "");
@@ -89,4 +113,24 @@ public class SessionManager {
         return "";
     }
 
+    public String getUserZipCode() {
+        if (this.isLoggedIn()) {
+            return pref.getString(KEY_ZIP_CODE, "");
+        }
+        return "";
+    }
+
+    public String getUserCityName() {
+        if (this.isLoggedIn()) {
+            return pref.getString(KEY_CITY_NAME, "");
+        }
+        return "";
+    }
+
+    public String getUserAddress() {
+        if (this.isLoggedIn()) {
+            return pref.getString(KEY_ADDRESS, "");
+        }
+        return "";
+    }
 }

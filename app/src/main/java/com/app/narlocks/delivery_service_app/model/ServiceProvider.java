@@ -25,6 +25,17 @@ public class ServiceProvider extends User {
         this.portfolio = new HashSet();
     }
 
+    public ServiceProvider(int id) {
+        this.setId(id);
+
+        this.serviceTypeIds = new ArrayList();
+        this.occupationAreaIds = new ArrayList();
+        this.profilePortfolioSrc = new ArrayList();
+        this.serviceTypes = new HashSet();
+        this.occupationAreas = new HashSet();
+        this.portfolio = new HashSet();
+    }
+
     public String getExperienceDescription() {
         return experienceDescription;
     }

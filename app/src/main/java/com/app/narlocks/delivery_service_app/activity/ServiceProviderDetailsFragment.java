@@ -3,6 +3,9 @@ package com.app.narlocks.delivery_service_app.activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +38,6 @@ import retrofit2.Response;
 
 public class ServiceProviderDetailsFragment extends Fragment {
 
-    private SessionManager session;
     private LinearLayout llStars;
     private LinearLayout llPortfolio;
     private LinearLayout llProjects;
@@ -54,9 +56,14 @@ public class ServiceProviderDetailsFragment extends Fragment {
     private ListView lvServiceTypes;
     private ListView lvOccupationAreas;
     private ImageView ivInterested;
-    Resources res;
+
     private boolean isFavorite;
     private ClientServiceProviderFavorite favorite;
+    private ServiceProvider serviceProvider;
+    private int numEvaluations;
+
+    private SessionManager session;
+    Resources res;
 
     public ServiceProviderDetailsFragment() {
 
@@ -93,6 +100,28 @@ public class ServiceProviderDetailsFragment extends Fragment {
         ivInterested = (ImageView) view.findViewById(R.id.ivInterested);
 
         setServiceProviderData(serviceProviderId);
+
+        llMakeContract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(serviceProvider != null) {
+                    Bundle arguments = new Bundle();
+                    arguments.putInt("serviceProviderId", serviceProvider.getId());
+                    arguments.putDouble("serviceProviderQualification", serviceProvider.getQualificationAvg());
+                    arguments.putString("serviceProviderName", serviceProvider.getName());
+                    arguments.putInt("serviceProviderNumEvaluations", numEvaluations);
+
+                    Fragment fragment = new MakeContractFragment();
+                    fragment.setArguments(arguments);
+
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+
+                    DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            }
+        });
 
         llInterested.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +173,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
     }
 
     private void setServiceProviderData(int serviceProviderId) {
-        ServiceProviderService serviceProviderService = ServiceGenerator.createService(ServiceProviderService.class);
+        final ServiceProviderService serviceProviderService = ServiceGenerator.createService(ServiceProviderService.class);
         Call<ServiceProvider> serviceProviderCall = serviceProviderService.getById(serviceProviderId);
 
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
@@ -160,7 +189,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     List<String> serviceTypesName = new ArrayList();
                     List<String> occupationAreaName = new ArrayList();
 
-                    ServiceProvider serviceProvider = response.body();
+                    serviceProvider = response.body();
 
                     ivProfileImageDetail.setImageBitmap(Image.base64ToBitmap(serviceProvider.getProfileImage()));
                     tvName.setText(serviceProvider.getName());
@@ -213,6 +242,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                         evaluationLabel = res.getString(R.string.evaluation);
                     }
 
+                    numEvaluations = numProjects;
                     tvEvaluation.setText("(" + numProjects + " " + evaluationLabel + ")");
 
                     for (Project project : serviceProviderProjects) {
@@ -223,6 +253,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                         averageEvaluation = sum / (double) numProjects;
                     }
 
+                    serviceProvider.setQualificationAvg(averageEvaluation);
                     setStarsEvaluation(averageEvaluation);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();

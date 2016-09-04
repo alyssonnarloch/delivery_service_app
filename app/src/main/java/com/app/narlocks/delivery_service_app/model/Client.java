@@ -4,4 +4,7 @@ public class Client extends User {
     public Client() {
     }
 
+    public Client(int id) {
+        this.setId(id);
+    }
 }

@@ -29,7 +29,7 @@ public class Project implements Serializable {
     public static final int EXECUTION = 3;
     public static final int FINISHED = 4;
 
-    public Project(int id) {
+    public Project() {
         this.portfolio = new ArrayList();
     }
 
