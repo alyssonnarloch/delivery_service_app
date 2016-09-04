@@ -102,11 +102,48 @@ public class ServiceProviderDetailsFragment extends Fragment {
 
         setServiceProviderData(serviceProviderId);
 
+        tvEvaluation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (serviceProvider != null) {
+                    Bundle arguments = new Bundle();
+                    arguments.putInt("serviceProviderId", serviceProvider.getId());
+
+                    Fragment fragment = new ServiceProviderEvaluationsFragment();
+                    fragment.setArguments(arguments);
+
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+
+                    DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            }
+        });
+
+        llProjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (serviceProvider != null) {
+                    Bundle arguments = new Bundle();
+                    arguments.putInt("serviceProviderId", serviceProvider.getId());
+
+                    Fragment fragment = new ServiceProviderProjectsFragment();
+                    fragment.setArguments(arguments);
+
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+
+                    DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            }
+        });
 
         llMakeContract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(serviceProvider != null) {
+                if (serviceProvider != null) {
                     Bundle arguments = new Bundle();
                     arguments.putInt("serviceProviderId", serviceProvider.getId());
                     arguments.putDouble("serviceProviderQualification", serviceProviderQualification);
@@ -130,12 +167,12 @@ public class ServiceProviderDetailsFragment extends Fragment {
             public void onClick(View v) {
                 FavoriteService favoriteService = ServiceGenerator.createService(FavoriteService.class);
 
-                if(!isFavorite) {
+                if (!isFavorite) {
                     Call<ClientServiceProviderFavorite> favoriteSaveCall = favoriteService.save(session.getUserId(), serviceProviderId);
                     favoriteSaveCall.enqueue(new Callback<ClientServiceProviderFavorite>() {
                         @Override
                         public void onResponse(Call<ClientServiceProviderFavorite> call, Response<ClientServiceProviderFavorite> response) {
-                            if(response.code() == 200) {
+                            if (response.code() == 200) {
                                 favorite = response.body();
                                 isFavorite = true;
                                 ivInterested.setImageResource(R.mipmap.ic_star_black_24dp);
@@ -150,12 +187,12 @@ public class ServiceProviderDetailsFragment extends Fragment {
                         }
                     });
                 } else {
-                    if(favorite != null) {
+                    if (favorite != null) {
                         Call<ResponseBody> favoriteDeleteCall = favoriteService.delete(favorite.getId());
                         favoriteDeleteCall.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if(response.code() == 200) {
+                                if (response.code() == 200) {
                                     isFavorite = false;
                                     ivInterested.setImageResource(R.mipmap.ic_star_border_black_24dp);
                                 } else {
@@ -213,8 +250,8 @@ public class ServiceProviderDetailsFragment extends Fragment {
                         occupationAreaName.add(" - " + city.getName());
                     }
 
-                    ArrayAdapter serviceTypeAdapter = new ArrayAdapter<String>(getActivity(), R.layout.simple_list_item_layout, R.id.tvItem, serviceTypesName);
-                    ArrayAdapter occupationAreaAdapter = new ArrayAdapter<String>(getActivity(), R.layout.simple_list_item_layout, R.id.tvItem, occupationAreaName);
+                    ArrayAdapter serviceTypeAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_simple_item_layout, R.id.tvItem, serviceTypesName);
+                    ArrayAdapter occupationAreaAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_simple_item_layout, R.id.tvItem, occupationAreaName);
 
                     lvServiceTypes.setAdapter(serviceTypeAdapter);
                     lvOccupationAreas.setAdapter(occupationAreaAdapter);

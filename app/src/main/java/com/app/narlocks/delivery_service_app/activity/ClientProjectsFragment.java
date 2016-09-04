@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.adapter.ProjectListAdapter;
+import com.app.narlocks.delivery_service_app.adapter.ClientProjectsListAdapter;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -69,7 +69,7 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
                 if(response.code() == 200) {
                     List<Project> clientProjects = response.body();
-                    ProjectListAdapter adapter = new ProjectListAdapter(getActivity(), clientProjects);
+                    ClientProjectsListAdapter adapter = new ClientProjectsListAdapter(getActivity(), clientProjects);
                     lvClientProjects.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();

@@ -53,7 +53,7 @@ public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.favorite_list_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_favorite_layout, parent, false);
 
             viewHolder.llRow = (LinearLayout) convertView.findViewById(R.id.llRow);
             viewHolder.ivServiceProviderProfile = (ImageView) convertView.findViewById(R.id.ivServiceProviderProfile);

@@ -73,7 +73,6 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
             holder.removeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i("TAG MAROTA", (Integer) v.getTag() + "");
                     int position = (Integer) v.getTag();
                     data.remove(position);
                     notifyDataSetChanged();

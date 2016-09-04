@@ -18,6 +18,9 @@ public class User implements Serializable {
     private String password;
     private String passwordConfirmation;
 
+    public static int CLIENT = 1;
+    public static int SERVICE_PROVIDER = 2;
+
     public User() {
     }
 

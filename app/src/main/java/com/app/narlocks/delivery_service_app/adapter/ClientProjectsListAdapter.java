@@ -11,26 +11,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
-import com.app.narlocks.delivery_service_app.extras.Image;
+import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
-import com.app.narlocks.delivery_service_app.model.User;
 
 import java.util.List;
 
-public class EvaluationListAdapter extends ArrayAdapter<Project> {
-
-    private int profileId;
+public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
 
     private static class ViewHolder {
-        ImageView ivProfileImageEvaluation;
+        TextView tvTitle;
+        TextView tvServiceProviderName;
+        TextView tvPeriod;
+        ImageView ivProjectStatus;
         LinearLayout llStars;
-        TextView tvNameValuer;
-        TextView tvEvaluationDescription;
     }
 
-    public EvaluationListAdapter(Context context, List<Project> projects, int profileId) {
+    public ClientProjectsListAdapter(Context context, List<Project> projects) {
         super(context, 0, projects);
-        this.profileId = profileId;
     }
 
     @Override
@@ -40,12 +37,13 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_evaluation_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_client_project_layout, parent, false);
 
-            viewHolder.ivProfileImageEvaluation = (ImageView) convertView.findViewById(R.id.ivProfileImageEvaluation);
+            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+            viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
+            viewHolder.tvPeriod = (TextView) convertView.findViewById(R.id.tvPeriod);
+            viewHolder.ivProjectStatus = (ImageView) convertView.findViewById(R.id.ivProjectStatus);
             viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);
-            viewHolder.tvNameValuer = (TextView) convertView.findViewById(R.id.tvNameValuer);
-            viewHolder.tvEvaluationDescription = (TextView) convertView.findViewById(R.id.tvEvaluationDescription);
 
             convertView.setTag(viewHolder);
         } else {
@@ -54,27 +52,29 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
 
         Project project = getItem(position);
 
-        int qualification = 0;
-        String name = "";
-        String evaluationDescription = "";
-        String profileImage;
+        viewHolder.tvTitle.setText(project.getTitle());
+        viewHolder.tvServiceProviderName.setText(project.getServiceProvider().getName());
+        viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
-        if(profileId == User.CLIENT) {
-            qualification = project.getClientQualification();
-            name = project.getServiceProvider().getName();
-            evaluationDescription = project.getClientEvaluation();
-            profileImage = project.getServiceProvider().getProfileImage();
-        } else {
-            qualification = project.getServiceProviderQualification();
-            name = project.getClient().getName();
-            evaluationDescription = project.getServiceProviderEvaluation();
-            profileImage = project.getClient().getProfileImage();
+        if(project.getStatus() != null && project.getStatus().getId() == Project.FINISHED) {
+            viewHolder.llStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
         }
 
-        viewHolder.ivProfileImageEvaluation.setImageBitmap(Image.base64ToBitmap(profileImage));
-        viewHolder.llStars.addView(getStarsEvaluation(qualification));
-        viewHolder.tvNameValuer.setText(name);
-        viewHolder.tvEvaluationDescription.setText(evaluationDescription);
+        int projectStatusId = R.mipmap.ic_schedule_black_24dp;
+
+        switch(project.getStatus().getId()){
+            case 2:
+                projectStatusId = R.mipmap.ic_block_black_24dp;
+                break;
+            case 3:
+                projectStatusId = R.mipmap.ic_hourglass_empty_black_24dp;
+                break;
+            case 4:
+                projectStatusId = R.mipmap.ic_hourglass_full_black_24dp;
+                break;
+        }
+
+        viewHolder.ivProjectStatus.setImageResource(projectStatusId);
 
         return convertView;
     }
