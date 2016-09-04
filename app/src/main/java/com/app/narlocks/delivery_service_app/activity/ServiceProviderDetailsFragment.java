@@ -127,32 +127,34 @@ public class ServiceProviderDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FavoriteService favoriteService = ServiceGenerator.createService(FavoriteService.class);
-                Call<ResponseBody> favoriteCall = null;
 
                 if(!isFavorite) {
-                    favoriteCall = favoriteService.save(session.getUserId(), serviceProviderId);
-                    favoriteCall.enqueue(new Callback<ResponseBody>() {
+                    Call<ClientServiceProviderFavorite> favoriteSaveCall = favoriteService.save(session.getUserId(), serviceProviderId);
+                    favoriteSaveCall.enqueue(new Callback<ClientServiceProviderFavorite>() {
                         @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        public void onResponse(Call<ClientServiceProviderFavorite> call, Response<ClientServiceProviderFavorite> response) {
                             if(response.code() == 200) {
-                                ivInterested.setImageResource(R.mipmap.ic_star_border_black_24dp);
+                                favorite = response.body();
+                                isFavorite = true;
+                                ivInterested.setImageResource(R.mipmap.ic_star_black_24dp);
                             } else {
                                 Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        public void onFailure(Call<ClientServiceProviderFavorite> call, Throwable t) {
                             Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {
                     if(favorite != null) {
-                        favoriteCall = favoriteService.delete(favorite.getId());
-                        favoriteCall.enqueue(new Callback<ResponseBody>() {
+                        Call<ResponseBody> favoriteDeleteCall = favoriteService.delete(favorite.getId());
+                        favoriteDeleteCall.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.code() == 200) {
+                                    isFavorite = false;
                                     ivInterested.setImageResource(R.mipmap.ic_star_border_black_24dp);
                                 } else {
                                     Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();

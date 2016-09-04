@@ -8,6 +8,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -24,8 +25,8 @@ public interface FavoriteService {
 
     @FormUrlEncoded
     @POST("favorite/new")
-    Call<ResponseBody> save(@Path("client_id") int clientId,
-                            @Path("service_provider_id") int serviceProviderId);
+    Call<ClientServiceProviderFavorite> save(@Field("client_id") int clientId,
+                            @Field("service_provider_id") int serviceProviderId);
 
     @DELETE("favorite/delete/{id}")
     Call<ResponseBody> delete(@Path("id") int id);

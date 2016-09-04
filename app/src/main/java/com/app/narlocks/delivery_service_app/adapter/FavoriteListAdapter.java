@@ -66,12 +66,15 @@ public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
                 public void onClick(View v) {
                     Bundle arguments = new Bundle();
                     ServiceProvider serviceProvider = getItem(position);
-                    arguments.putInt("serviceProviderId", serviceProvider.getId());
 
-                    ServiceProviderDetailsFragment fragment = new ServiceProviderDetailsFragment();
-                    fragment.setArguments(arguments);
+                    if(serviceProvider != null) {
+                        arguments.putInt("serviceProviderId", serviceProvider.getId());
 
-                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+                        ServiceProviderDetailsFragment fragment = new ServiceProviderDetailsFragment();
+                        fragment.setArguments(arguments);
+
+                        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+                    }
                 }
             });
 
