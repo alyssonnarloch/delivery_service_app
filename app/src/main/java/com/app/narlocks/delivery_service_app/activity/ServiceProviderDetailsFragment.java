@@ -60,7 +60,8 @@ public class ServiceProviderDetailsFragment extends Fragment {
     private boolean isFavorite;
     private ClientServiceProviderFavorite favorite;
     private ServiceProvider serviceProvider;
-    private int numEvaluations;
+    private int serviceProviderNumEvaluations;
+    private double serviceProviderQualification;
 
     private SessionManager session;
     Resources res;
@@ -101,15 +102,16 @@ public class ServiceProviderDetailsFragment extends Fragment {
 
         setServiceProviderData(serviceProviderId);
 
+
         llMakeContract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(serviceProvider != null) {
                     Bundle arguments = new Bundle();
                     arguments.putInt("serviceProviderId", serviceProvider.getId());
-                    arguments.putDouble("serviceProviderQualification", serviceProvider.getQualificationAvg());
+                    arguments.putDouble("serviceProviderQualification", serviceProviderQualification);
                     arguments.putString("serviceProviderName", serviceProvider.getName());
-                    arguments.putInt("serviceProviderNumEvaluations", numEvaluations);
+                    arguments.putInt("serviceProviderNumEvaluations", serviceProviderNumEvaluations);
 
                     Fragment fragment = new MakeContractFragment();
                     fragment.setArguments(arguments);
@@ -244,18 +246,18 @@ public class ServiceProviderDetailsFragment extends Fragment {
                         evaluationLabel = res.getString(R.string.evaluation);
                     }
 
-                    numEvaluations = numProjects;
+                    serviceProviderNumEvaluations = numProjects;
                     tvEvaluation.setText("(" + numProjects + " " + evaluationLabel + ")");
 
                     for (Project project : serviceProviderProjects) {
                         sum += project.getServiceProviderQualification();
                     }
 
-                    if (numProjects != 0) {
+                    if (numProjects > 0) {
                         averageEvaluation = sum / (double) numProjects;
                     }
 
-                    serviceProvider.setQualificationAvg(averageEvaluation);
+                    serviceProviderQualification = averageEvaluation;
                     setStarsEvaluation(averageEvaluation);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
