@@ -49,6 +49,7 @@ public class ServiceProviderProjectsListAdapter extends ArrayAdapter<Project> {
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.tvPeriod = (TextView) convertView.findViewById(R.id.tvPeriod);
             viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);
+            viewHolder.llRow = (LinearLayout) convertView.findViewById(R.id.llRow);
 
             viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
                 @Override

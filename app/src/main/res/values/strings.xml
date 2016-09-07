@@ -58,6 +58,7 @@
     <string name="interested">Tenho interesse</string>
     <string name="project_data">Dados do projeto</string>
     <string name="use_my_address">Utilizar endereço residencial</string>
+    <string name="client_evaluation">Avaliação do Cliente</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

@@ -54,7 +54,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
 
         imageItems = new ArrayList();
 
-        gvAdapter = new GridViewPortfolioAdapter(this, R.layout.image_layout, imageItems);
+        gvAdapter = new GridViewPortfolioAdapter(this, R.layout.gridview_image_delete_layout, imageItems);
         gvPortfolioImages = (GridView) findViewById(R.id.gvPortfolioImages);
         gvPortfolioImages.setAdapter(gvAdapter);
     }
@@ -127,7 +127,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
                     ImageItem imageItem = new ImageItem(image);
 
                     imageItems.add(imageItem);
-                    gvAdapter = new GridViewPortfolioAdapter(this, R.layout.image_layout, imageItems);
+                    gvAdapter = new GridViewPortfolioAdapter(this, R.layout.gridview_image_delete_layout, imageItems);
                     gvPortfolioImages.setAdapter(gvAdapter);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(this, res.getString(R.string.image_upload_fail), Toast.LENGTH_LONG).show();
