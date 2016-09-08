@@ -242,10 +242,17 @@
                     android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
-                <ListView
-                    android:id="@+id/lvServiceTypes"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp" />
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal|bottom">
+
+                    <ListView
+                        android:id="@+id/lvServiceTypes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView12"
@@ -257,10 +264,18 @@
                     android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
-                <ListView
-                    android:id="@+id/lvOccupationAreas"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp" />
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <ListView
+                        android:id="@+id/lvOccupationAreas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -372,4 +387,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </FrameLayout>

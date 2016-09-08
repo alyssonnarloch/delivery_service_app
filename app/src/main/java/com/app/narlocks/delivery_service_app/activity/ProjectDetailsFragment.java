@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +13,7 @@ import com.app.narlocks.delivery_service_app.activity_task.ProjectDetailsTask;
 import com.app.narlocks.delivery_service_app.adapter.ProjectPortfolioGridViewAdapter;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
+import com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView;
 
 public class ProjectDetailsFragment extends Fragment {
 
@@ -22,7 +22,7 @@ public class ProjectDetailsFragment extends Fragment {
     private TextView tvPeriod;
     private TextView tvEvaluationDescription;
     private LinearLayout llStars;
-    private GridView gvImages;
+    private ExpandableHeightGridView gvImages;
 
     private int projectId;
 
@@ -51,7 +51,8 @@ public class ProjectDetailsFragment extends Fragment {
         tvPeriod = (TextView) view.findViewById(R.id.tvPeriod);
         tvEvaluationDescription = (TextView) view.findViewById(R.id.tvEvaluationDescription);
         llStars = (LinearLayout) view.findViewById(R.id.llStars);
-        gvImages = (GridView) view.findViewById(R.id.gvImages);
+        gvImages = (ExpandableHeightGridView) view.findViewById(R.id.gvImages);
+        gvImages.setExpanded(true);
     }
 
     public void loadContentViewComponents(Project project) {
@@ -61,7 +62,7 @@ public class ProjectDetailsFragment extends Fragment {
         tvEvaluationDescription.setText(project.getServiceProviderEvaluation());
         llStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
 
-        ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, project.getPortfolio());
+        ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, project.getPortfolio(), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(adapter);
     }
 

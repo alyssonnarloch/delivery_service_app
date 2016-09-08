@@ -41,20 +41,21 @@
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:layout_weight="5"
                 android:gravity="center"
-                android:text="PORTIFÓLIO DE IMAGENS"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:text="@string/portfolio"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-            <GridView
+            <com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gvImages"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:numColumns="2" />
 
             <TextView
                 android:id="@+id/textView10"
