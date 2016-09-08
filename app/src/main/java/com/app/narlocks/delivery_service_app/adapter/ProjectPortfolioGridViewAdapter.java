@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.app.narlocks.delivery_service_app.activity.FullScreenImageFragment;
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.extras.Image;
-import com.app.narlocks.delivery_service_app.model.ProjectPortfolio;
+import com.app.narlocks.delivery_service_app.model.ImageItem;
 
 import java.util.List;
 
@@ -25,11 +25,11 @@ public class ProjectPortfolioGridViewAdapter extends ArrayAdapter {
 
     private Context context;
     private int layoutResourceId;
-    private List<ProjectPortfolio> images;
+    private List<ImageItem> images;
 
     private FragmentManager fragmentManager;
 
-    public ProjectPortfolioGridViewAdapter(Context context, int layoutResourceId, List<ProjectPortfolio> images, FragmentManager fragmentManager) {
+    public ProjectPortfolioGridViewAdapter(Context context, int layoutResourceId, List<ImageItem> images, FragmentManager fragmentManager) {
         super(context, layoutResourceId, images);
 
         this.context = context;
@@ -55,12 +55,12 @@ public class ProjectPortfolioGridViewAdapter extends ArrayAdapter {
             holder = (ViewHolder) cell.getTag();
         }
 
-        holder.image.setImageBitmap(Image.base64ToBitmap(images.get(position).getImage()));
+        holder.image.setImageBitmap(images.get(position).getImage());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle arguments = new Bundle();
-                arguments.putString("image", images.get(position).getImage());
+                arguments.putString("image", Image.bitmapToBase64(images.get(position).getImage()));
 
                 FullScreenImageFragment fragment = new FullScreenImageFragment();
                 fragment.setArguments(arguments);

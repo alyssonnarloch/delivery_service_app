@@ -1,6 +1,7 @@
 package com.app.narlocks.delivery_service_app.service;
 
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
+import com.app.narlocks.delivery_service_app.model.ServiceProviderPortfolio;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public interface ServiceProviderService {
 
     @GET("service_provider/{id}")
     Call<ServiceProvider> getById(@Path("id") int id);
+
+    @GET("service_provider/portfolio/{service_provider_id}")
+    Call<List<ServiceProviderPortfolio>> getPortfolio(@Path("service_provider_id") int id);
 
     @FormUrlEncoded
     @POST("service_provider/new")

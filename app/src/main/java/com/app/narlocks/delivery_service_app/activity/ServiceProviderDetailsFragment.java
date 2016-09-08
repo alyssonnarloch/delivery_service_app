@@ -121,6 +121,26 @@ public class ServiceProviderDetailsFragment extends Fragment {
             }
         });
 
+
+        llPortfolio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (serviceProvider != null) {
+                    Bundle arguments = new Bundle();
+                    arguments.putInt("serviceProviderId", serviceProvider.getId());
+
+                    Fragment fragment = new ServiceProviderPortfolioFragment();
+                    fragment.setArguments(arguments);
+
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+
+                    DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            }
+        });
+
         llProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

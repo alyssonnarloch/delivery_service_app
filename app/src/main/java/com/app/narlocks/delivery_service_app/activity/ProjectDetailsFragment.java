@@ -12,8 +12,14 @@ import android.widget.TextView;
 import com.app.narlocks.delivery_service_app.activity_task.ProjectDetailsTask;
 import com.app.narlocks.delivery_service_app.adapter.ProjectPortfolioGridViewAdapter;
 import com.app.narlocks.delivery_service_app.extras.Extra;
+import com.app.narlocks.delivery_service_app.extras.Image;
+import com.app.narlocks.delivery_service_app.model.ImageItem;
 import com.app.narlocks.delivery_service_app.model.Project;
+import com.app.narlocks.delivery_service_app.model.ProjectPortfolio;
 import com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectDetailsFragment extends Fragment {
 
@@ -23,8 +29,6 @@ public class ProjectDetailsFragment extends Fragment {
     private TextView tvEvaluationDescription;
     private LinearLayout llStars;
     private ExpandableHeightGridView gvImages;
-
-    private int projectId;
 
     public ProjectDetailsFragment() {
 
@@ -36,11 +40,9 @@ public class ProjectDetailsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_project_details, container, false);
 
-        projectId = getArguments().getInt("projectId");
-
         loadViewComponents(view);
 
-        new ProjectDetailsTask(this).execute(projectId);
+        new ProjectDetailsTask(this).execute(getArguments().getInt("projectId"));
 
         return view;
     }
@@ -62,8 +64,18 @@ public class ProjectDetailsFragment extends Fragment {
         tvEvaluationDescription.setText(project.getServiceProviderEvaluation());
         llStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
 
-        ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, project.getPortfolio(), getActivity().getSupportFragmentManager());
+        ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, getImageItems(project.getPortfolio()), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(adapter);
+    }
+
+    private List<ImageItem> getImageItems(List<ProjectPortfolio> projectPortfolio) {
+        List<ImageItem> imageItems = new ArrayList();
+
+        for(ProjectPortfolio p : projectPortfolio) {
+            imageItems.add(new ImageItem(Image.base64ToBitmap(p.getImage())));
+        }
+
+        return imageItems;
     }
 
     private LinearLayout getStarsEvaluation(double qualification) {
