@@ -23,7 +23,8 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         TextView tvServiceProviderName;
         TextView tvPeriod;
         ImageView ivProjectStatus;
-        LinearLayout llStars;
+        LinearLayout llProjectStars;
+        int id;
     }
 
     public ClientProjectsListAdapter(Context context, List<Project> projects) {
@@ -32,7 +33,9 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+
+        ViewHolder viewHolder = null;
+        Project project = getItem(position);
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -43,21 +46,21 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
             viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
             viewHolder.tvPeriod = (TextView) convertView.findViewById(R.id.tvPeriod);
             viewHolder.ivProjectStatus = (ImageView) convertView.findViewById(R.id.ivProjectStatus);
-            viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);
+            viewHolder.llProjectStars = (LinearLayout) convertView.findViewById(R.id.llProjectStars);
+            viewHolder.id = position;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Project project = getItem(position);
-
         viewHolder.tvTitle.setText(project.getTitle());
         viewHolder.tvServiceProviderName.setText(project.getServiceProvider().getName());
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if(project.getStatus() != null && project.getStatus().getId() == Project.FINISHED) {
-            viewHolder.llStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
+            viewHolder.llProjectStars.removeAllViews();
+            viewHolder.llProjectStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
         }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;

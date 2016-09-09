@@ -71,8 +71,10 @@ public class ProjectDetailsFragment extends Fragment {
     private List<ImageItem> getImageItems(List<ProjectPortfolio> projectPortfolio) {
         List<ImageItem> imageItems = new ArrayList();
 
-        for(ProjectPortfolio p : projectPortfolio) {
-            imageItems.add(new ImageItem(Image.base64ToBitmap(p.getImage())));
+        for (ProjectPortfolio p : projectPortfolio) {
+            if (p.isApproved()) {
+                imageItems.add(new ImageItem(Image.base64ToBitmap(p.getImage())));
+            }
         }
 
         return imageItems;
@@ -82,10 +84,10 @@ public class ProjectDetailsFragment extends Fragment {
         LinearLayout llStars = new LinearLayout(getContext());
         int intPart = (int) qualification;
 
-        for(int i = 1; i <= intPart; i++) {
+        for (int i = 1; i <= intPart; i++) {
             ImageView ivStar = new ImageView(getContext());
 
-            if(i == intPart && qualification > i && qualification <= (i + 0.9)) {
+            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
                 ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
             } else {
                 ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
@@ -93,7 +95,7 @@ public class ProjectDetailsFragment extends Fragment {
             llStars.addView(ivStar);
         }
 
-        if(qualification == 0) {
+        if (qualification == 0) {
             ImageView ivStar = new ImageView(getContext());
             ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
 
