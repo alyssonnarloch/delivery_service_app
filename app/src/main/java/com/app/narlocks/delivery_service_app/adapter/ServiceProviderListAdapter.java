@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
+public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
 
     private Resources res;
     private FragmentManager fragmentManager;
@@ -40,7 +40,7 @@ public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
         LinearLayout llStars;
     }
 
-    public FavoriteListAdapter(Context context, List<ServiceProvider> serviceProviders, FragmentManager fragmentManager) {
+    public ServiceProviderListAdapter(Context context, List<ServiceProvider> serviceProviders, FragmentManager fragmentManager) {
         super(context, 0, serviceProviders);
         this.res = getContext().getResources();
         this.fragmentManager = fragmentManager;
@@ -104,6 +104,7 @@ public class FavoriteListAdapter extends ArrayAdapter<ServiceProvider> {
                     List<Project> serviceProviderProjects = response.body();
 
                     ViewHolder holder = (ViewHolder) view.getTag();
+                    holder.llStars.removeAllViews();
                     holder.llStars.addView(getStarsEvaluation(getQualification(serviceProviderProjects)));
 
                 } else {

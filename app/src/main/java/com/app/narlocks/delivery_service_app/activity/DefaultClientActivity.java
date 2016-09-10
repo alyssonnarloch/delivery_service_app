@@ -113,6 +113,10 @@ public class DefaultClientActivity extends AppCompatActivity
             fragment = new ClientProjectsFragment();
         } else if(id == R.id.navFavoriteServiceProvider) {
             fragment = new FavoritesFragment();
+        } else if(id == R.id.navEvaluation) {
+            fragment = new ClientEvaluationsFragment();
+        } else if(id == R.id.navSearchServiceProvider) {
+            fragment = new ClientSearchServiceProviderFragment();
         }
 
         if (fragment != null) {

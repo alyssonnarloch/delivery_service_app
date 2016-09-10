@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.app.narlocks.delivery_service_app.adapter.CheckboxServiceTypesAdapter;
+import com.app.narlocks.delivery_service_app.adapter.ServiceTypesCheckboxAdapter;
 import com.app.narlocks.delivery_service_app.async_task.ServiceTypeTask;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.model.ServiceType;
@@ -24,7 +24,7 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     private List<ServiceType> serviceTypes;
     private Resources res;
     private EditText etExperienceDescription;
-    private CheckboxServiceTypesAdapter serviceTypesAdapter;
+    private ServiceTypesCheckboxAdapter serviceTypesAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
         this.res = getResources();
         this.serviceProvider = (ServiceProvider) getIntent().getSerializableExtra("serviceProviderObj");
 
-        serviceTypesAdapter = new CheckboxServiceTypesAdapter(this, R.layout.checkbox_layout, new ArrayList());
+        serviceTypesAdapter = new ServiceTypesCheckboxAdapter(this, R.layout.checkbox_layout, new ArrayList());
 
         new ServiceTypeTask(NewServiceProviderServicesActivity.this).execute();
     }
@@ -114,7 +114,7 @@ public class NewServiceProviderServicesActivity extends AppCompatActivity {
     }
 
     private void displayServiceTypesView() {
-        serviceTypesAdapter = new CheckboxServiceTypesAdapter(this, R.layout.checkbox_layout, serviceTypes);
+        serviceTypesAdapter = new ServiceTypesCheckboxAdapter(this, R.layout.checkbox_layout, serviceTypes);
 
         ListView lvServiceType = (ListView) findViewById(R.id.lvServiceTypes);
         lvServiceType.setAdapter(serviceTypesAdapter);

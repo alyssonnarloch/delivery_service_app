@@ -59,6 +59,12 @@
     <string name="project_data">Dados do projeto</string>
     <string name="use_my_address">Utilizar endereço residencial</string>
     <string name="client_evaluation">Avaliação do Cliente</string>
+    <string name="what_you_need">Selecione o que você precisa</string>
+    <string name="where_you_need">Região do serviço</string>
+    <string name="use_my_address_search">Utilizar a cidade do seu endereço?</string>
+    <string name="service_provider_availability">Disponibilidade do prestador</string>
+    <string name="service_provider_available">Disponível para novos serviços?</string>
+    <string name="minimun_qualification">Qualificação mínima</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

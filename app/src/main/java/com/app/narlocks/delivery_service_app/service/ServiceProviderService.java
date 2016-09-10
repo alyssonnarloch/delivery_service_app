@@ -70,7 +70,7 @@ public interface ServiceProviderService {
 
     @FormUrlEncoded
     @POST("service_provider/search")
-    Call<ResponseBody> search(@Field("name") String name,
+    Call<List<ServiceProvider>> search(@Field("name") String name,
                               @Field("service_type") List<Integer> serviceTypeIds,
                               @Field("city_id") int cityId,
                               @Field("available") boolean available);

@@ -16,12 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CheckboxServiceTypesAdapter extends ArrayAdapter<ServiceType> {
+public class ServiceTypesCheckboxAdapter extends ArrayAdapter<ServiceType> {
 
     private List<ServiceType> serviceTypes;
     private Map<Integer, Boolean> serviceTypesCheck;
 
-    public CheckboxServiceTypesAdapter(Context context, int textViewResourceId, List<ServiceType> serviceTypes) {
+    public ServiceTypesCheckboxAdapter(Context context, int textViewResourceId, List<ServiceType> serviceTypes) {
         super(context, textViewResourceId, serviceTypes);
         this.serviceTypes = new ArrayList();
         this.serviceTypes.addAll(serviceTypes);

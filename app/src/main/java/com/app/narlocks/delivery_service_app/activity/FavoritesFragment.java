@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.adapter.FavoriteListAdapter;
+import com.app.narlocks.delivery_service_app.adapter.ServiceProviderListAdapter;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.service.FavoriteService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -49,7 +49,7 @@ public class FavoritesFragment extends Fragment {
             public void onResponse(Call<List<ServiceProvider>> call, Response<List<ServiceProvider>> response) {
                 if(response.code() == 200) {
                     List<ServiceProvider> serviceProviders = response.body();
-                    FavoriteListAdapter adapter = new FavoriteListAdapter(getActivity(), serviceProviders, getActivity().getSupportFragmentManager());
+                    ServiceProviderListAdapter adapter = new ServiceProviderListAdapter(getActivity(), serviceProviders, getActivity().getSupportFragmentManager());
                     lvFavorites.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_service_provider_fail), Toast.LENGTH_LONG).show();

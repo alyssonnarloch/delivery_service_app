@@ -72,6 +72,7 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
         }
 
         viewHolder.ivProfileImageEvaluation.setImageBitmap(Image.base64ToBitmap(profileImage));
+        viewHolder.llStars.removeAllViews();
         viewHolder.llStars.addView(getStarsEvaluation(qualification));
         viewHolder.tvNameValuer.setText(name);
         viewHolder.tvEvaluationDescription.setText(evaluationDescription);
