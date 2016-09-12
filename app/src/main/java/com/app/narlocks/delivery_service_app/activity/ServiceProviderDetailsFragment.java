@@ -27,6 +27,7 @@ import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 import com.app.narlocks.delivery_service_app.service.ServiceProviderService;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
+import com.app.narlocks.delivery_service_app.view.ExpandHeightListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -274,7 +275,10 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     ArrayAdapter occupationAreaAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_simple_item_layout, R.id.tvItem, occupationAreaName);
 
                     lvServiceTypes.setAdapter(serviceTypeAdapter);
+                    ExpandHeightListView.getListViewSize(lvServiceTypes);
+
                     lvOccupationAreas.setAdapter(occupationAreaAdapter);
+                    ExpandHeightListView.getListViewSize(lvOccupationAreas);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_service_provider_fail), Toast.LENGTH_LONG).show();
                 }
