@@ -32,7 +32,8 @@
             android:layout_height="157dp"
             tools:layout_editor_absoluteY="24dp"
             tools:layout_editor_absoluteX="0dp"
-            android:paddingTop="32dp" />
+            android:paddingTop="32dp"
+            android:layout_weight="0.16" />
 
         <EditText
             android:layout_width="match_parent"
@@ -40,7 +41,7 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/etExperienceDescription"
-            android:layout_weight="0.52"
+            android:layout_weight="0.60"
             android:hint="Conte um pouco sobre sua experiência..."
             android:gravity="top"
             android:layout_margin="4dp" />
@@ -49,7 +50,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_weight="0.04"
             android:gravity="bottom|center">
 
             <Button

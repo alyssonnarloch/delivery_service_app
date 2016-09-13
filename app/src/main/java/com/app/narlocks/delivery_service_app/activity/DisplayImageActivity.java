@@ -6,9 +6,12 @@ import android.widget.ImageView;
 
 import com.app.narlocks.delivery_service_app.extras.Image;
 
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 public class DisplayImageActivity extends AppCompatActivity {
 
     private ImageView ivPortfolio;
+    private PhotoViewAttacher mAttacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,5 +22,6 @@ public class DisplayImageActivity extends AppCompatActivity {
 
         ivPortfolio = (ImageView) findViewById(R.id.ivPortfolio);
         ivPortfolio.setImageBitmap(Image.base64ToBitmap(imageBase64));
+        mAttacher = new PhotoViewAttacher(ivPortfolio);
     }
 }

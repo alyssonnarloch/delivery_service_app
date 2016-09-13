@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    void onClickUserSelection(View view) {
+    public void onClickUserSelection(View view) {
         Intent i = new Intent(LoginActivity.this, UserSelectionActivity.class);
         startActivity(i);
     }

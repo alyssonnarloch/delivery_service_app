@@ -13,13 +13,13 @@ public class UserSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_selection);
     }
 
-    void onClickTypeClient(View view) {
+    public void onClickTypeClient(View view) {
         Intent i = new Intent(UserSelectionActivity.this, NewClientMainActivity.class);
         startActivity(i);
         finish();
     }
 
-    void onClickTypeServiceProvider(View view) {
+    public void onClickTypeServiceProvider(View view) {
         Intent i = new Intent(UserSelectionActivity.this, NewServiceProviderMainActivity.class);
         startActivity(i);
         finish();
