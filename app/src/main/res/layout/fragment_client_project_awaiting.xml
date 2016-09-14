@@ -6,89 +6,167 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/tvTitle"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/tvStatus"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/tvServiceProviderName"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
+        android:id="@+id/scrollView4" >
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/llStars"></LinearLayout>
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvEvaluation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitle"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
 
-        <TextView
-            android:id="@+id/tvAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvStatus"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
 
-        <TextView
-            android:id="@+id/tvPeriod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp">
 
-        <TextView
-            android:id="@+id/tvProjectDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal" />
+            </LinearLayout>
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="42dp"
-            android:text="Concluir"
-            android:id="@+id/btFinish"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_execution"
+                android:id="@+id/textView16"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvServiceProviderName"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:textStyle="normal|bold|italic"
+                android:textIsSelectable="false"
+                android:linksClickable="false" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_prevision"
+                android:id="@+id/textView17"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/tvPeriod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_address"
+                android:id="@+id/textView19"
+                android:layout_margin="4dp"
+                android:gravity="bottom|center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="right" >
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_description"
+                android:id="@+id/textView18"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/tvProjectDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="42dp"
+                android:text="Concluir"
+                android:id="@+id/btFinish"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

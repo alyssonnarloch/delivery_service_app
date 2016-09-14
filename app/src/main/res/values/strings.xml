@@ -65,6 +65,10 @@
     <string name="service_provider_availability">Disponibilidade do prestador</string>
     <string name="service_provider_available">Disponível para novos serviços?</string>
     <string name="minimun_qualification">Qualificação mínima</string>
+    <string name="project_execution">Executor</string>
+    <string name="project_prevision">Previsão</string>
+    <string name="project_description">Descrição</string>
+    <string name="project_address">Endereço</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>
