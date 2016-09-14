@@ -69,7 +69,7 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
                 if(response.code() == 200) {
                     List<Project> clientProjects = response.body();
-                    ClientProjectsListAdapter adapter = new ClientProjectsListAdapter(getActivity(), clientProjects);
+                    ClientProjectsListAdapter adapter = new ClientProjectsListAdapter(getActivity(), clientProjects, getActivity().getSupportFragmentManager());
                     lvClientProjects.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();

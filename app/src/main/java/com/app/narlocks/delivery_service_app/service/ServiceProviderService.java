@@ -71,7 +71,7 @@ public interface ServiceProviderService {
     @FormUrlEncoded
     @POST("service_provider/search")
     Call<List<ServiceProvider>> search(@Field("name") String name,
-                              @Field("service_type") List<Integer> serviceTypeIds,
+                              @Field("service_type[]") List<Integer> serviceTypeIds,
                               @Field("city_id") int cityId,
                               @Field("available") boolean available);
 }
