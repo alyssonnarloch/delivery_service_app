@@ -15,7 +15,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class ServiceProviderTask extends AsyncTask<Void, Void, Boolean> {
+public class ServiceProviderSearchListTask extends AsyncTask<Void, Void, Boolean> {
 
     private List<ServiceProvider> serviceProviders;
     private ServiceProviderSearchListFragment fragment;
@@ -26,7 +26,7 @@ public class ServiceProviderTask extends AsyncTask<Void, Void, Boolean> {
     private int cityId;
     private boolean available;
 
-    public ServiceProviderTask(ServiceProviderSearchListFragment fragment, String serviceProviderName, List<Integer> serviceTypeIds, int cityId, boolean available) {
+    public ServiceProviderSearchListTask(ServiceProviderSearchListFragment fragment, String serviceProviderName, List<Integer> serviceTypeIds, int cityId, boolean available) {
         this.serviceProviders = new ArrayList();
         this.fragment = fragment;
         this.errorMessage = "";

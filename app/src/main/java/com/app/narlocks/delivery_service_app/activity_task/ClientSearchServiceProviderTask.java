@@ -15,13 +15,13 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class ServiceTypeTask extends AsyncTask<Void, Void, Boolean> {
+public class ClientSearchServiceProviderTask extends AsyncTask<Void, Void, Boolean> {
 
     private List<ServiceType> serviceTypes;
     private ClientSearchServiceProviderFragment fragment;
     private String errorMessage;
 
-    public ServiceTypeTask(ClientSearchServiceProviderFragment fragment) {
+    public ClientSearchServiceProviderTask(ClientSearchServiceProviderFragment fragment) {
         this.serviceTypes = new ArrayList();
         this.fragment = fragment;
         this.errorMessage = "";

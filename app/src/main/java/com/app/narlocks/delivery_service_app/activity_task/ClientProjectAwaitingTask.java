@@ -15,14 +15,14 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class ClientProjectDetailsTask extends AsyncTask<Integer, Void, Boolean> {
+public class ClientProjectAwaitingTask extends AsyncTask<Integer, Void, Boolean> {
 
     private Project project;
     private List<Project> projects;
     private ClientProjectAwaitingFragment fragment;
     private String errorMessage;
 
-    public ClientProjectDetailsTask(ClientProjectAwaitingFragment fragment) {
+    public ClientProjectAwaitingTask(ClientProjectAwaitingFragment fragment) {
         this.fragment = fragment;
         this.errorMessage = "";
         this.projects = new ArrayList();

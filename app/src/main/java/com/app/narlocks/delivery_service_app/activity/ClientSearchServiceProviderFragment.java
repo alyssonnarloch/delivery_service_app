@@ -19,7 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.app.narlocks.delivery_service_app.activity_task.ServiceTypeTask;
+import com.app.narlocks.delivery_service_app.activity_task.ClientSearchServiceProviderTask;
 import com.app.narlocks.delivery_service_app.adapter.AutocompleteCityAdapter;
 import com.app.narlocks.delivery_service_app.adapter.ServiceTypesCheckboxAdapter;
 import com.app.narlocks.delivery_service_app.model.City;
@@ -65,7 +65,7 @@ public class ClientSearchServiceProviderFragment extends Fragment {
         session = new SessionManager(getActivity());
 
         loadViewComponents(view);
-        new ServiceTypeTask(this).execute();
+        new ClientSearchServiceProviderTask(this).execute();
 
         return view;
     }

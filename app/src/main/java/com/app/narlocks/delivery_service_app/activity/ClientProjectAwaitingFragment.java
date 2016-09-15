@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.app.narlocks.delivery_service_app.activity_task.ClientProjectDetailsTask;
+import com.app.narlocks.delivery_service_app.activity_task.ClientProjectAwaitingTask;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
@@ -24,12 +24,12 @@ public class ClientProjectAwaitingFragment extends Fragment {
     private TextView tvTitle;
     private TextView tvStatus;
     private TextView tvServiceProviderName;
-    private TextView tvEvaluation;
     private TextView tvAddress;
     private TextView tvPeriod;
     private TextView tvProjectDescription;
     private Button btFinish;
 
+    private Project project;
     private int serviceProviderId;
 
     private SessionManager session;
@@ -50,10 +50,11 @@ public class ClientProjectAwaitingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_client_project_awaiting, container, false);
 
         loadViewComponents(view);
-        new ClientProjectDetailsTask(this).execute(getArguments().getInt("projectId"));
+        new ClientProjectAwaitingTask(this).execute(getArguments().getInt("projectId"));
 
         return view;
     }
@@ -62,7 +63,6 @@ public class ClientProjectAwaitingFragment extends Fragment {
         tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         tvStatus = (TextView) view.findViewById(R.id.tvStatus);
         tvServiceProviderName = (TextView) view.findViewById(R.id.tvServiceProviderName);
-        tvEvaluation = (TextView) view.findViewById(R.id.tvEvaluation);
         tvAddress = (TextView) view.findViewById(R.id.tvAddress);
         tvPeriod = (TextView) view.findViewById(R.id.tvPeriod);
         tvProjectDescription = (TextView) view.findViewById(R.id.tvProjectDescription);
@@ -86,6 +86,25 @@ public class ClientProjectAwaitingFragment extends Fragment {
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
+
+        btFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle arguments = new Bundle();
+                arguments.putString("title", project.getTitle());
+                arguments.putString("status", project.getStatus().getName());
+                arguments.putString("serviceProviderName", project.getServiceProvider().getName());
+
+                Fragment fragment = new ClientEvaluationAwaitingFragment();
+                fragment.setArguments(arguments);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+
+                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
     }
 
     public void loadContentViewComponents(Project project, List<Project> projects) {
@@ -96,6 +115,7 @@ public class ClientProjectAwaitingFragment extends Fragment {
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvProjectDescription.setText(project.getDescription());
 
+        this.project = project;
         serviceProviderId = project.getServiceProvider().getId();
 
         loadViewListeners();

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.app.narlocks.delivery_service_app.activity_task.ServiceProviderTask;
+import com.app.narlocks.delivery_service_app.activity_task.ServiceProviderSearchListTask;
 import com.app.narlocks.delivery_service_app.adapter.ServiceProviderListAdapter;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 
@@ -30,7 +30,7 @@ public class ServiceProviderSearchListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_service_provider_search_list, container, false);
 
         loadViewComponents(view);
-        new ServiceProviderTask(this,
+        new ServiceProviderSearchListTask(this,
                 getArguments().getString("serviceProviderName"),
                 getArguments().getIntegerArrayList("serviceTypeIds"),
                 getArguments().getInt("cityId"),

@@ -69,6 +69,8 @@
     <string name="project_prevision">Previsão</string>
     <string name="project_description">Descrição</string>
     <string name="project_address">Endereço</string>
+    <string name="project_qualification">Classifique o serviço prestado</string>
+    <string name="project_qualification_description">Avalie o serviço prestado</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>
