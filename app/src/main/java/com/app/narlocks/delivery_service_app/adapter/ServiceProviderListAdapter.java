@@ -51,6 +51,8 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
 
+        ServiceProvider serviceProvider = getItem(position);
+
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
@@ -61,6 +63,7 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
             viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
             viewHolder.tvExperienceDescription = (TextView) convertView.findViewById(R.id.tvExperienceDescription);
             viewHolder.rbStars = (RatingBar) convertView.findViewById(R.id.rbStars);
+            loadStars(serviceProvider.getId(), convertView);
 
             viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,12 +87,9 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ServiceProvider serviceProvider = getItem(position);
-
         viewHolder.ivServiceProviderProfile.setImageBitmap(Image.base64ToBitmap(serviceProvider.getProfileImage()));
         viewHolder.tvServiceProviderName.setText(serviceProvider.getName());
         viewHolder.tvExperienceDescription.setText(serviceProvider.getExperienceDescription());
-        loadStars(serviceProvider.getId(), convertView);
 
         return convertView;
     }

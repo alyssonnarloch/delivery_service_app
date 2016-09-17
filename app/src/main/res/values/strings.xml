@@ -74,6 +74,7 @@
     <string name="project_qualification_description">Avalie o serviço prestado</string>
     <string name="project_client_evaluation">Avaliação recebida</string>
     <string name="project_service_provider_evaluation">Avaliação enviada</string>
+    <string name="project_images_to_approve">Imagens para aprovação</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

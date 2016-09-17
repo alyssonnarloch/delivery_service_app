@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.ClientProjectAwaitingFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientProjectExecutionFragment;
 import com.app.narlocks.delivery_service_app.activity.ClientProjectRefusedFragment;
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.extras.Extra;
@@ -79,6 +80,14 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
                                 ClientProjectRefusedFragment refusedFragment = new ClientProjectRefusedFragment();
                                 refusedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, refusedFragment).commit();
+                            case Project.EXECUTION:
+                                ClientProjectExecutionFragment executionFragment = new ClientProjectExecutionFragment();
+                                executionFragment.setArguments(arguments);
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, executionFragment).commit();
+                            //case Project.REFUSED:
+                            //    ClientProjectRefusedFragment refusedFragment = new ClientProjectRefusedFragment();
+                            //    refusedFragment.setArguments(arguments);
+                            //    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, refusedFragment).commit();
                         }
                     }
                 }

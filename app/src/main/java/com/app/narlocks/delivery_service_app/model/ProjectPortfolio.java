@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ProjectPortfolio implements Serializable {
     private int id;
     private String image;
-    private boolean approved;
+    private Boolean approved;
     private int projectId;
 
     public ProjectPortfolio() {
@@ -27,11 +27,11 @@ public class ProjectPortfolio implements Serializable {
         this.image = image;
     }
 
-    public boolean isApproved() {
+    public Boolean isApproved() {
         return approved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(Boolean approved) {
         this.approved = approved;
     }
 
