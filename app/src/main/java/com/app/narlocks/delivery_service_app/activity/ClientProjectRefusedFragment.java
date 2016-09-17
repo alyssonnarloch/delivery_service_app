@@ -10,16 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.app.narlocks.delivery_service_app.activity_task.ClientProjectAwaitingTask;
+import com.app.narlocks.delivery_service_app.activity_task.ClientProjectRefusedTask;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 
 import java.util.List;
 
-public class ClientProjectAwaitingFragment extends Fragment {
+public class ClientProjectRefusedFragment extends Fragment {
 
     private TextView tvTitle;
     private TextView tvStatus;
@@ -27,6 +28,10 @@ public class ClientProjectAwaitingFragment extends Fragment {
     private TextView tvAddress;
     private TextView tvPeriod;
     private TextView tvProjectDescription;
+    private TextView tvClientEvaluation;
+    private RatingBar rbClientEvaluation;
+    private TextView tvServiceProviderEvaluation;
+    private RatingBar rbServiceProviderEvaluation;
     private Button btFinish;
 
     private Project project;
@@ -35,7 +40,7 @@ public class ClientProjectAwaitingFragment extends Fragment {
     private SessionManager session;
     private Resources res;
 
-    public ClientProjectAwaitingFragment() {
+    public ClientProjectRefusedFragment() {
 
     }
 
@@ -51,10 +56,10 @@ public class ClientProjectAwaitingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_client_project_awaiting, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_project_resfused, container, false);
 
         loadViewComponents(view);
-        new ClientProjectAwaitingTask(this).execute(getArguments().getInt("projectId"));
+        new ClientProjectRefusedTask(this).execute(getArguments().getInt("projectId"));
 
         return view;
     }
@@ -66,6 +71,10 @@ public class ClientProjectAwaitingFragment extends Fragment {
         tvAddress = (TextView) view.findViewById(R.id.tvAddress);
         tvPeriod = (TextView) view.findViewById(R.id.tvPeriod);
         tvProjectDescription = (TextView) view.findViewById(R.id.tvProjectDescription);
+        tvClientEvaluation = (TextView) view.findViewById(R.id.tvClientEvaluation);
+        rbClientEvaluation = (RatingBar) view.findViewById(R.id.rbClientEvaluation);
+        tvServiceProviderEvaluation = (TextView) view.findViewById(R.id.tvServiceProviderEvaluation);
+        rbServiceProviderEvaluation = (RatingBar) view.findViewById(R.id.rbServiceProviderEvaluation);
         btFinish = (Button) view.findViewById(R.id.btFinish);
     }
 
@@ -116,10 +125,19 @@ public class ClientProjectAwaitingFragment extends Fragment {
         tvAddress.setText(project.getAddress() + ", " + project.getNumber() + " (" + project.getZipCode() + ")" + " - " + project.getCity().getName() + "/" + project.getCity().getState().getName());
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvProjectDescription.setText(project.getDescription());
+        tvClientEvaluation.setText(project.getClientEvaluation());
+        rbClientEvaluation.setRating((int) project.getClientQualification());
+        tvServiceProviderEvaluation.setText(project.getServiceProviderEvaluation());
+        rbServiceProviderEvaluation.setRating((int) (project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
+
+        if(project.getServiceProviderEvaluation() != null && !project.getServiceProviderEvaluation().isEmpty()) {
+            btFinish.setVisibility(View.INVISIBLE);
+        }
 
         this.project = project;
         serviceProviderId = project.getServiceProvider().getId();
 
         loadViewListeners();
     }
+
 }

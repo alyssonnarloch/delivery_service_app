@@ -47,9 +47,10 @@ public interface ProjectService {
     Call<List<Project>> serviceProviderEvaluations(@Query("service_provider_id") int serviceProviderId);
 
     @FormUrlEncoded
-    @PUT("project/close")
+    @PUT("project/update")
     Call<ResponseBody> update(@Field("project_id") int projectId,
                               @Field("qualification") int qualification,
                               @Field("description") String description,
-                              @Field("profile_id") int profileId);
+                              @Field("profile_id") int profileId,
+                              @Field("status") int status);
 }

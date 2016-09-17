@@ -17,6 +17,7 @@
     <string name="service_provider_areas_required">Adicione uma cidade</string>
 
     <string name="project_save_ok">Projeto cadastrado com sucesso</string>
+    <string name="project_finished_ok">Projeto encerrado com sucesso</string>
 
     <string name="portfolio_required">Selecione ao menos uma imagem</string>
 
@@ -71,6 +72,8 @@
     <string name="project_address">Endereço</string>
     <string name="project_qualification">Classifique o serviço prestado</string>
     <string name="project_qualification_description">Avalie o serviço prestado</string>
+    <string name="project_client_evaluation">Avaliação recebida</string>
+    <string name="project_service_provider_evaluation">Avaliação enviada</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

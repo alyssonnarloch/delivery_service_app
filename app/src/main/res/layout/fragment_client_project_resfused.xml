@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.narlocks.delivery_service_app.activity.ClientProjectAwaitingFragment">
+    tools:context="com.app.narlocks.delivery_service_app.activity.ClientProjectRefusedFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -34,7 +34,8 @@
                 android:layout_margin="4dp"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_light" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -69,6 +70,83 @@
                 android:textStyle="normal|bold|italic"
                 android:textIsSelectable="false"
                 android:linksClickable="false" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_client_evaluation"
+                android:id="@+id/textView23"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbClientEvaluation"
+                android:layout_gravity="center_horizontal"
+                android:numStars="5"
+                android:stepSize="1"
+                style="@android:style/Widget.Holo.RatingBar.Indicator"
+                android:layout_margin="4dp" />
+
+            <TextView
+                android:id="@+id/tvClientEvaluation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_service_provider_evaluation"
+                android:id="@+id/textView24"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+            <RatingBar
+                style="@android:style/Widget.Holo.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbServiceProviderEvaluation"
+                android:numStars="5"
+                android:stepSize="1"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvServiceProviderEvaluation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -162,7 +240,7 @@
             <Button
                 android:layout_width="200dp"
                 android:layout_height="42dp"
-                android:text="Rejeitar Projeto"
+                android:text="Avaliar Prestador"
                 android:id="@+id/btFinish"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp" />

@@ -1,4 +1,4 @@
-package com.app.narlocks.delivery_service_app.async_task;
+package com.app.narlocks.delivery_service_app.activity_task;
 
 import android.os.AsyncTask;
 import android.util.Log;

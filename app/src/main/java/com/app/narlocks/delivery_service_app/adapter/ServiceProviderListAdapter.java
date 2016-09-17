@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
         ImageView ivServiceProviderProfile;
         TextView tvServiceProviderName;
         TextView tvExperienceDescription;
-        LinearLayout llStars;
+        RatingBar rbStars;
     }
 
     public ServiceProviderListAdapter(Context context, List<ServiceProvider> serviceProviders, FragmentManager fragmentManager) {
@@ -59,7 +60,7 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
             viewHolder.ivServiceProviderProfile = (ImageView) convertView.findViewById(R.id.ivServiceProviderProfile);
             viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
             viewHolder.tvExperienceDescription = (TextView) convertView.findViewById(R.id.tvExperienceDescription);
-            viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);
+            viewHolder.rbStars = (RatingBar) convertView.findViewById(R.id.rbStars);
 
             viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,7 +96,7 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
 
     private void loadStars(int id, final View view) {
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
-        Call<List<Project>> projectCall = projectService.serviceProviderProjects(id, Project.FINISHED);
+        Call<List<Project>> projectCall = projectService.serviceProviderEvaluations(id);
 
         projectCall.enqueue(new Callback<List<Project>>() {
             @Override
@@ -104,8 +105,7 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
                     List<Project> serviceProviderProjects = response.body();
 
                     ViewHolder holder = (ViewHolder) view.getTag();
-                    holder.llStars.removeAllViews();
-                    holder.llStars.addView(getStarsEvaluation(getQualification(serviceProviderProjects)));
+                    holder.rbStars.setRating((float) getQualification(serviceProviderProjects));
 
                 } else {
                     Toast.makeText(getContext(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
@@ -131,30 +131,5 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
         }
 
         return sum;
-    }
-
-    private LinearLayout getStarsEvaluation(double qualification) {
-        LinearLayout llStars = new LinearLayout(getContext());
-        int intPart = (int) qualification;
-
-        for (int i = 1; i <= intPart; i++) {
-            ImageView ivStar = new ImageView(getContext());
-
-            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
-                ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
-            } else {
-                ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
-            }
-            llStars.addView(ivStar);
-        }
-
-        if (qualification == 0) {
-            ImageView ivStar = new ImageView(getContext());
-            ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
-
-            llStars.addView(ivStar);
-        }
-
-        return llStars;
     }
 }

@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.app.narlocks.delivery_service_app.adapter.ServiceTypesCheckboxAdapter;
-import com.app.narlocks.delivery_service_app.async_task.ServiceTypeTask;
+import com.app.narlocks.delivery_service_app.activity_task.ServiceTypeTask;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.model.ServiceType;
 

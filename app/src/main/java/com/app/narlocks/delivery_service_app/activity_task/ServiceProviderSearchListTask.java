@@ -46,9 +46,9 @@ public class ServiceProviderSearchListTask extends AsyncTask<Void, Void, Boolean
             Call<List<ServiceProvider>> serviceProviderCall = serviceProviderService.search(serviceProviderName, serviceTypeIds, cityId, available);
             Response response = serviceProviderCall.execute();
 
-            if(response.code() == 200) {
+            if (response.code() == 200) {
                 serviceProviders = (List<ServiceProvider>) response.body();
-            }else {
+            } else {
                 resultOk = false;
                 errorMessage += ErrorConversor.getErrorMessage(response.errorBody());
             }

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.ClientProjectAwaitingFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientProjectRefusedFragment;
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
@@ -66,16 +67,18 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
                     Bundle arguments = new Bundle();
                     Project project = getItem(position);
 
-                    if(project != null) {
+                    if (project != null) {
                         arguments.putInt("projectId", project.getId());
 
                         switch (project.getStatus().getId()) {
                             case Project.AWATING:
-                                ClientProjectAwaitingFragment fragment = new ClientProjectAwaitingFragment();
-                                fragment.setArguments(arguments);
-                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
-                             default:
-
+                                ClientProjectAwaitingFragment awaitingFragment = new ClientProjectAwaitingFragment();
+                                awaitingFragment.setArguments(arguments);
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, awaitingFragment).commit();
+                            case Project.REFUSED:
+                                ClientProjectRefusedFragment refusedFragment = new ClientProjectRefusedFragment();
+                                refusedFragment.setArguments(arguments);
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, refusedFragment).commit();
                         }
                     }
                 }
@@ -90,14 +93,14 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         viewHolder.tvServiceProviderName.setText(project.getServiceProvider().getName());
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
-        if(project.getStatus() != null && project.getStatus().getId() == Project.FINISHED) {
+        if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
             viewHolder.llProjectStars.removeAllViews();
             viewHolder.llProjectStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
         }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;
 
-        switch(project.getStatus().getId()){
+        switch (project.getStatus().getId()) {
             case 2:
                 projectStatusId = R.mipmap.ic_block_black_24dp;
                 break;
@@ -118,10 +121,10 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         LinearLayout llStars = new LinearLayout(getContext());
         int intPart = (int) qualification;
 
-        for(int i = 1; i <= intPart; i++) {
+        for (int i = 1; i <= intPart; i++) {
             ImageView ivStar = new ImageView(getContext());
 
-            if(i == intPart && qualification > i && qualification <= (i + 0.9)) {
+            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
                 ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
             } else {
                 ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
@@ -129,7 +132,7 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
             llStars.addView(ivStar);
         }
 
-        if(qualification == 0) {
+        if (qualification == 0) {
             ImageView ivStar = new ImageView(getContext());
             ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
 
