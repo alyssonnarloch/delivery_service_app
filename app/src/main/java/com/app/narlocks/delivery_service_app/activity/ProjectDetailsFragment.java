@@ -5,8 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.ProjectDetailsTask;
@@ -27,7 +26,7 @@ public class ProjectDetailsFragment extends Fragment {
     private TextView tvProjectDescription;
     private TextView tvPeriod;
     private TextView tvEvaluationDescription;
-    private LinearLayout llStars;
+    private RatingBar rbStars;
     private ExpandableHeightGridView gvImages;
 
     public ProjectDetailsFragment() {
@@ -52,7 +51,7 @@ public class ProjectDetailsFragment extends Fragment {
         tvProjectDescription = (TextView) view.findViewById(R.id.tvProjectDescription);
         tvPeriod = (TextView) view.findViewById(R.id.tvPeriod);
         tvEvaluationDescription = (TextView) view.findViewById(R.id.tvEvaluationDescription);
-        llStars = (LinearLayout) view.findViewById(R.id.llStars);
+        rbStars = (RatingBar) view.findViewById(R.id.rbStars);
         gvImages = (ExpandableHeightGridView) view.findViewById(R.id.gvImages);
         gvImages.setExpanded(true);
     }
@@ -62,7 +61,7 @@ public class ProjectDetailsFragment extends Fragment {
         tvProjectDescription.setText(project.getDescription());
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvEvaluationDescription.setText(project.getServiceProviderEvaluation());
-        llStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
+        rbStars.setRating(project.getServiceProviderQualification());
 
         ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, getImageItems(project.getPortfolio()), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(adapter);
@@ -78,30 +77,5 @@ public class ProjectDetailsFragment extends Fragment {
         }
 
         return imageItems;
-    }
-
-    private LinearLayout getStarsEvaluation(double qualification) {
-        LinearLayout llStars = new LinearLayout(getContext());
-        int intPart = (int) qualification;
-
-        for (int i = 1; i <= intPart; i++) {
-            ImageView ivStar = new ImageView(getContext());
-
-            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
-                ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
-            } else {
-                ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
-            }
-            llStars.addView(ivStar);
-        }
-
-        if (qualification == 0) {
-            ImageView ivStar = new ImageView(getContext());
-            ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
-
-            llStars.addView(ivStar);
-        }
-
-        return llStars;
     }
 }

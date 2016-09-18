@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ import retrofit2.Response;
 
 public class ServiceProviderDetailsFragment extends Fragment {
 
-    private LinearLayout llStars;
+    private RatingBar rbStars;
     private LinearLayout llPortfolio;
     private LinearLayout llProjects;
     private LinearLayout llMakeContract;
@@ -83,7 +84,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
         session = new SessionManager(getActivity());
 
         ivProfileImageDetail = (ImageView) view.findViewById(R.id.ivProfileImageDetail);
-        llStars = (LinearLayout) view.findViewById(R.id.llStars);
+        rbStars = (RatingBar) view.findViewById(R.id.rbStars);
         tvEvaluation = (TextView) view.findViewById(R.id.tvEvaluation);
         tvName = (TextView) view.findViewById(R.id.tvName);
         tvEmail = (TextView) view.findViewById(R.id.tvEmail);
@@ -319,7 +320,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     }
 
                     serviceProviderQualification = averageEvaluation;
-                    setStarsEvaluation(averageEvaluation);
+                    rbStars.setRating((float) averageEvaluation);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }
@@ -353,27 +354,5 @@ public class ServiceProviderDetailsFragment extends Fragment {
                 Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void setStarsEvaluation(double qualification) {
-        int intPart = (int) qualification;
-
-        for (int i = 1; i <= intPart; i++) {
-            ImageView ivStar = new ImageView(getActivity());
-
-            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
-                ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
-            } else {
-                ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
-            }
-            llStars.addView(ivStar);
-        }
-
-        if (qualification == 0) {
-            ImageView ivStar = new ImageView(getActivity());
-            ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
-
-            llStars.addView(ivStar);
-        }
     }
 }

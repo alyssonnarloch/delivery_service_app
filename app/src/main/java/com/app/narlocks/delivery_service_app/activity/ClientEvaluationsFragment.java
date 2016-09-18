@@ -1,6 +1,5 @@
 package com.app.narlocks.delivery_service_app.activity;
 
-
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,7 +50,7 @@ public class ClientEvaluationsFragment extends Fragment {
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
                 if(response.code() == 200) {
                     List<Project> clientProjects = response.body();
-                    EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), clientProjects, User.CLIENT);
+                    EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), clientProjects, User.CLIENT, getActivity().getSupportFragmentManager());
                     lvClientEvaluations.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();

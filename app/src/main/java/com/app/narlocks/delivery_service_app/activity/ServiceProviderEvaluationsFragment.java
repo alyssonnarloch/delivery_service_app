@@ -50,7 +50,7 @@ public class ServiceProviderEvaluationsFragment extends Fragment {
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
                 if(response.code() == 200) {
                     List<Project> serviceProviderProjects = response.body();
-                    EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), serviceProviderProjects, User.SERVICE_PROVIDER);
+                    EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), serviceProviderProjects, User.SERVICE_PROVIDER, getActivity().getSupportFragmentManager());
                     lvServiceProviderEvaluations.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();

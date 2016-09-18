@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.ClientProjectAwaitingFragment;
@@ -34,7 +35,7 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         TextView tvServiceProviderName;
         TextView tvPeriod;
         ImageView ivProjectStatus;
-        LinearLayout llProjectStars;
+        RatingBar rbProjectStars;
         int id;
     }
 
@@ -60,7 +61,7 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
             viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvServiceProviderName);
             viewHolder.tvPeriod = (TextView) convertView.findViewById(R.id.tvPeriod);
             viewHolder.ivProjectStatus = (ImageView) convertView.findViewById(R.id.ivProjectStatus);
-            viewHolder.llProjectStars = (LinearLayout) convertView.findViewById(R.id.llProjectStars);
+            viewHolder.rbProjectStars = (RatingBar) convertView.findViewById(R.id.rbProjectStars);
             viewHolder.id = position;
 
             viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +105,7 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
-            viewHolder.llProjectStars.removeAllViews();
-            viewHolder.llProjectStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
+            viewHolder.rbProjectStars.setRating(project.getServiceProviderQualification());
         }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;
@@ -125,30 +125,5 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         viewHolder.ivProjectStatus.setImageResource(projectStatusId);
 
         return convertView;
-    }
-
-    private LinearLayout getStarsEvaluation(double qualification) {
-        LinearLayout llStars = new LinearLayout(getContext());
-        int intPart = (int) qualification;
-
-        for (int i = 1; i <= intPart; i++) {
-            ImageView ivStar = new ImageView(getContext());
-
-            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
-                ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
-            } else {
-                ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
-            }
-            llStars.addView(ivStar);
-        }
-
-        if (qualification == 0) {
-            ImageView ivStar = new ImageView(getContext());
-            ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
-
-            llStars.addView(ivStar);
-        }
-
-        return llStars;
     }
 }

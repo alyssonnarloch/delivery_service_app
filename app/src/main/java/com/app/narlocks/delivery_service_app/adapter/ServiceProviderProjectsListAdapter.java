@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.ProjectDetailsFragment;
@@ -28,7 +28,7 @@ public class ServiceProviderProjectsListAdapter extends ArrayAdapter<Project> {
         LinearLayout llRow;
         TextView tvTitle;
         TextView tvPeriod;
-        LinearLayout llStars;
+        RatingBar rbStars;
     }
 
     public ServiceProviderProjectsListAdapter(Context context, List<Project> projects, FragmentManager fragmentManager) {
@@ -48,7 +48,7 @@ public class ServiceProviderProjectsListAdapter extends ArrayAdapter<Project> {
 
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.tvPeriod = (TextView) convertView.findViewById(R.id.tvPeriod);
-            viewHolder.llStars = (LinearLayout) convertView.findViewById(R.id.llStars);
+            viewHolder.rbStars = (RatingBar) convertView.findViewById(R.id.rbStars);
             viewHolder.llRow = (LinearLayout) convertView.findViewById(R.id.llRow);
 
             viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
@@ -79,35 +79,10 @@ public class ServiceProviderProjectsListAdapter extends ArrayAdapter<Project> {
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if(project.getStatus() != null && project.getStatus().getId() == Project.FINISHED) {
-            viewHolder.llStars.addView(getStarsEvaluation(project.getServiceProviderQualification()));
+            viewHolder.rbStars.setRating(project.getServiceProviderQualification());
         }
 
         return convertView;
-    }
-
-    private LinearLayout getStarsEvaluation(double qualification) {
-        LinearLayout llStars = new LinearLayout(getContext());
-        int intPart = (int) qualification;
-
-        for(int i = 1; i <= intPart; i++) {
-            ImageView ivStar = new ImageView(getContext());
-
-            if(i == intPart && qualification > i && qualification <= (i + 0.9)) {
-                ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
-            } else {
-                ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
-            }
-            llStars.addView(ivStar);
-        }
-
-        if(qualification == 0) {
-            ImageView ivStar = new ImageView(getContext());
-            ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
-
-            llStars.addView(ivStar);
-        }
-
-        return llStars;
     }
 }
 

@@ -18,8 +18,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +41,7 @@ import retrofit2.Response;
 public class MakeContractFragment extends Fragment {
 
     private TextView tvName;
-    private LinearLayout llStars;
+    private RatingBar rbStars;
     private TextView tvEvaluation;
     private EditText etTitle;
     private EditText etDescription;
@@ -91,8 +90,8 @@ public class MakeContractFragment extends Fragment {
         tvName = (TextView) view.findViewById(R.id.tvName);
         tvName.setText(serviceProviderName);
 
-        llStars = (LinearLayout) view.findViewById(R.id.llStars);
-        setStarsEvaluation(serviceProviderQualification);
+        rbStars = (RatingBar) view.findViewById(R.id.rbStars);
+        rbStars.setRating((float) serviceProviderQualification);
 
         tvEvaluation = (TextView) view.findViewById(R.id.tvEvaluation);
         String evaluationLabel = "";
@@ -341,27 +340,5 @@ public class MakeContractFragment extends Fragment {
                 Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void setStarsEvaluation(double qualification) {
-        int intPart = (int) qualification;
-
-        for (int i = 1; i <= intPart; i++) {
-            ImageView ivStar = new ImageView(getActivity());
-
-            if (i == intPart && qualification > i && qualification <= (i + 0.9)) {
-                ivStar.setImageResource(R.mipmap.ic_star_half_black_24dp);
-            } else {
-                ivStar.setImageResource(R.mipmap.ic_star_black_24dp);
-            }
-            llStars.addView(ivStar);
-        }
-
-        if (qualification == 0) {
-            ImageView ivStar = new ImageView(getActivity());
-            ivStar.setImageResource(R.mipmap.ic_star_border_black_24dp);
-
-            llStars.addView(ivStar);
-        }
     }
 }
