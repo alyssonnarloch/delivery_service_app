@@ -15,7 +15,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class ClientProjectFinishedTask  extends AsyncTask<Integer, Void, Boolean> {
+public class ClientProjectFinishedTask extends AsyncTask<Integer, Void, Boolean> {
 
     private Project project;
     private List<Project> projects;

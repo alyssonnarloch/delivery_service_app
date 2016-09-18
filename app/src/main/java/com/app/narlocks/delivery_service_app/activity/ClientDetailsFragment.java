@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class ClientDetailsFragment extends Fragment {
     private TextView tvState;
     private TextView tvCity;
     private TextView tvAddress;
+    private Button btUpdate;
     Resources res;
 
     public ClientDetailsFragment() {
@@ -67,6 +69,7 @@ public class ClientDetailsFragment extends Fragment {
         tvState = (TextView) view.findViewById(R.id.tvState);
         tvCity = (TextView) view.findViewById(R.id.tvCity);
         tvAddress = (TextView) view.findViewById(R.id.tvAddress);
+        btUpdate = (Button) view.findViewById(R.id.btUpdate);
 
         setClientData(session.getUserId());
 
@@ -74,6 +77,23 @@ public class ClientDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new ClientEvaluationsFragment();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+
+                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        btUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle arguments = new Bundle();
+                arguments.putInt("clientId", session.getUserId());
+
+                Fragment fragment = new UpdateClientFragment();
+                fragment.setArguments(arguments);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
