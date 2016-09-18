@@ -21,7 +21,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/ivProfileImage"
+                android:id="@+id/ivProfilePicture"
                 android:layout_width="181dp"
                 android:layout_height="176dp"
                 android:layout_gravity="top|center_horizontal"
@@ -115,7 +115,7 @@
                     android:layout_height="42dp"
                     android:layout_gravity="center_horizontal"
                     android:onClick="onClickNext"
-                    android:text="Continuar" />
+                    android:text="Salvar" />
 
             </LinearLayout>
 

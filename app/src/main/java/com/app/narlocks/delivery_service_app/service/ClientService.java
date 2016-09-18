@@ -29,14 +29,14 @@ public interface ClientService {
                             @Field("profile_image") String profileImage);
     @FormUrlEncoded
     @PUT("client/edit")
-    Call<ResponseBody> update(@Field("name") String name,
+    Call<ResponseBody> update(@Field("id") int id,
+                              @Field("name") String name,
                               @Field("email") String email,
                               @Field("phone") String phone,
                               @Field("zipcode") String zipCode,
                               @Field("city_id") int cityId,
                               @Field("address") String address,
                               @Field("number") int number,
-                              @Field("password") String password,
                               @Field("profile_image") String profileImage);
 
 
