@@ -57,8 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         Intent i = new Intent(LoginActivity.this, DefaultClientActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
+                        finish();
                     } else {
                         try {
                             Toast.makeText(LoginActivity.this, ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
@@ -74,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     public void onClickUserSelection(View view) {

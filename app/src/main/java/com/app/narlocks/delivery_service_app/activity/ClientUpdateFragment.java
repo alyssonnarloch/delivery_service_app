@@ -37,7 +37,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class UpdateClientFragment extends Fragment {
+public class ClientUpdateFragment extends Fragment {
 
     private ImageView ivProfilePicture;
     private ImageView ivChangeImage;
@@ -59,7 +59,7 @@ public class UpdateClientFragment extends Fragment {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
 
-    public UpdateClientFragment() {
+    public ClientUpdateFragment() {
 
     }
 

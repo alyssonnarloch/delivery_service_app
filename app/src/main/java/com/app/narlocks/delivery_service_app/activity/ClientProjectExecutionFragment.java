@@ -50,6 +50,8 @@ public class ClientProjectExecutionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActivity().setTitle(R.string.title_project_detail);
+
         this.res = getResources();
         this.session = new SessionManager(getActivity());
     }

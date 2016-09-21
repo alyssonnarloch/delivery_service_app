@@ -50,6 +50,12 @@ public class ClientDetailsFragment extends Fragment {
 
     }
 
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getActivity().setTitle(R.string.title_client_update);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,7 +98,7 @@ public class ClientDetailsFragment extends Fragment {
                 Bundle arguments = new Bundle();
                 arguments.putInt("clientId", session.getUserId());
 
-                Fragment fragment = new UpdateClientFragment();
+                Fragment fragment = new ClientUpdateFragment();
                 fragment.setArguments(arguments);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

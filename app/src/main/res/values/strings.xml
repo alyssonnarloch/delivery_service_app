@@ -83,4 +83,21 @@
     <string name="service_service_provider_fail">Falha ao executar ProjectServiceProvider</string>
     <string name="service_city_fail">Falha ao executar CityService</string>
     <string name="service_favorite">Falha ao executar FavoriteService</string>
+
+    <!-- Titles -->
+    <string name="title_my_projects">Meus Projetos</string>
+    <string name="title_project_detail">Detalhes do Projeto</string>
+    <string name="title_service_provider_detail">Detalhes do Prestador</string>
+    <string name="title_service_provider_evaluation">Avaliações do Prestador</string>
+    <string name="title_service_provider_portfolio">Portfolio do Prestador</string>
+    <string name="title_service_provider_projects">Projetos do Prestador</string>
+    <string name="title_service_provider_project_detail">Detalhes do Projeto</string>
+    <string name="title_make_contract">Contratar Prestador</string>
+    <string name="title_finish_projetct">Finalização do Projeto</string>
+    <string name="title_service_provider_search">Encontre um prestador</string>
+    <string name="title_service_provider_search_result">Prestadores encontrados...</string>
+    <string name="title_client_evaluation">Avaliações recebidas</string>
+    <string name="title_client_detail">Meus dados</string>
+    <string name="title_client_update">Atualização</string>
+    <string name="title_client_favorites">Prestadores Favoritos</string>
 </resources>

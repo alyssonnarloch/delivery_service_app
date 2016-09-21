@@ -21,14 +21,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FavoritesFragment extends Fragment {
+public class ClientFavoritesFragment extends Fragment {
 
     private SessionManager session;
     private Resources res;
     private ListView lvFavorites;
 
-    public FavoritesFragment() {
+    public ClientFavoritesFragment() {
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getActivity().setTitle(R.string.title_client_favorites);
     }
 
     @Override

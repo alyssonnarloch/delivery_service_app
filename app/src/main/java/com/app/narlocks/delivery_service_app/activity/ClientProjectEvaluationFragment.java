@@ -43,6 +43,8 @@ public class ClientProjectEvaluationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActivity().setTitle(R.string.title_finish_projetct);
+
         this.res = getResources();
         this.session = new SessionManager(getActivity());
         this.projectId = getArguments().getInt("projectId");

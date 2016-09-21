@@ -3,7 +3,7 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.UpdateClientFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientUpdateFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.Client;
 import com.app.narlocks.delivery_service_app.service.ClientService;
@@ -16,10 +16,10 @@ import retrofit2.Response;
 public class UpdateClientSaveTask extends AsyncTask<Void, Void, Boolean> {
 
     private Client client;
-    private UpdateClientFragment fragment;
+    private ClientUpdateFragment fragment;
     private String errorMessage;
 
-    public UpdateClientSaveTask(UpdateClientFragment fragment, Client client) {
+    public UpdateClientSaveTask(ClientUpdateFragment fragment, Client client) {
         this.fragment = fragment;
         this.errorMessage = "";
         this.client = client;
