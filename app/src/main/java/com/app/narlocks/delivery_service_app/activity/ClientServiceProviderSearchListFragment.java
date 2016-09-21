@@ -13,13 +13,13 @@ import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 
 import java.util.List;
 
-public class ServiceProviderSearchListFragment extends Fragment {
+public class ClientServiceProviderSearchListFragment extends Fragment {
 
     private ListView lvServiceProvider;
 
     private ServiceProviderListAdapter serviceProviderListAdapter;
 
-    public ServiceProviderSearchListFragment() {
+    public ClientServiceProviderSearchListFragment() {
 
     }
 
@@ -34,7 +34,7 @@ public class ServiceProviderSearchListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_service_provider_search_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_service_provider_search_list, container, false);
 
         loadViewComponents(view);
         new ServiceProviderSearchListTask(this,

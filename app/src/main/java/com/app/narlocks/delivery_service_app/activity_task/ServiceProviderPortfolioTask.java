@@ -3,9 +3,8 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.ServiceProviderPortfolioFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientServiceProviderPortfolioFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
-import com.app.narlocks.delivery_service_app.model.ProjectPortfolio;
 import com.app.narlocks.delivery_service_app.model.ServiceProviderPortfolio;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 import com.app.narlocks.delivery_service_app.service.ServiceProviderService;
@@ -18,10 +17,10 @@ import retrofit2.Response;
 public class ServiceProviderPortfolioTask extends AsyncTask<Integer, Void, Boolean> {
 
     private List<ServiceProviderPortfolio> serviceProviderPortfolio;
-    private ServiceProviderPortfolioFragment fragment;
+    private ClientServiceProviderPortfolioFragment fragment;
     private String errorMessage;
 
-    public ServiceProviderPortfolioTask(ServiceProviderPortfolioFragment fragment) {
+    public ServiceProviderPortfolioTask(ClientServiceProviderPortfolioFragment fragment) {
         this.fragment = fragment;
         this.errorMessage = "";
     }

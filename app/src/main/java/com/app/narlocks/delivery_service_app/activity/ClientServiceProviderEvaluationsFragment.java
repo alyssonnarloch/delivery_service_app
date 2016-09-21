@@ -22,13 +22,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServiceProviderEvaluationsFragment extends Fragment {
+public class ClientServiceProviderEvaluationsFragment extends Fragment {
 
     private SessionManager session;
     private Resources res;
     private ListView lvServiceProviderEvaluations;
 
-    public ServiceProviderEvaluationsFragment() {
+    public ClientServiceProviderEvaluationsFragment() {
 
     }
 
@@ -43,7 +43,7 @@ public class ServiceProviderEvaluationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_service_provider_evaluations, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_service_provider_evaluations, container, false);
 
         res = getResources();
         session = new SessionManager(getActivity());

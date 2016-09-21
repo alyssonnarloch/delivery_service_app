@@ -20,7 +20,7 @@ import com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectDetailsFragment extends Fragment {
+public class ClientProjectDetailsFragment extends Fragment {
 
     private TextView tvTitle;
     private TextView tvProjectDescription;
@@ -29,7 +29,7 @@ public class ProjectDetailsFragment extends Fragment {
     private RatingBar rbStars;
     private ExpandableHeightGridView gvImages;
 
-    public ProjectDetailsFragment() {
+    public ClientProjectDetailsFragment() {
 
     }
 
@@ -44,7 +44,7 @@ public class ProjectDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_project_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_project_details, container, false);
 
         loadViewComponents(view);
 

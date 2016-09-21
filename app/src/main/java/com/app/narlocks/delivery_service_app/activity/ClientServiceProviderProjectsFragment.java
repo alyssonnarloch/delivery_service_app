@@ -18,11 +18,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServiceProviderProjectsFragment extends Fragment {
+public class ClientServiceProviderProjectsFragment extends Fragment {
 
     private ListView lvServiceProviderProjects;
 
-    public ServiceProviderProjectsFragment() {
+    public ClientServiceProviderProjectsFragment() {
 
     }
 
@@ -37,7 +37,7 @@ public class ServiceProviderProjectsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_service_provider_projects, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_service_provider_projects, container, false);
 
         lvServiceProviderProjects = (ListView) view.findViewById(R.id.lvServiceProviderProjects);
 

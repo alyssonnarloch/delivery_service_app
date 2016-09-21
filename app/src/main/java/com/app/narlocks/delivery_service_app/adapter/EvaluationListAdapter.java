@@ -13,7 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
-import com.app.narlocks.delivery_service_app.activity.ServiceProviderDetailsFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientServiceProviderDetailsFragment;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.model.User;
@@ -63,7 +63,7 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
                         Bundle arguments = new Bundle();
                         arguments.putInt("serviceProviderId", project.getServiceProvider().getId());
 
-                        ServiceProviderDetailsFragment fragment = new ServiceProviderDetailsFragment();
+                        ClientServiceProviderDetailsFragment fragment = new ClientServiceProviderDetailsFragment();
                         fragment.setArguments(arguments);
 
                         fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();

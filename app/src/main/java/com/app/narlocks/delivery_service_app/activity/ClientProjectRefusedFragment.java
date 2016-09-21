@@ -87,7 +87,7 @@ public class ClientProjectRefusedFragment extends Fragment {
                 Bundle arguments = new Bundle();
                 arguments.putInt("serviceProviderId", serviceProviderId);
 
-                Fragment fragment = new ServiceProviderDetailsFragment();
+                Fragment fragment = new ClientServiceProviderDetailsFragment();
                 fragment.setArguments(arguments);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

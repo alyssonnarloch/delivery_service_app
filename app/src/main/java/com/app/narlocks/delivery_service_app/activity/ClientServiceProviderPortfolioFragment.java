@@ -16,11 +16,11 @@ import com.app.narlocks.delivery_service_app.model.ServiceProviderPortfolio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceProviderPortfolioFragment extends Fragment {
+public class ClientServiceProviderPortfolioFragment extends Fragment {
 
     private GridView gvImages;
 
-    public ServiceProviderPortfolioFragment() {
+    public ClientServiceProviderPortfolioFragment() {
 
     }
 
@@ -35,7 +35,7 @@ public class ServiceProviderPortfolioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_project_portfolio, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_project_portfolio, container, false);
 
         gvImages = (GridView) view.findViewById(R.id.gvImages);
 

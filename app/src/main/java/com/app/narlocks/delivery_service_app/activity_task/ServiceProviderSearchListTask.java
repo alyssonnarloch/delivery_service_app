@@ -3,7 +3,7 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.ServiceProviderSearchListFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientServiceProviderSearchListFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -18,7 +18,7 @@ import retrofit2.Response;
 public class ServiceProviderSearchListTask extends AsyncTask<Void, Void, Boolean> {
 
     private List<ServiceProvider> serviceProviders;
-    private ServiceProviderSearchListFragment fragment;
+    private ClientServiceProviderSearchListFragment fragment;
     private String errorMessage;
 
     private String serviceProviderName;
@@ -26,7 +26,7 @@ public class ServiceProviderSearchListTask extends AsyncTask<Void, Void, Boolean
     private int cityId;
     private boolean available;
 
-    public ServiceProviderSearchListTask(ServiceProviderSearchListFragment fragment, String serviceProviderName, List<Integer> serviceTypeIds, int cityId, boolean available) {
+    public ServiceProviderSearchListTask(ClientServiceProviderSearchListFragment fragment, String serviceProviderName, List<Integer> serviceTypeIds, int cityId, boolean available) {
         this.serviceProviders = new ArrayList();
         this.fragment = fragment;
         this.errorMessage = "";

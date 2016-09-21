@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.app.narlocks.delivery_service_app.activity.ProjectDetailsFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientProjectDetailsFragment;
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
@@ -60,7 +60,7 @@ public class ServiceProviderProjectsListAdapter extends ArrayAdapter<Project> {
                     if(project != null) {
                         arguments.putInt("projectId", project.getId());
 
-                        ProjectDetailsFragment fragment = new ProjectDetailsFragment();
+                        ClientProjectDetailsFragment fragment = new ClientProjectDetailsFragment();
                         fragment.setArguments(arguments);
 
                         fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();

@@ -38,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MakeContractFragment extends Fragment {
+public class ClientMakeContractFragment extends Fragment {
 
     private TextView tvName;
     private RatingBar rbStars;
@@ -67,7 +67,7 @@ public class MakeContractFragment extends Fragment {
     private SessionManager session;
     Resources res;
 
-    public MakeContractFragment() {
+    public ClientMakeContractFragment() {
 
     }
 
@@ -82,7 +82,7 @@ public class MakeContractFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_make_contract, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_make_contract, container, false);
 
         res = getResources();
         session = new SessionManager(getActivity());

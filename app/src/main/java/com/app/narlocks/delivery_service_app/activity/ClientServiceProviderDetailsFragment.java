@@ -38,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServiceProviderDetailsFragment extends Fragment {
+public class ClientServiceProviderDetailsFragment extends Fragment {
 
     private RatingBar rbStars;
     private LinearLayout llPortfolio;
@@ -68,7 +68,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
     private SessionManager session;
     Resources res;
 
-    public ServiceProviderDetailsFragment() {
+    public ClientServiceProviderDetailsFragment() {
 
     }
 
@@ -118,7 +118,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     Bundle arguments = new Bundle();
                     arguments.putInt("serviceProviderId", serviceProvider.getId());
 
-                    Fragment fragment = new ServiceProviderEvaluationsFragment();
+                    Fragment fragment = new ClientServiceProviderEvaluationsFragment();
                     fragment.setArguments(arguments);
 
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -138,7 +138,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     Bundle arguments = new Bundle();
                     arguments.putInt("serviceProviderId", serviceProvider.getId());
 
-                    Fragment fragment = new ServiceProviderPortfolioFragment();
+                    Fragment fragment = new ClientServiceProviderPortfolioFragment();
                     fragment.setArguments(arguments);
 
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -157,7 +157,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     Bundle arguments = new Bundle();
                     arguments.putInt("serviceProviderId", serviceProvider.getId());
 
-                    Fragment fragment = new ServiceProviderProjectsFragment();
+                    Fragment fragment = new ClientServiceProviderProjectsFragment();
                     fragment.setArguments(arguments);
 
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -179,7 +179,7 @@ public class ServiceProviderDetailsFragment extends Fragment {
                     arguments.putString("serviceProviderName", serviceProvider.getName());
                     arguments.putInt("serviceProviderNumEvaluations", serviceProviderNumEvaluations);
 
-                    Fragment fragment = new MakeContractFragment();
+                    Fragment fragment = new ClientMakeContractFragment();
                     fragment.setArguments(arguments);
 
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

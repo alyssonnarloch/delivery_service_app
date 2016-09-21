@@ -112,7 +112,7 @@ public class ClientSearchServiceProviderFragment extends Fragment {
                 arguments.putInt("cityId", selectedCityId);
                 arguments.putBoolean("available", cbAvailable.isChecked());
 
-                Fragment fragment = new ServiceProviderSearchListFragment();
+                Fragment fragment = new ClientServiceProviderSearchListFragment();
                 fragment.setArguments(arguments);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

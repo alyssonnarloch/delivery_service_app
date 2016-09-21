@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.activity.R;
-import com.app.narlocks.delivery_service_app.activity.ServiceProviderDetailsFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientServiceProviderDetailsFragment;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
@@ -74,7 +74,7 @@ public class ServiceProviderListAdapter extends ArrayAdapter<ServiceProvider> {
                     if(serviceProvider != null) {
                         arguments.putInt("serviceProviderId", serviceProvider.getId());
 
-                        ServiceProviderDetailsFragment fragment = new ServiceProviderDetailsFragment();
+                        ClientServiceProviderDetailsFragment fragment = new ClientServiceProviderDetailsFragment();
                         fragment.setArguments(arguments);
 
                         fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();

@@ -3,7 +3,7 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.ProjectDetailsFragment;
+import com.app.narlocks.delivery_service_app.activity.ClientProjectDetailsFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
@@ -16,10 +16,10 @@ import retrofit2.Response;
 public class ProjectDetailsTask extends AsyncTask<Integer, Void, Boolean> {
 
     private Project project;
-    private ProjectDetailsFragment fragment;
+    private ClientProjectDetailsFragment fragment;
     private String errorMessage;
 
-    public ProjectDetailsTask(ProjectDetailsFragment fragment) {
+    public ProjectDetailsTask(ClientProjectDetailsFragment fragment) {
         this.fragment = fragment;
         this.errorMessage = "";
     }
