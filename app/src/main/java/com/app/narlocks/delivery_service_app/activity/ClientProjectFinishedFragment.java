@@ -101,7 +101,7 @@ public class ClientProjectFinishedFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
-                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -122,7 +122,7 @@ public class ClientProjectFinishedFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
-                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
         });

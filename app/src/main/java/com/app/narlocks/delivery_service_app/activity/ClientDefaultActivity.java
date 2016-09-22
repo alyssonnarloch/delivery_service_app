@@ -18,25 +18,25 @@ import android.widget.TextView;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 
-public class DefaultClientActivity extends AppCompatActivity
+public class ClientDefaultActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_default_client);
+        setContentView(R.layout.activity_client_default);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_client_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_client_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         Fragment fragment = new ClientProjectsFragment();
@@ -48,7 +48,7 @@ public class DefaultClientActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_client_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -79,7 +79,7 @@ public class DefaultClientActivity extends AppCompatActivity
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_client_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -93,11 +93,6 @@ public class DefaultClientActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -130,7 +125,7 @@ public class DefaultClientActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_client_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

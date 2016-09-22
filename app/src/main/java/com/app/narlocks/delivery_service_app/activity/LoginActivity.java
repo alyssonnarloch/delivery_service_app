@@ -52,18 +52,19 @@ public class LoginActivity extends AppCompatActivity {
                         SessionManager session = new SessionManager(getApplicationContext());
                         session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage(), user.getZipCode(), user.getCity().getId(), user.getCity().getName(), user.getAddress(), user.getNumber());
 
-                        if(user.getType() != null && user.getType().equals("client")) {
-
+                        Intent i = null;
+                        if (user.getType() != null && user.getType().equals("client")) {
+                            i = new Intent(LoginActivity.this, ClientDefaultActivity.class);
+                        } else {
+                            i = new Intent(LoginActivity.this, SPDefaultActivity.class);
                         }
-
-                        Intent i = new Intent(LoginActivity.this, DefaultClientActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                         finish();
                     } else {
                         try {
                             Toast.makeText(LoginActivity.this, ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
-                        } catch(Exception ex) {
+                        } catch (Exception ex) {
                             Toast.makeText(LoginActivity.this, res.getString(R.string.login_failure), Toast.LENGTH_LONG).show();
                         }
                     }
