@@ -39,7 +39,7 @@ public class SPDefaultActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_sp_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragment = new TesteFragment();
+        Fragment fragment = new SPDashboardFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();
 
@@ -74,7 +74,7 @@ public class SPDefaultActivity extends AppCompatActivity
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new ClientDetailsFragment();
+                Fragment fragment = new SPDashboardFragment();
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();
@@ -105,7 +105,7 @@ public class SPDefaultActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navMyProjects) {
-            fragment = new ClientProjectsFragment();
+            fragment = new SPDashboardFragment();
         } else if (id == R.id.navEvaluation) {
             fragment = new SPEvaluationsFragment();
         } else if (id == R.id.navExit) {
