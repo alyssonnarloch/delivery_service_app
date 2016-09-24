@@ -72,7 +72,7 @@ public class SPDashboardFragment extends Fragment {
         llSpEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                goToFragment(new SPUpdateFragment());
             }
         });
 

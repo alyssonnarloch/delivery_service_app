@@ -25,19 +25,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity_task.ClientUpdateLoadTask;
-import com.app.narlocks.delivery_service_app.activity_task.ClientUpdateSaveTask;
+import com.app.narlocks.delivery_service_app.activity_task.SPUpdateLoadTask;
+import com.app.narlocks.delivery_service_app.activity_task.SPUpdateSaveTask;
 import com.app.narlocks.delivery_service_app.adapter.AutocompleteCityAdapter;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.City;
-import com.app.narlocks.delivery_service_app.model.Client;
+import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class ClientUpdateFragment extends Fragment {
+public class SPUpdateFragment extends Fragment {
 
     private ImageView ivProfilePicture;
     private ImageView ivChangeImage;
@@ -59,7 +59,7 @@ public class ClientUpdateFragment extends Fragment {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
 
-    public ClientUpdateFragment() {
+    public SPUpdateFragment() {
 
     }
 
@@ -76,10 +76,10 @@ public class ClientUpdateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_client_update, container, false);
+        View view = inflater.inflate(R.layout.fragment_sp_update, container, false);
 
         loadViewComponents(view);
-        new ClientUpdateLoadTask(this).execute(getArguments().getInt("clientId"));
+        new SPUpdateLoadTask(this).execute(session.getUserId());
 
         return view;
     }
@@ -153,26 +153,26 @@ public class ClientUpdateFragment extends Fragment {
         });
     }
 
-    public void loadContentViewComponents(Client client) {
-        ivProfilePicture.setImageBitmap(Image.base64ToBitmap(client.getProfileImage()));
-        etName.setText(client.getName());
-        etEmail.setText(client.getEmail());
-        etPhone.setText(client.getPhone());
-        etZipCode.setText(client.getZipCode());
-        acCity.setText(client.getCity().getName());
-        etAddress.setText(client.getAddress());
-        etNumber.setText(client.getNumber() + "");
+    public void loadContentViewComponents(ServiceProvider serviceProvider) {
+        ivProfilePicture.setImageBitmap(Image.base64ToBitmap(serviceProvider.getProfileImage()));
+        etName.setText(serviceProvider.getName());
+        etEmail.setText(serviceProvider.getEmail());
+        etPhone.setText(serviceProvider.getPhone());
+        etZipCode.setText(serviceProvider.getZipCode());
+        acCity.setText(serviceProvider.getCity().getName());
+        etAddress.setText(serviceProvider.getAddress());
+        etNumber.setText(serviceProvider.getNumber() + "");
 
-        selectedCityId = client.getCity().getId();
+        selectedCityId = serviceProvider.getCity().getId();
     }
 
-    public void backDetails() {
-        Fragment fragment = new ClientDetailsFragment();
+    public void backDashboard() {
+        Fragment fragment = new SPDashboardFragment();
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();
 
-        DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
+        DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_sp_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
 
@@ -195,16 +195,16 @@ public class ClientUpdateFragment extends Fragment {
         }
     }
 
-    private Client getClientByView(View view) {
-        Client client = new Client();
+    private ServiceProvider getClientByView(View view) {
+        ServiceProvider serviceProvider = new ServiceProvider();
 
-        client.setId(session.getUserId());
-        client.setName(etName.getText().toString());
-        client.setEmail(etEmail.getText().toString());
-        client.setPhone(etPhone.getText().toString());
-        client.setZipCode(etZipCode.getText().toString());
-        client.setCityId(selectedCityId);
-        client.setAddress(etAddress.getText().toString());
+        serviceProvider.setId(session.getUserId());
+        serviceProvider.setName(etName.getText().toString());
+        serviceProvider.setEmail(etEmail.getText().toString());
+        serviceProvider.setPhone(etPhone.getText().toString());
+        serviceProvider.setZipCode(etZipCode.getText().toString());
+        serviceProvider.setCityId(selectedCityId);
+        serviceProvider.setAddress(etAddress.getText().toString());
 
         int number;
         try {
@@ -212,69 +212,70 @@ public class ClientUpdateFragment extends Fragment {
         } catch (NumberFormatException ex) {
             number = 0;
         }
-        client.setNumber(number);
+        serviceProvider.setNumber(number);
 
         BitmapDrawable drawable = (BitmapDrawable) ivProfilePicture.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
 
-        client.setProfileImage(Image.bitmapToBase64(bitmap));
+        serviceProvider.setProfileImage(Image.bitmapToBase64(bitmap));
 
-        return client;
+        return serviceProvider;
     }
 
     private void upadte(View view) {
-        Client client = getClientByView(view);
+        ServiceProvider serviceProvider = getClientByView(view);
 
-        if(validate(client)) {
-            new ClientUpdateSaveTask(this, client).execute();
+        if(validate(serviceProvider)) {
+            new SPUpdateSaveTask(this, serviceProvider).execute();
             SessionManager session = new SessionManager(getActivity());
-            session.createLoginSession(client.getId(), client.getName(), client.getEmail(), client.getProfileImage(), client.getZipCode(), selectedCityId, selectedCityName, client.getAddress(), client.getNumber());
+            session.createLoginSession(serviceProvider.getId(), serviceProvider.getName(), serviceProvider.getEmail(), serviceProvider.getProfileImage(), serviceProvider.getZipCode(), selectedCityId, selectedCityName, serviceProvider.getAddress(), serviceProvider.getNumber());
 
             // Atualiza os dados do menu
-            ((ImageView) getActivity().findViewById(R.id.ivProfileImage)).setImageBitmap(Image.base64ToBitmap(client.getProfileImage()));
-            ((TextView) getActivity().findViewById(R.id.tvUserName)).setText(client.getName());
-            ((TextView) getActivity().findViewById(R.id.tvUserEmail)).setText(client.getEmail());
+            ((ImageView) getActivity().findViewById(R.id.ivProfileImage)).setImageBitmap(Image.base64ToBitmap(serviceProvider.getProfileImage()));
+            ((TextView) getActivity().findViewById(R.id.tvUserName)).setText(serviceProvider.getName());
+            ((TextView) getActivity().findViewById(R.id.tvUserEmail)).setText(serviceProvider.getEmail());
         }
     }
 
-    private boolean validate(Client client) {
+    private boolean validate(ServiceProvider serviceProvider) {
         boolean valid = true;
 
-        if (client.getName() == null || client.getName().equals("")) {
+        if (serviceProvider.getName() == null || serviceProvider.getName().equals("")) {
             valid = false;
             etName.setError(res.getString(R.string.validation_required));
         }
 
-        if (client.getEmail() == null || client.getEmail().equals("")) {
+        if (serviceProvider.getEmail() == null || serviceProvider.getEmail().equals("")) {
             valid = false;
             etEmail.setError(res.getString(R.string.validation_required));
         }
 
-        if (client.getPhone() == null || client.getPhone().equals("")) {
+        if (serviceProvider.getPhone() == null || serviceProvider.getPhone().equals("")) {
             valid = false;
             etPhone.setError(res.getString(R.string.validation_required));
         }
 
-        if (client.getZipCode() == null || client.getZipCode().equals("")) {
+        if (serviceProvider.getZipCode() == null || serviceProvider.getZipCode().equals("")) {
             valid = false;
             etZipCode.setError(res.getString(R.string.validation_required));
         }
 
-        if (client.getCityId() == 0) {
+        if (serviceProvider.getCityId() == 0) {
             valid = false;
             acCity.setError(res.getString(R.string.validation_required));
         }
 
-        if (client.getAddress() == null || client.getAddress().equals("")) {
+        if (serviceProvider.getAddress() == null || serviceProvider.getAddress().equals("")) {
             valid = false;
             etAddress.setError(res.getString(R.string.validation_required));
         }
 
-        if (client.getNumber() == 0) {
+        if (serviceProvider.getNumber() == 0) {
             valid = false;
             etNumber.setError(res.getString(R.string.validation_required));
         }
 
         return valid;
     }
+
 }

@@ -41,7 +41,7 @@ public interface ServiceProviderService {
 
     @FormUrlEncoded
     @PUT("service_provider/edit/main")
-    Call<ResponseBody> editMain(@Field("id") int id,
+    Call<ResponseBody> updateMain(@Field("id") int id,
                                 @Field("name") String name,
                                 @Field("email") String email,
                                 @Field("phone") String phone,
@@ -53,19 +53,19 @@ public interface ServiceProviderService {
 
     @FormUrlEncoded
     @PUT("service_provider/edit/services")
-    Call<ResponseBody> editServices(@Field("id") int id,
+    Call<ResponseBody> updateServices(@Field("id") int id,
                                     @Field("service_type") List<Integer> serviceTypesId,
                                     @Field("experience_description") String experienceDescription,
                                     @Field("available") boolean available);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/areas")
-    Call<ResponseBody> editAreas(@Field("id") int id,
+    Call<ResponseBody> updateAreas(@Field("id") int id,
                                  @Field("occupation_area") List<Integer> occupationAreas);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/portfolio")
-    Call<ResponseBody> editPortfolio(@Field("id") int id,
+    Call<ResponseBody> updatePortfolio(@Field("id") int id,
                                      @Field("profile_portfolio") List<String> profilePortfolio);
 
     @FormUrlEncoded

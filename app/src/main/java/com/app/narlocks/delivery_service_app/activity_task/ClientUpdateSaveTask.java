@@ -13,13 +13,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class UpdateClientSaveTask extends AsyncTask<Void, Void, Boolean> {
+public class ClientUpdateSaveTask extends AsyncTask<Void, Void, Boolean> {
 
     private Client client;
     private ClientUpdateFragment fragment;
     private String errorMessage;
 
-    public UpdateClientSaveTask(ClientUpdateFragment fragment, Client client) {
+    public ClientUpdateSaveTask(ClientUpdateFragment fragment, Client client) {
         this.fragment = fragment;
         this.errorMessage = "";
         this.client = client;

@@ -12,13 +12,13 @@ import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class UpdateClientLoadTask extends AsyncTask<Integer, Void, Boolean> {
+public class ClientUpdateLoadTask extends AsyncTask<Integer, Void, Boolean> {
 
     private Client client;
     private ClientUpdateFragment fragment;
     private String errorMessage;
 
-    public UpdateClientLoadTask(ClientUpdateFragment fragment) {
+    public ClientUpdateLoadTask(ClientUpdateFragment fragment) {
         this.fragment = fragment;
         this.errorMessage = "";
     }
