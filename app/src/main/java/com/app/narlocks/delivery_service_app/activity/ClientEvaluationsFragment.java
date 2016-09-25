@@ -49,8 +49,16 @@ public class ClientEvaluationsFragment extends Fragment {
         session = new SessionManager(getActivity());
         lvClientEvaluations = (ListView) view.findViewById(R.id.lvClientEvaluations);
 
+        int clientId = 0;
+
+        if(getArguments() != null && getArguments().getInt("clientId") > 0) {
+            clientId = getArguments().getInt("clientId");
+        } else {
+            clientId = session.getUserId();
+        }
+
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
-        Call<List<Project>> projectCall = projectService.clientEvaluations(session.getUserId());
+        Call<List<Project>> projectCall = projectService.clientEvaluations(clientId);
 
         projectCall.enqueue(new Callback<List<Project>>() {
             @Override

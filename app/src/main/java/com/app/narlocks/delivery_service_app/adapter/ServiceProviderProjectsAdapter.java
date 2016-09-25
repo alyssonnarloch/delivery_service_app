@@ -14,11 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.app.narlocks.delivery_service_app.activity.ClientProjectAwaitingFragment;
-import com.app.narlocks.delivery_service_app.activity.ClientProjectExecutionFragment;
-import com.app.narlocks.delivery_service_app.activity.ClientProjectFinishedFragment;
-import com.app.narlocks.delivery_service_app.activity.ClientProjectRefusedFragment;
 import com.app.narlocks.delivery_service_app.activity.R;
+import com.app.narlocks.delivery_service_app.activity.SPProjectAwaitingFragment;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
 
@@ -75,21 +72,22 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
 
                         switch (project.getStatus().getId()) {
                             case Project.AWATING:
-                                ClientProjectAwaitingFragment awaitingFragment = new ClientProjectAwaitingFragment();
+                                SPProjectAwaitingFragment awaitingFragment = new SPProjectAwaitingFragment();
                                 awaitingFragment.setArguments(arguments);
-                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, awaitingFragment).commit();
-                            case Project.REFUSED:
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, awaitingFragment).commit();
+                            /*case Project.REFUSED:
                                 ClientProjectRefusedFragment refusedFragment = new ClientProjectRefusedFragment();
                                 refusedFragment.setArguments(arguments);
-                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, refusedFragment).commit();
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, refusedFragment).commit();
                             case Project.EXECUTION:
                                 ClientProjectExecutionFragment executionFragment = new ClientProjectExecutionFragment();
                                 executionFragment.setArguments(arguments);
-                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, executionFragment).commit();
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, executionFragment).commit();
                             case Project.FINISHED:
                                 ClientProjectFinishedFragment finishedFragment = new ClientProjectFinishedFragment();
                                 finishedFragment.setArguments(arguments);
-                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, finishedFragment).commit();
+                                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, finishedFragment).commit();
+                                */
                         }
                     }
                 }

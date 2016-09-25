@@ -83,7 +83,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_service_provider_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_service_provider_details, container, false);
 
         final int serviceProviderId = getArguments().getInt("serviceProviderId");
 

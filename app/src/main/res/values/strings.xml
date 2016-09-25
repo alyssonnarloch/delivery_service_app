@@ -67,6 +67,7 @@
     <string name="service_provider_available">Disponível para novos serviços?</string>
     <string name="minimun_qualification">Qualificação mínima</string>
     <string name="project_execution">Executor</string>
+    <string name="project_hirer">Contratante</string>
     <string name="project_prevision">Previsão</string>
     <string name="project_description">Descrição</string>
     <string name="project_address">Endereço</string>
@@ -104,6 +105,7 @@
     <string name="title_service_provider_dashboard">Dashboard</string>
     <string name="title_service_provider_update">Atualização</string>
     <string name="title_service_provider_projects_list">Projetos</string>
+    <string name="title_service_provider_client_details">Contratante</string>
 
     <!-- Button -->
     <string name="button_main_data">Dados gerais</string>
