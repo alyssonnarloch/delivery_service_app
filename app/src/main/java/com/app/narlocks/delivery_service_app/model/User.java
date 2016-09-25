@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private int id;
-    private String type;
+    private String profileId;
     private String name;
     private String email;
     private String phone;
@@ -32,9 +32,9 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getType() { return type; }
+    public String getProfileId() { return profileId; }
 
-    public void setType(String type) { this.type = type; }
+    public void setProfileId(String profileId) { this.profileId = profileId; }
 
     public String getName() {
         return name;

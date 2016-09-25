@@ -24,7 +24,7 @@ import com.app.narlocks.delivery_service_app.model.Project;
 
 import java.util.List;
 
-public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
+public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
 
     private Resources res;
     private FragmentManager fragmentManager;
@@ -32,14 +32,14 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
     private static class ViewHolder {
         LinearLayout llRow;
         TextView tvTitle;
-        TextView tvServiceProviderName;
+        TextView tvClientName;
         TextView tvPeriod;
         ImageView ivProjectStatus;
         RatingBar rbProjectStars;
         int id;
     }
 
-    public ClientProjectsListAdapter(Context context, List<Project> projects, FragmentManager fragmentManager) {
+    public ServiceProviderProjectsAdapter(Context context, List<Project> projects, FragmentManager fragmentManager) {
         super(context, 0, projects);
         this.res = getContext().getResources();
         this.fragmentManager = fragmentManager;
@@ -58,7 +58,7 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
 
             viewHolder.llRow = (LinearLayout) convertView.findViewById(R.id.llRow);
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            viewHolder.tvServiceProviderName = (TextView) convertView.findViewById(R.id.tvName);
+            viewHolder.tvClientName = (TextView) convertView.findViewById(R.id.tvName);
             viewHolder.tvPeriod = (TextView) convertView.findViewById(R.id.tvPeriod);
             viewHolder.ivProjectStatus = (ImageView) convertView.findViewById(R.id.ivProjectStatus);
             viewHolder.rbProjectStars = (RatingBar) convertView.findViewById(R.id.rbProjectStars);
@@ -101,7 +101,7 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         }
 
         viewHolder.tvTitle.setText(project.getTitle());
-        viewHolder.tvServiceProviderName.setText(project.getServiceProvider().getName());
+        viewHolder.tvClientName.setText(project.getServiceProvider().getName());
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
@@ -127,3 +127,4 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         return convertView;
     }
 }
+

@@ -35,8 +35,6 @@ public class SPDashboardFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActivity().setTitle(R.string.title_service_provider_dashboard);
-
         this.res = getResources();
         this.session = new SessionManager(getActivity());
     }
@@ -44,6 +42,8 @@ public class SPDashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_service_provider_update);
 
         View view = inflater.inflate(R.layout.fragment_sp_dashboard, container, false);
 
@@ -80,6 +80,13 @@ public class SPDashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 goToFragment(new SPEvaluationsFragment());
+            }
+        });
+
+        llSpProjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFragment(new SPProjectsFragment());
             }
         });
     }

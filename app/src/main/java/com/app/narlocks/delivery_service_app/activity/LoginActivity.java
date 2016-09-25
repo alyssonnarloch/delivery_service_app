@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                         session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage(), user.getZipCode(), user.getCity().getId(), user.getCity().getName(), user.getAddress(), user.getNumber());
 
                         Intent i = null;
-                        if (user.getType() != null && user.getType().equals("client")) {
+                        if (user.getProfileId() != null && user.getProfileId().equals("1")) {
                             i = new Intent(LoginActivity.this, ClientDefaultActivity.class);
                         } else {
                             i = new Intent(LoginActivity.this, SPDefaultActivity.class);

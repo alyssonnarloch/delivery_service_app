@@ -102,6 +102,8 @@
     <string name="title_client_favorites">Prestadores Favoritos</string>
     <string name="title_service_provider_evaluations">Avaliações recebidas</string>
     <string name="title_service_provider_dashboard">Dashboard</string>
+    <string name="title_service_provider_update">Atualização</string>
+    <string name="title_service_provider_projects_list">Projetos</string>
 
     <!-- Button -->
     <string name="button_main_data">Dados gerais</string>
