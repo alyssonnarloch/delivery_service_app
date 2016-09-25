@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.activity.SPProjectAwaitingFragment;
+import com.app.narlocks.delivery_service_app.activity.SPProjectRefusedFragment;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
 
@@ -75,11 +76,11 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
                                 SPProjectAwaitingFragment awaitingFragment = new SPProjectAwaitingFragment();
                                 awaitingFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, awaitingFragment).commit();
-                            /*case Project.REFUSED:
-                                ClientProjectRefusedFragment refusedFragment = new ClientProjectRefusedFragment();
+                            case Project.REFUSED:
+                                SPProjectRefusedFragment refusedFragment = new SPProjectRefusedFragment();
                                 refusedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, refusedFragment).commit();
-                            case Project.EXECUTION:
+                            /*case Project.EXECUTION:
                                 ClientProjectExecutionFragment executionFragment = new ClientProjectExecutionFragment();
                                 executionFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, executionFragment).commit();
@@ -99,11 +100,11 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
         }
 
         viewHolder.tvTitle.setText(project.getTitle());
-        viewHolder.tvClientName.setText(project.getServiceProvider().getName());
+        viewHolder.tvClientName.setText(project.getClient().getName());
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
-            viewHolder.rbProjectStars.setRating(project.getServiceProviderQualification());
+            viewHolder.rbProjectStars.setRating(project.getClientQualification());
         }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;
