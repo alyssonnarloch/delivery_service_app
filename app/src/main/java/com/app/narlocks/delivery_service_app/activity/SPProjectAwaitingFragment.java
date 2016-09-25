@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.app.narlocks.delivery_service_app.activity_task.SPProjectAwaitingApproveTask;
 import com.app.narlocks.delivery_service_app.activity_task.SPProjectAwaitingTask;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
@@ -88,6 +89,13 @@ public class SPProjectAwaitingFragment extends Fragment {
             }
         });
 
+        btApprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                approveProject();
+            }
+        });
+
         btRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +114,10 @@ public class SPProjectAwaitingFragment extends Fragment {
         });
     }
 
+    private void approveProject() {
+        new SPProjectAwaitingApproveTask(this).execute(project.getId());
+    }
+
     public void loadContentViewComponents(Project project, List<Project> projects) {
         tvTitle.setText(project.getTitle());
         tvStatus.setText(project.getStatus().getName());
@@ -118,6 +130,11 @@ public class SPProjectAwaitingFragment extends Fragment {
         clientId = project.getClient().getId();
 
         loadViewListeners();
+    }
+
+    public void backProjectsList() {
+        Fragment fragment = new SPProjectsFragment();
+        goToFragment(fragment);
     }
 
     private void goToFragment(Fragment fragment) {

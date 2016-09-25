@@ -41,7 +41,7 @@ public interface ProjectService {
 
     @GET("project/service_provider")
     Call<List<Project>> serviceProviderProjects(@Query("service_provider_id") int serviceProviderId,
-                                       @Query("status") int status);
+                                                @Query("status") int status);
 
     @GET("project/service_provider/evaluations")
     Call<List<Project>> serviceProviderEvaluations(@Query("service_provider_id") int serviceProviderId);
@@ -53,4 +53,8 @@ public interface ProjectService {
                               @Field("description") String description,
                               @Field("profile_id") int profileId,
                               @Field("status") int status);
+
+    @FormUrlEncoded
+    @PUT("project/approve")
+    Call<ResponseBody> approve(@Field("project_id") int projectId);
 }
