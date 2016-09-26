@@ -78,18 +78,22 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
                                 ClientProjectAwaitingFragment awaitingFragment = new ClientProjectAwaitingFragment();
                                 awaitingFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, awaitingFragment).commit();
+                                break;
                             case Project.REFUSED:
                                 ClientProjectRefusedFragment refusedFragment = new ClientProjectRefusedFragment();
                                 refusedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, refusedFragment).commit();
+                                break;
                             case Project.EXECUTION:
                                 ClientProjectExecutionFragment executionFragment = new ClientProjectExecutionFragment();
                                 executionFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, executionFragment).commit();
+                                break;
                             case Project.FINISHED:
                                 ClientProjectFinishedFragment finishedFragment = new ClientProjectFinishedFragment();
                                 finishedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, finishedFragment).commit();
+                                break;
                         }
                     }
                 }

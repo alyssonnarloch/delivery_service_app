@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.activity.SPProjectAwaitingFragment;
+import com.app.narlocks.delivery_service_app.activity.SPProjectExecutionFragment;
 import com.app.narlocks.delivery_service_app.activity.SPProjectRefusedFragment;
 import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.Project;
@@ -80,11 +81,11 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
                                 SPProjectRefusedFragment refusedFragment = new SPProjectRefusedFragment();
                                 refusedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, refusedFragment).commit();
-                            /*case Project.EXECUTION:
-                                ClientProjectExecutionFragment executionFragment = new ClientProjectExecutionFragment();
+                            case Project.EXECUTION:
+                                SPProjectExecutionFragment executionFragment = new SPProjectExecutionFragment();
                                 executionFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, executionFragment).commit();
-                            case Project.FINISHED:
+                            /*case Project.FINISHED:
                                 ClientProjectFinishedFragment finishedFragment = new ClientProjectFinishedFragment();
                                 finishedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, finishedFragment).commit();

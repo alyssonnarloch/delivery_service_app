@@ -55,7 +55,9 @@
             android:label="@string/title_activity_default_client"
             android:screenOrientation="portrait"
             android:theme="@style/ExternalTheme" />
-        <activity android:name=".SPDefaultActivity"></activity>
+        <activity
+            android:name=".SPDefaultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
