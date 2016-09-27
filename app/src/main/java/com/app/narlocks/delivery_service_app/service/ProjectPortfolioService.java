@@ -7,9 +7,13 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ProjectPortfolioService {
@@ -23,4 +27,12 @@ public interface ProjectPortfolioService {
     @PUT("project_portfolio/")
     Call<ResponseBody> approveRejectImage(@Query("project_portfolio_id") int projectPortfolioId,
                               @Query("approve") boolean newStatus);
+
+    @FormUrlEncoded
+    @POST("project_portfolio/save")
+    Call<ProjectPortfolio> save(@Field("project_id") int projectId,
+                            @Field("image") String image);
+
+    @DELETE("project_portfolio/delete/{id}")
+    Call<ResponseBody> delete(@Path("id") int id);
 }

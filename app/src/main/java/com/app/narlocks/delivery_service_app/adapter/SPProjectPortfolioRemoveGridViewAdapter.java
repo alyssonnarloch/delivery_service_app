@@ -3,10 +3,8 @@ package com.app.narlocks.delivery_service_app.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +12,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.app.narlocks.delivery_service_app.activity.DisplayImageActivity;
+import com.app.narlocks.delivery_service_app.activity.FullScreenImageFragment;
 import com.app.narlocks.delivery_service_app.activity.R;
+import com.app.narlocks.delivery_service_app.activity_task.SPProjectExecutionDeleteImageTask;
 import com.app.narlocks.delivery_service_app.extras.Image;
-import com.app.narlocks.delivery_service_app.model.ImageItem;
+import com.app.narlocks.delivery_service_app.model.ProjectPortfolio;
 
 import java.util.List;
 
-public class GridViewPortfolioAdapter extends ArrayAdapter {
+public class SPProjectPortfolioRemoveGridViewAdapter extends ArrayAdapter {
 
     static class ViewHolder {
         ImageView image;
@@ -30,18 +29,20 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
 
     private Context context;
     private int layoutResourceId;
-    private List data;
+    private List<ProjectPortfolio> portfolio;
+    private FragmentManager fragmentManager;
 
-    public GridViewPortfolioAdapter(Context context, int layoutResourceId, List data) {
-        super(context, layoutResourceId, data);
+    public SPProjectPortfolioRemoveGridViewAdapter(Context context, int layoutResourceId, List<ProjectPortfolio> portfolio, FragmentManager fragmentManager) {
+        super(context, layoutResourceId, portfolio);
 
         this.context = context;
         this.layoutResourceId = layoutResourceId;
-        this.data = data;
+        this.portfolio = portfolio;
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
         ViewHolder holder = null;
 
@@ -57,16 +58,13 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
             holder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageView imageView = (ImageView) v;
+                    Bundle arguments = new Bundle();
+                    arguments.putString("image", portfolio.get(position).getImage());
 
-                    BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
-                    Bitmap imageBitmap = bitmapDrawable.getBitmap();
+                    FullScreenImageFragment fragment = new FullScreenImageFragment();
+                    fragment.setArguments(arguments);
 
-                    Intent i = new Intent(context, DisplayImageActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    i.putExtra("imageBase64", Image.bitmapToBase64(imageBitmap));
-
-                    context.startActivity(i);
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();
                 }
             });
 
@@ -74,7 +72,8 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
                 @Override
                 public void onClick(View v) {
                     int position = (Integer) v.getTag();
-                    data.remove(position);
+                    new SPProjectExecutionDeleteImageTask(context).execute(portfolio.get(position).getId());
+                    portfolio.remove(position);
                     notifyDataSetChanged();
                 }
             });
@@ -84,9 +83,10 @@ public class GridViewPortfolioAdapter extends ArrayAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        ImageItem imageItem = (ImageItem) data.get(position);
-        holder.image.setImageBitmap(imageItem.getImage());
+        ProjectPortfolio projectPortfolio = (ProjectPortfolio) portfolio.get(position);
+        holder.image.setImageBitmap(Image.base64ToBitmap(projectPortfolio.getImage()));
 
         return row;
     }
 }
+

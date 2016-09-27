@@ -17,7 +17,7 @@ import com.app.narlocks.delivery_service_app.model.ImageItem;
 
 import java.util.List;
 
-public class ProjectPortfolioGridViewAdapter extends ArrayAdapter {
+public class SPProjectPortfolioGridViewAdapter extends ArrayAdapter {
 
     static class ViewHolder {
         ImageView image;
@@ -26,9 +26,10 @@ public class ProjectPortfolioGridViewAdapter extends ArrayAdapter {
     private Context context;
     private int layoutResourceId;
     private List<ImageItem> images;
+
     private FragmentManager fragmentManager;
 
-    public ProjectPortfolioGridViewAdapter(Context context, int layoutResourceId, List<ImageItem> images, FragmentManager fragmentManager) {
+    public SPProjectPortfolioGridViewAdapter(Context context, int layoutResourceId, List<ImageItem> images, FragmentManager fragmentManager) {
         super(context, layoutResourceId, images);
 
         this.context = context;
@@ -64,8 +65,8 @@ public class ProjectPortfolioGridViewAdapter extends ArrayAdapter {
                 FullScreenImageFragment fragment = new FullScreenImageFragment();
                 fragment.setArguments(arguments);
 
-                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
-                }
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();
+            }
         });
 
         return cell;

@@ -28,6 +28,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="login_failure">Erro ao efeuar login</string>
+    <string name="project_portfolio_image_delete_ok">Imagem removida do portifólio</string>
+    <string name="project_portfolio_image_add_ok">Imagem adicionada ao portifólio</string>
 
     <string name="action_settings">Settings</string>
 
@@ -77,6 +79,7 @@
     <string name="project_service_provider_evaluation">Avaliação enviada</string>
     <string name="project_images_to_approve">Imagens para aprovação</string>
     <string name="project_portfolio">Portifólio do projeto</string>
+    <string name="project_portfolio_approved">Aprovadas pelo cliente</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>

@@ -13,7 +13,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.adapter.GridViewPortfolioAdapter;
+import com.app.narlocks.delivery_service_app.adapter.GridViewPortfolioRemoveAdapter;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.ImageItem;
@@ -36,7 +36,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
 
     private ImageButton ibNewImage;
     private GridView gvPortfolioImages;
-    private GridViewPortfolioAdapter gvAdapter;
+    private GridViewPortfolioRemoveAdapter gvAdapter;
 
     private Resources res;
     private List<ImageItem> imageItems;
@@ -54,7 +54,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
 
         imageItems = new ArrayList();
 
-        gvAdapter = new GridViewPortfolioAdapter(this, R.layout.gridview_image_delete_layout, imageItems);
+        gvAdapter = new GridViewPortfolioRemoveAdapter(this, R.layout.gridview_image_delete_layout, imageItems);
         gvPortfolioImages = (GridView) findViewById(R.id.gvPortfolioImages);
         gvPortfolioImages.setAdapter(gvAdapter);
     }
@@ -127,7 +127,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
                     ImageItem imageItem = new ImageItem(image);
 
                     imageItems.add(imageItem);
-                    gvAdapter = new GridViewPortfolioAdapter(this, R.layout.gridview_image_delete_layout, imageItems);
+                    gvAdapter = new GridViewPortfolioRemoveAdapter(this, R.layout.gridview_image_delete_layout, imageItems);
                     gvPortfolioImages.setAdapter(gvAdapter);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(this, res.getString(R.string.image_upload_fail), Toast.LENGTH_LONG).show();

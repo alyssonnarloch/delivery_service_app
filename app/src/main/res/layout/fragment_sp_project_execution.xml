@@ -35,7 +35,8 @@
                 android:layout_margin="4dp"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_blue_dark" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -178,10 +179,49 @@
                 android:textSize="20sp"
                 android:textStyle="normal|bold" />
 
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/ivAddImage"
+                android:background="@android:color/transparent"
+                android:cropToPadding="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:onClick="onImageGalleryClicked"
+                android:src="@mipmap/ic_add_box_black_24dp"
+                android:adjustViewBounds="false"
+                android:layout_weight="0.03" />
+
             <com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gvImages"
+                android:layout_gravity="center_horizontal"
+                android:numColumns="2"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/project_portfolio_approved"
+                android:id="@+id/textView27"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal|bold"
+                android:layout_margin="4dp" />
+
+            <com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gvApprovedImages"
                 android:layout_gravity="center_horizontal"
                 android:numColumns="2" />
 

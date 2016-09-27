@@ -1,7 +1,12 @@
 package com.app.narlocks.delivery_service_app.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -10,16 +15,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.app.narlocks.delivery_service_app.activity_task.SPProjectExecutionAddImageTask;
 import com.app.narlocks.delivery_service_app.activity_task.SPProjectExecutionTask;
-import com.app.narlocks.delivery_service_app.adapter.ImagesToApproveGridViewAdapter;
+import com.app.narlocks.delivery_service_app.adapter.SPProjectPortfolioGridViewAdapter;
+import com.app.narlocks.delivery_service_app.adapter.SPProjectPortfolioRemoveGridViewAdapter;
 import com.app.narlocks.delivery_service_app.extras.Extra;
+import com.app.narlocks.delivery_service_app.extras.Image;
+import com.app.narlocks.delivery_service_app.model.ImageItem;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.model.ProjectPortfolio;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 import com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +45,9 @@ public class SPProjectExecutionFragment extends Fragment {
     private TextView tvAddress;
     private TextView tvPeriod;
     private TextView tvProjectDescription;
+    private ImageView ivAddImage;
     private ExpandableHeightGridView gvImages;
+    private ExpandableHeightGridView gvApprovedImages;
     private Button btFinish;
 
     private Project project;
@@ -39,6 +55,8 @@ public class SPProjectExecutionFragment extends Fragment {
 
     private SessionManager session;
     private Resources res;
+
+    public static final int IMAGE_GALLERY_REQUEST = 20;
 
     public SPProjectExecutionFragment() {
 
@@ -75,6 +93,9 @@ public class SPProjectExecutionFragment extends Fragment {
         tvProjectDescription = (TextView) view.findViewById(R.id.tvProjectDescription);
         gvImages = (ExpandableHeightGridView) view.findViewById(R.id.gvImages);
         gvImages.setExpanded(true);
+        gvApprovedImages = (ExpandableHeightGridView) view.findViewById(R.id.gvApprovedImages);
+        gvApprovedImages.setExpanded(true);
+        ivAddImage = (ImageView) view.findViewById(R.id.ivAddImage);
         btFinish = (Button) view.findViewById(R.id.btFinish);
     }
 
@@ -93,6 +114,19 @@ public class SPProjectExecutionFragment extends Fragment {
 
                 DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_sp_layout);
                 drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        ivAddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                String pictureDirectoryPath = pictureDirectory.getPath();
+                Uri data = Uri.parse(pictureDirectoryPath);
+
+                photoPickerIntent.setDataAndType(data, "image/*");
+                startActivityForResult(photoPickerIntent, IMAGE_GALLERY_REQUEST);
             }
         });
 
@@ -129,8 +163,11 @@ public class SPProjectExecutionFragment extends Fragment {
         this.project = project;
         clientId = project.getServiceProvider().getId();
 
-        ImagesToApproveGridViewAdapter adapter = new ImagesToApproveGridViewAdapter(getActivity(), R.layout.gridview_image_approve_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
-        gvImages.setAdapter(adapter);
+        SPProjectPortfolioRemoveGridViewAdapter notEvaluatedImagesAdapter = new SPProjectPortfolioRemoveGridViewAdapter(getActivity(), R.layout.gridview_image_delete_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
+        gvImages.setAdapter(notEvaluatedImagesAdapter);
+
+        SPProjectPortfolioGridViewAdapter approvedImagesAdapter = new SPProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, getApprovedImages(project.getPortfolio()), getActivity().getSupportFragmentManager());
+        gvApprovedImages.setAdapter(approvedImagesAdapter);
 
         loadViewListeners();
     }
@@ -143,7 +180,45 @@ public class SPProjectExecutionFragment extends Fragment {
                 newPortfolio.add(p);
             }
         }
-
         return newPortfolio;
     }
+
+    private List<ImageItem> getApprovedImages(List<ProjectPortfolio> portfolio) {
+        List<ImageItem> newPortfolio = new ArrayList();
+
+        for (ProjectPortfolio p : portfolio) {
+            if (p.isApproved() != null && p.isApproved()) {
+                newPortfolio.add(new ImageItem(Image.base64ToBitmap(p.getImage())));
+            }
+        }
+        return newPortfolio;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == getActivity().RESULT_OK) {
+            if (requestCode == IMAGE_GALLERY_REQUEST) {
+                Uri imageUri = data.getData();
+
+                InputStream inputStream;
+
+                try {
+                    inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+
+                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+                    //ivAddPicture.setImageBitmap(image);
+
+                    new SPProjectExecutionAddImageTask(this, Image.bitmapToBase64(image)).execute(project.getId());
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(getActivity(), res.getString(R.string.image_upload_fail), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    public void realoadGridImages(Project project) {
+        SPProjectPortfolioRemoveGridViewAdapter notEvaluatedImagesAdapter = new SPProjectPortfolioRemoveGridViewAdapter(getActivity(), R.layout.gridview_image_delete_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
+        gvImages.setAdapter(notEvaluatedImagesAdapter);
+        loadViewListeners();
+    }
+
 }
