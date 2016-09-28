@@ -3,7 +3,7 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.SPProjectEvaluationAwaitingFragment;
+import com.app.narlocks.delivery_service_app.activity.SPProjectEvaluationFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -20,10 +20,10 @@ public class SPProjectEvaluationAwaitingTask extends AsyncTask<Void, Void, Boole
     private int status;
     private String description;
 
-    private SPProjectEvaluationAwaitingFragment fragment;
+    private SPProjectEvaluationFragment fragment;
     private String errorMessage;
 
-    public SPProjectEvaluationAwaitingTask(SPProjectEvaluationAwaitingFragment fragment, int projectId, int qualification, String description, int profileId, int status) {
+    public SPProjectEvaluationAwaitingTask(SPProjectEvaluationFragment fragment, int projectId, int qualification, String description, int profileId, int status) {
         this.fragment = fragment;
         this.errorMessage = "";
 

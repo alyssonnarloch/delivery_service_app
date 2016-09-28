@@ -140,7 +140,7 @@ public class SPProjectExecutionFragment extends Fragment {
                 arguments.putInt("projectId", project.getId());
                 arguments.putInt("newProjectStatus", Project.FINISHED);
 
-                Fragment fragment = new ClientProjectEvaluationFragment();
+                Fragment fragment = new SPProjectEvaluationFragment();
                 fragment.setArguments(arguments);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

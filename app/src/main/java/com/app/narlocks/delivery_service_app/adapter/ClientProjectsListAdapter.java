@@ -109,7 +109,11 @@ public class ClientProjectsListAdapter extends ArrayAdapter<Project> {
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
-            viewHolder.rbProjectStars.setRating(project.getServiceProviderQualification());
+            if(project.getServiceProviderQualification() != null) {
+                viewHolder.rbProjectStars.setRating(project.getServiceProviderQualification());
+            } else {
+                viewHolder.rbProjectStars.setRating(0);
+            }
         }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;

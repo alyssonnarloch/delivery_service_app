@@ -77,14 +77,17 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
                                 SPProjectAwaitingFragment awaitingFragment = new SPProjectAwaitingFragment();
                                 awaitingFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, awaitingFragment).commit();
+                                break;
                             case Project.REFUSED:
                                 SPProjectRefusedFragment refusedFragment = new SPProjectRefusedFragment();
                                 refusedFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, refusedFragment).commit();
+                                break;
                             case Project.EXECUTION:
                                 SPProjectExecutionFragment executionFragment = new SPProjectExecutionFragment();
                                 executionFragment.setArguments(arguments);
                                 fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, executionFragment).commit();
+                                break;
                             /*case Project.FINISHED:
                                 ClientProjectFinishedFragment finishedFragment = new ClientProjectFinishedFragment();
                                 finishedFragment.setArguments(arguments);
@@ -105,7 +108,11 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
         if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
-            viewHolder.rbProjectStars.setRating(project.getClientQualification());
+            if (project.getClientQualification() != null) {
+                viewHolder.rbProjectStars.setRating(project.getClientQualification());
+            } else {
+                viewHolder.rbProjectStars.setRating(0);
+            }
         }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;

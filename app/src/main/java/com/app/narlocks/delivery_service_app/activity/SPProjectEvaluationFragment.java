@@ -20,7 +20,7 @@ import com.app.narlocks.delivery_service_app.activity_task.SPProjectEvaluationAw
 import com.app.narlocks.delivery_service_app.model.User;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 
-public class SPProjectEvaluationAwaitingFragment extends Fragment {
+public class SPProjectEvaluationFragment extends Fragment {
 
     private TextView tvTitle;
     private TextView tvStatus;
@@ -35,7 +35,7 @@ public class SPProjectEvaluationAwaitingFragment extends Fragment {
     private SessionManager session;
     private Resources res;
 
-    public SPProjectEvaluationAwaitingFragment() {
+    public SPProjectEvaluationFragment() {
 
     }
 
@@ -55,7 +55,7 @@ public class SPProjectEvaluationAwaitingFragment extends Fragment {
 
         getActivity().setTitle(R.string.title_finish_projetct);
 
-        View view = inflater.inflate(R.layout.fragment_sp_project_evaluation_awaiting, container, false);
+        View view = inflater.inflate(R.layout.fragment_sp_project_evaluation, container, false);
 
         loadViewComponents(view);
         loadViewListeners(view);
@@ -104,7 +104,7 @@ public class SPProjectEvaluationAwaitingFragment extends Fragment {
     public void loadProjects() {
         Toast.makeText(getActivity(), res.getString(R.string.project_finished_ok), Toast.LENGTH_LONG).show();
 
-        Fragment fragment = new ClientProjectsFragment();
+        Fragment fragment = new SPProjectsFragment();
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();

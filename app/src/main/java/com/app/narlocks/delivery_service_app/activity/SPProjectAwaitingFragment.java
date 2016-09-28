@@ -106,7 +106,7 @@ public class SPProjectAwaitingFragment extends Fragment {
                 arguments.putInt("projectId", project.getId());
                 arguments.putInt("newProjectStatus", Project.REFUSED);
 
-                Fragment fragment = new SPProjectEvaluationAwaitingFragment();
+                Fragment fragment = new SPProjectEvaluationFragment();
                 fragment.setArguments(arguments);
 
                 goToFragment(fragment);
