@@ -16,6 +16,7 @@ import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,12 +63,13 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
         ivExecution.setOnClickListener(this);
         ivFinished.setOnClickListener(this);
 
-        listProjectsByStatus(0);
+        List<Integer> status = new ArrayList();
+        listProjectsByStatus(status);
 
         return view;
     }
 
-    private void listProjectsByStatus(int status){
+    private void listProjectsByStatus(List<Integer> status){
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
         Call<List<Project>> projectCall = projectService.clientProjects(session.getUserId(), status);
 
@@ -92,19 +94,22 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        List<Integer> status = new ArrayList();
+
         switch (v.getId()){
             case R.id.ivAwaiting:
-                listProjectsByStatus(Project.AWATING);
+                status.add(Project.AWATING);
                 break;
             case R.id.ivRefused:
-                listProjectsByStatus(Project.REFUSED);
+                status.add(Project.REFUSED);
                 break;
             case R.id.ivExecution:
-                listProjectsByStatus(Project.EXECUTION);
+                status.add(Project.EXECUTION);
                 break;
             case R.id.ivFinished:
-                listProjectsByStatus(Project.FINISHED);
+                status.add(Project.FINISHED);
                 break;
         }
+        listProjectsByStatus(status);
     }
 }

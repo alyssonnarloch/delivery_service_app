@@ -78,7 +78,7 @@ public class ServiceProviderProjectsListAdapter extends ArrayAdapter<Project> {
         viewHolder.tvTitle.setText(project.getTitle());
         viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
 
-        if(project.getStatus() != null && project.getStatus().getId() == Project.FINISHED) {
+        if(project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
             if(project.getServiceProviderQualification() != null) {
                 viewHolder.rbStars.setRating(project.getServiceProviderQualification());
             } else {

@@ -32,8 +32,10 @@ public class SPProjectsTask extends AsyncTask<Integer, Void, Boolean> {
         boolean resultOk = true;
 
         try {
+            List<Integer> status = new ArrayList();
+            status.add(params[1]);
             ProjectService service = ServiceGenerator.createService(ProjectService.class);
-            Call<List<Project>> call = service.serviceProviderProjects(params[0], params[1]);
+            Call<List<Project>> call = service.serviceProviderProjects(params[0], status);
             Response response = call.execute();
 
             if (response.code() == 200) {

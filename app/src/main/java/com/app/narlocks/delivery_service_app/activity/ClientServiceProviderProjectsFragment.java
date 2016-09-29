@@ -12,6 +12,7 @@ import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,8 +42,12 @@ public class ClientServiceProviderProjectsFragment extends Fragment {
 
         lvServiceProviderProjects = (ListView) view.findViewById(R.id.lvServiceProviderProjects);
 
+        List<Integer> status = new ArrayList();
+        status.add(Project.REFUSED);
+        status.add(Project.EXECUTION);
+        status.add(Project.FINISHED);
         ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
-        Call<List<Project>> callProjectService = projectService.serviceProviderProjects(getArguments().getInt("serviceProviderId"), Project.FINISHED);
+        Call<List<Project>> callProjectService = projectService.serviceProviderProjects(getArguments().getInt("serviceProviderId"), status);
 
         callProjectService.enqueue(new Callback<List<Project>>() {
             @Override

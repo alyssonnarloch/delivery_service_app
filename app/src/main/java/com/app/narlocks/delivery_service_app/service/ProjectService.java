@@ -34,14 +34,14 @@ public interface ProjectService {
 
     @GET("project/client")
     Call<List<Project>> clientProjects(@Query("client_id") int clientId,
-                                       @Query("status") int status);
+                                       @Query("status[]") List<Integer> status);
 
     @GET("project/client/evaluations")
     Call<List<Project>> clientEvaluations(@Query("client_id") int clientId);
 
     @GET("project/service_provider")
     Call<List<Project>> serviceProviderProjects(@Query("service_provider_id") int serviceProviderId,
-                                                @Query("status") int status);
+                                                @Query("status[]") List<Integer> status);
 
     @GET("project/service_provider/evaluations")
     Call<List<Project>> serviceProviderEvaluations(@Query("service_provider_id") int serviceProviderId);
