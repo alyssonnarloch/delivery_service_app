@@ -3,30 +3,24 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.SPProjectsFragment;
+import com.app.narlocks.delivery_service_app.activity.SPProjectFinishedFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.service.ProjectService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class SPProjectsTask extends AsyncTask<Integer, Void, Boolean> {
+public class SPProjectFinishedTask extends AsyncTask<Integer, Void, Boolean> {
 
-    private List<Project> projects;
-    private List<Integer> status;
-    private SPProjectsFragment fragment;
+    private Project project;
+    private SPProjectFinishedFragment fragment;
     private String errorMessage;
 
-    public SPProjectsTask(SPProjectsFragment fragment, List<Integer> status) {
+    public SPProjectFinishedTask(SPProjectFinishedFragment fragment) {
         this.fragment = fragment;
         this.errorMessage = "";
-        this.projects = new ArrayList();
-        this.status = status;
     }
 
     @Override
@@ -34,15 +28,15 @@ public class SPProjectsTask extends AsyncTask<Integer, Void, Boolean> {
         boolean resultOk = true;
 
         try {
-            ProjectService service = ServiceGenerator.createService(ProjectService.class);
-            Call<List<Project>> call = service.serviceProviderProjects(params[0], status);
-            Response response = call.execute();
+            ProjectService projectService = ServiceGenerator.createService(ProjectService.class);
+            Call<Project> projectCall = projectService.getById(params[0]);
+            Response projectResponse = projectCall.execute();
 
-            if (response.code() == 200) {
-                projects = (List<Project>) response.body();
+            if (projectResponse.code() == 200) {
+                project = (Project) projectResponse.body();
             } else {
                 resultOk = false;
-                errorMessage += ErrorConversor.getErrorMessage(response.errorBody());
+                errorMessage += ErrorConversor.getErrorMessage(projectResponse.errorBody());
             }
         } catch (Exception ex) {
             resultOk = false;
@@ -56,10 +50,9 @@ public class SPProjectsTask extends AsyncTask<Integer, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean ok) {
         if (ok) {
-            this.fragment.loadContentViewComponents(projects);
+            this.fragment.loadContentViewComponents(project);
         } else {
             Toast.makeText(fragment.getActivity(), errorMessage, Toast.LENGTH_LONG).show();
         }
     }
 }
-

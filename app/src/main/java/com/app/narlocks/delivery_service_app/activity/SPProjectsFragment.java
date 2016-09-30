@@ -14,6 +14,7 @@ import com.app.narlocks.delivery_service_app.adapter.ServiceProviderProjectsAdap
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SPProjectsFragment extends Fragment implements View.OnClickListener {
@@ -48,7 +49,9 @@ public class SPProjectsFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_sp_projects, container, false);
         loadViewComponents(view);
         loadViewComponentListeners();
-        listProjectsByStatus(0);
+
+        List<Integer> status = new ArrayList();
+        listProjectsByStatus(status);
 
         return view;
     }
@@ -68,8 +71,8 @@ public class SPProjectsFragment extends Fragment implements View.OnClickListener
         ivFinished.setOnClickListener(this);
     }
 
-    private void listProjectsByStatus(int status) {
-        new SPProjectsTask(this).execute(session.getUserId(), status);
+    private void listProjectsByStatus(List<Integer> status) {
+        new SPProjectsTask(this, status).execute(session.getUserId());
     }
 
     public void loadContentViewComponents(List<Project> projects) {
@@ -79,20 +82,23 @@ public class SPProjectsFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        List<Integer> status = new ArrayList();
+
         switch (v.getId()){
             case R.id.ivAwaiting:
-                listProjectsByStatus(Project.AWATING);
+                status.add(Project.AWATING);
                 break;
             case R.id.ivRefused:
-                listProjectsByStatus(Project.REFUSED);
+                status.add(Project.REFUSED);
                 break;
             case R.id.ivExecution:
-                listProjectsByStatus(Project.EXECUTION);
+                status.add(Project.EXECUTION);
                 break;
             case R.id.ivFinished:
-                listProjectsByStatus(Project.FINISHED);
+                status.add(Project.FINISHED);
                 break;
         }
+        listProjectsByStatus(status);
     }
 
 }
