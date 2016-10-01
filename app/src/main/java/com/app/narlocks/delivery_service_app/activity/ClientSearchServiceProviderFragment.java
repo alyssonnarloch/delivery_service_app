@@ -57,13 +57,13 @@ public class ClientSearchServiceProviderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getActivity().setTitle(R.string.title_service_provider_search);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_service_provider_search);
 
         View view = inflater.inflate(R.layout.fragment_client_search_service, container, false);
 

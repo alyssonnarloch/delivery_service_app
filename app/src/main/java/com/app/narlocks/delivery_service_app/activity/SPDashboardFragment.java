@@ -43,7 +43,7 @@ public class SPDashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().setTitle(R.string.title_service_provider_update);
+        getActivity().setTitle(R.string.title_service_provider_dashboard);
 
         View view = inflater.inflate(R.layout.fragment_sp_dashboard, container, false);
 

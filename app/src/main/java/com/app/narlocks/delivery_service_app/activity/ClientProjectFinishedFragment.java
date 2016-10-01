@@ -55,8 +55,6 @@ public class ClientProjectFinishedFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActivity().setTitle(R.string.title_project_detail);
-
         this.res = getResources();
         this.session = new SessionManager(getActivity());
     }
@@ -64,6 +62,8 @@ public class ClientProjectFinishedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_project_detail);
 
         View view = inflater.inflate(R.layout.fragment_client_project_finished, container, false);
 

@@ -29,7 +29,8 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
         LinearLayout llRow;
         ImageView ivProfileImageEvaluation;
         RatingBar rbStars;
-        TextView tvNameValuer;
+        TextView tvValuerName;
+        TextView tvProjectTitle;
         TextView tvEvaluationDescription;
     }
 
@@ -51,7 +52,8 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
             viewHolder.llRow = (LinearLayout) convertView.findViewById(R.id.llRow);
             viewHolder.ivProfileImageEvaluation = (ImageView) convertView.findViewById(R.id.ivProfileImageEvaluation);
             viewHolder.rbStars = (RatingBar) convertView.findViewById(R.id.rbStars);
-            viewHolder.tvNameValuer = (TextView) convertView.findViewById(R.id.tvNameValuer);
+            viewHolder.tvValuerName = (TextView) convertView.findViewById(R.id.tvValuerName);
+            viewHolder.tvProjectTitle = (TextView) convertView.findViewById(R.id.tvProjectTitle);
             viewHolder.tvEvaluationDescription = (TextView) convertView.findViewById(R.id.tvEvaluationDescription);
 
             viewHolder.llRow.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +99,8 @@ public class EvaluationListAdapter extends ArrayAdapter<Project> {
 
         viewHolder.ivProfileImageEvaluation.setImageBitmap(Image.base64ToBitmap(profileImage));
         viewHolder.rbStars.setRating(qualification);
-        viewHolder.tvNameValuer.setText(name);
+        viewHolder.tvValuerName.setText(name);
+        viewHolder.tvProjectTitle.setText(project.getTitle());
         viewHolder.tvEvaluationDescription.setText(evaluationDescription);
 
         return convertView;

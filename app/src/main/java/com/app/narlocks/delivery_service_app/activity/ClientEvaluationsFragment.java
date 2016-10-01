@@ -35,13 +35,13 @@ public class ClientEvaluationsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getActivity().setTitle(R.string.title_client_evaluation);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_client_evaluation);
 
         View view = inflater.inflate(R.layout.fragment_client_evaluations, container, false);
 

@@ -228,7 +228,7 @@ public class SPUpdateFragment extends Fragment {
         if(validate(serviceProvider)) {
             new SPUpdateSaveTask(this, serviceProvider).execute();
             SessionManager session = new SessionManager(getActivity());
-            session.createLoginSession(serviceProvider.getId(), serviceProvider.getName(), serviceProvider.getEmail(), serviceProvider.getProfileImage(), serviceProvider.getZipCode(), selectedCityId, selectedCityName, serviceProvider.getAddress(), serviceProvider.getNumber());
+            session.createLoginSession(serviceProvider.getId(), serviceProvider.getName(), serviceProvider.getEmail(), serviceProvider.getProfileImage(), serviceProvider.getZipCode(), selectedCityId, selectedCityName, serviceProvider.getAddress(), serviceProvider.getNumber(), serviceProvider.getProfileId());
 
             // Atualiza os dados do menu
             ((ImageView) getActivity().findViewById(R.id.ivProfileImage)).setImageBitmap(Image.base64ToBitmap(serviceProvider.getProfileImage()));

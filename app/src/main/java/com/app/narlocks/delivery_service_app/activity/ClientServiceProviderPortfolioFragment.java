@@ -27,13 +27,13 @@ public class ClientServiceProviderPortfolioFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getActivity().setTitle(R.string.title_service_provider_portfolio);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_service_provider_portfolio);
 
         View view = inflater.inflate(R.layout.fragment_client_project_portfolio, container, false);
 

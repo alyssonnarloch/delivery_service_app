@@ -40,13 +40,13 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getActivity().setTitle(R.string.title_my_projects);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_my_projects);
 
         View view = inflater.inflate(R.layout.fragment_client_projects, container, false);
 

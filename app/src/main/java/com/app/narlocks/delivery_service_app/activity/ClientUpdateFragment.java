@@ -228,7 +228,7 @@ public class ClientUpdateFragment extends Fragment {
         if(validate(client)) {
             new ClientUpdateSaveTask(this, client).execute();
             SessionManager session = new SessionManager(getActivity());
-            session.createLoginSession(client.getId(), client.getName(), client.getEmail(), client.getProfileImage(), client.getZipCode(), selectedCityId, selectedCityName, client.getAddress(), client.getNumber());
+            session.createLoginSession(client.getId(), client.getName(), client.getEmail(), client.getProfileImage(), client.getZipCode(), selectedCityId, selectedCityName, client.getAddress(), client.getNumber(), client.getProfileId());
 
             // Atualiza os dados do menu
             ((ImageView) getActivity().findViewById(R.id.ivProfileImage)).setImageBitmap(Image.base64ToBitmap(client.getProfileImage()));

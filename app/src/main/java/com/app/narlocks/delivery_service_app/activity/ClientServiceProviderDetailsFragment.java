@@ -75,13 +75,13 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getActivity().setTitle(R.string.title_service_provider_detail);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_service_provider_detail);
 
         View view = inflater.inflate(R.layout.fragment_client_service_provider_details, container, false);
 
@@ -129,7 +129,6 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
                 }
             }
         });
-
 
         llPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override

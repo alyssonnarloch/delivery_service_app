@@ -43,8 +43,6 @@ public class ClientProjectEvaluationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActivity().setTitle(R.string.title_finish_projetct);
-
         this.res = getResources();
         this.session = new SessionManager(getActivity());
         this.projectId = getArguments().getInt("projectId");
@@ -54,6 +52,8 @@ public class ClientProjectEvaluationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle(R.string.title_finish_projetct);
 
         View view = inflater.inflate(R.layout.fragment_client_evaluation_awaiting, container, false);
 

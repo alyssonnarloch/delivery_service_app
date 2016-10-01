@@ -22,11 +22,19 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
     private EditText etPassword;
-    Resources res;
+
+    private SessionManager session;
+    private Resources res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        session = new SessionManager(getApplicationContext());
+        if(session.isLoggedIn()){
+            goToUserEnvironment(session.getUserProfileId());
+        }
+
         setContentView(R.layout.activity_login);
 
         etEmail = (EditText) findViewById(R.id.etEmail);
@@ -49,18 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.code() == 200) {
                         User user = response.body();
 
-                        SessionManager session = new SessionManager(getApplicationContext());
-                        session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage(), user.getZipCode(), user.getCity().getId(), user.getCity().getName(), user.getAddress(), user.getNumber());
+                        session.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getProfileImage(), user.getZipCode(), user.getCity().getId(), user.getCity().getName(), user.getAddress(), user.getNumber(), user.getProfileId());
 
-                        Intent i = null;
-                        if (user.getProfileId() != null && user.getProfileId().equals("1")) {
-                            i = new Intent(LoginActivity.this, ClientDefaultActivity.class);
-                        } else {
-                            i = new Intent(LoginActivity.this, SPDefaultActivity.class);
-                        }
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(i);
-                        finish();
+                        goToUserEnvironment(user.getProfileId());
                     } else {
                         try {
                             Toast.makeText(LoginActivity.this, ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
@@ -97,5 +96,17 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return isValid;
+    }
+
+    private void goToUserEnvironment(String profileId) {
+        Intent i = null;
+        if (profileId != null && profileId.equals("1")) {
+            i = new Intent(LoginActivity.this, ClientDefaultActivity.class);
+        } else {
+            i = new Intent(LoginActivity.this, SPDefaultActivity.class);
+        }
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
     }
 }

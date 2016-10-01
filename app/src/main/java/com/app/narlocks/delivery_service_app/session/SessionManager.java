@@ -23,6 +23,7 @@ public class SessionManager {
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_NUMBER = "number";
     public static final String KEY_PROFILE_IMAGE = "profile_image";
+    public static final String KEY_PROFILE_ID = "profile_id";
     public static final String KEY_ID = "id";
 
     public SessionManager(Context context) {
@@ -31,7 +32,7 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void createLoginSession(int id, String name, String email, String profileImage, String zipCode, int cityId, String cityName, String address, int number) {
+    public void createLoginSession(int id, String name, String email, String profileImage, String zipCode, int cityId, String cityName, String address, int number, String profileId) {
         editor.putBoolean(IS_LOGIN, true);
         editor.putInt(KEY_ID, id);
         editor.putString(KEY_ZIP_CODE, zipCode);
@@ -42,6 +43,7 @@ public class SessionManager {
         editor.putInt(KEY_NUMBER, number);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PROFILE_IMAGE, profileImage);
+        editor.putString(KEY_PROFILE_ID, profileId);
 
         editor.commit();
     }
@@ -109,6 +111,13 @@ public class SessionManager {
     public String getUserProfileImage() {
         if (this.isLoggedIn()) {
             return pref.getString(KEY_PROFILE_IMAGE, "");
+        }
+        return "";
+    }
+
+    public String getUserProfileId() {
+        if (this.isLoggedIn()) {
+            return pref.getString(KEY_PROFILE_ID, "");
         }
         return "";
     }

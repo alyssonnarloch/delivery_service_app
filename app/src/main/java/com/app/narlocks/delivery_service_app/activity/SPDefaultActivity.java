@@ -105,7 +105,7 @@ public class SPDefaultActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navMyProjects) {
-            fragment = new SPDashboardFragment();
+            fragment = new SPProjectsFragment();
         } else if (id == R.id.navEvaluation) {
             fragment = new SPEvaluationsFragment();
         } else if (id == R.id.navExit) {
