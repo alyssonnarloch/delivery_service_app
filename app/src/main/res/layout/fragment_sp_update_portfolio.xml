@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.narlocks.delivery_service_app.activity.SPUpdatePortfolioFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Portfolio"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/ivAddImage"
+                android:background="@android:color/transparent"
+                android:cropToPadding="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:onClick="onImageGalleryClicked"
+                android:src="@mipmap/ic_add_box_black_24dp"
+                android:adjustViewBounds="false" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="372dp">
+
+                <GridView
+                    android:layout_width="match_parent"
+                    android:layout_height="370dp"
+                    android:id="@+id/gvPortfolioImages"
+                    android:numColumns="2"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btUpdate"
+                    android:layout_width="150dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="Salvar" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+</FrameLayout>
