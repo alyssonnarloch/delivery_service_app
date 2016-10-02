@@ -55,13 +55,13 @@ public interface ServiceProviderService {
     @PUT("service_provider/edit/services")
     Call<ResponseBody> updateServices(@Field("id") int id,
                                     @Field("service_type[]") List<Integer> serviceTypesId,
-                                    @Field("experience_description") String experienceDescription,
-                                    @Field("available") boolean available);
+                                    @Field("experience_description") String experienceDescription);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/areas")
     Call<ResponseBody> updateAreas(@Field("id") int id,
-                                 @Field("occupation_area[]") List<Integer> occupationAreas);
+                                 @Field("occupation_area[]") List<Integer> occupationAreas,
+                                   @Field("available") boolean available);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/portfolio")

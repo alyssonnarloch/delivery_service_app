@@ -83,6 +83,13 @@ public class SPDashboardFragment extends Fragment {
             }
         });
 
+        llSpOccupationAreas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFragment(new SPUpdateAreasFragment());
+            }
+        });
+
         llSpEvaluations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

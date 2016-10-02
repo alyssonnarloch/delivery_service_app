@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.narlocks.delivery_service_app.activity.SPUpdateAreasFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="Disponibilidade"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
+        <CheckBox
+            android:id="@+id/cbAvailable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:checked="true"
+            android:text="Está disponível para novos serviços?" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="Áreas de Atuação"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/acCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp" />
+
+        <GridView
+            android:id="@+id/gvSelectedCities"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_margin="4dp"
+            android:numColumns="1" />
+
+        <Button
+            android:id="@+id/btUpdate"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="Salvar" />
+
+    </LinearLayout>
+</FrameLayout>

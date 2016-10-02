@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.activity.R;
-import com.app.narlocks.delivery_service_app.activity.SPUpdateServicesFragment;
+import com.app.narlocks.delivery_service_app.activity.SPUpdateAreasFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -14,13 +14,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class SPUpdateServicesSaveTask extends AsyncTask<Void, Void, Boolean> {
+public class SPUpdateAreasSaveTask extends AsyncTask<Void, Void, Boolean> {
 
     private ServiceProvider serviceProvider;
     private String errorMessage;
-    private SPUpdateServicesFragment fragment;
+    private SPUpdateAreasFragment fragment;
 
-    public SPUpdateServicesSaveTask(SPUpdateServicesFragment fragment, ServiceProvider serviceProvider) {
+    public SPUpdateAreasSaveTask(SPUpdateAreasFragment fragment, ServiceProvider serviceProvider) {
         this.fragment = fragment;
         this.errorMessage = "";
         this.serviceProvider = serviceProvider;
@@ -32,9 +32,9 @@ public class SPUpdateServicesSaveTask extends AsyncTask<Void, Void, Boolean> {
 
         try {
             ServiceProviderService service = ServiceGenerator.createService(ServiceProviderService.class);
-            Call<ResponseBody> call = service.updateServices(serviceProvider.getId(),
-                    serviceProvider.getServiceTypeIds(),
-                    serviceProvider.getExperienceDescription());
+            Call<ResponseBody> call = service.updateAreas(serviceProvider.getId(),
+                    serviceProvider.getOccupationAreaIds(),
+                    serviceProvider.isAvailable());
             Response response = call.execute();
 
             if (response.code() != 200) {

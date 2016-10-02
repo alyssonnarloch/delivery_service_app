@@ -32,22 +32,6 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="Disponibilidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="normal|bold"/>
-
-            <CheckBox
-                android:text="Está disponível para novos serviços?"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/cbAvailable"
-                android:layout_margin="4dp"
-                android:checked="true" />
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"

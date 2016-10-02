@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -31,7 +30,6 @@ public class SPUpdateServicesFragment extends Fragment {
 
     private ListView lvServiceTypes;
     private EditText etExperienceDescription;
-    private CheckBox cbAvailable;
     private Button btUpdate;
 
     private ServiceProvider serviceProvider;
@@ -70,7 +68,6 @@ public class SPUpdateServicesFragment extends Fragment {
     private void loadViewComponents(View view) {
         lvServiceTypes = (ListView) view.findViewById(R.id.lvServiceTypes);
         etExperienceDescription = (EditText) view.findViewById(R.id.etExperienceDescription);
-        cbAvailable = (CheckBox) view.findViewById(R.id.cbAvailable);
         btUpdate = (Button) view.findViewById(R.id.btUpdate);
     }
 
@@ -87,7 +84,6 @@ public class SPUpdateServicesFragment extends Fragment {
         this.serviceProvider = serviceProvider;
 
         etExperienceDescription.setText(serviceProvider.getExperienceDescription());
-        cbAvailable.setChecked(serviceProvider.isAvailable());
 
         serviceTypesAdapter = new ServiceTypesCheckboxAdapter(getActivity(), R.layout.checkbox_layout, getCheckedServiceTypes(serviceTypes, serviceProvider.getServiceTypes()));
         lvServiceTypes.setAdapter(serviceTypesAdapter);
@@ -120,12 +116,6 @@ public class SPUpdateServicesFragment extends Fragment {
     }
 
     private void update() {
-        if(cbAvailable.isChecked()) {
-            serviceProvider.setAvailable(true);
-        } else {
-            serviceProvider.setAvailable(false);
-        }
-
         serviceProvider.setServiceTypeIds(new ArrayList());
         for (Map.Entry<Integer, Boolean> entryServiceType : serviceTypesAdapter.getServiceTypesCheck().entrySet()) {
             if (entryServiceType.getValue() == true) {
