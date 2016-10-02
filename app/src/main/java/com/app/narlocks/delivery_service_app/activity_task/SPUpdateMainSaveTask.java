@@ -3,7 +3,7 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.SPUpdateFragment;
+import com.app.narlocks.delivery_service_app.activity.SPUpdateMainFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -13,13 +13,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class SPUpdateSaveTask  extends AsyncTask<Void, Void, Boolean> {
+public class SPUpdateMainSaveTask extends AsyncTask<Void, Void, Boolean> {
 
     private ServiceProvider serviceProvider;
     private String errorMessage;
-    private SPUpdateFragment fragment;
+    private SPUpdateMainFragment fragment;
 
-    public SPUpdateSaveTask(SPUpdateFragment fragment, ServiceProvider serviceProvider) {
+    public SPUpdateMainSaveTask(SPUpdateMainFragment fragment, ServiceProvider serviceProvider) {
         this.fragment = fragment;
         this.errorMessage = "";
         this.serviceProvider = serviceProvider;

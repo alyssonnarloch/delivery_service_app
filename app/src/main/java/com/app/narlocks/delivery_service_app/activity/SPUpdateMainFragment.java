@@ -25,8 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity_task.SPUpdateLoadTask;
-import com.app.narlocks.delivery_service_app.activity_task.SPUpdateSaveTask;
+import com.app.narlocks.delivery_service_app.activity_task.SPUpdateMainLoadTask;
+import com.app.narlocks.delivery_service_app.activity_task.SPUpdateMainSaveTask;
 import com.app.narlocks.delivery_service_app.adapter.AutocompleteCityAdapter;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.City;
@@ -37,7 +37,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class SPUpdateFragment extends Fragment {
+public class SPUpdateMainFragment extends Fragment {
 
     private ImageView ivProfilePicture;
     private ImageView ivChangeImage;
@@ -59,7 +59,7 @@ public class SPUpdateFragment extends Fragment {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
 
-    public SPUpdateFragment() {
+    public SPUpdateMainFragment() {
 
     }
 
@@ -76,10 +76,10 @@ public class SPUpdateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_sp_update, container, false);
+        View view = inflater.inflate(R.layout.fragment_sp_update_main, container, false);
 
         loadViewComponents(view);
-        new SPUpdateLoadTask(this).execute(session.getUserId());
+        new SPUpdateMainLoadTask(this).execute(session.getUserId());
 
         return view;
     }
@@ -226,7 +226,7 @@ public class SPUpdateFragment extends Fragment {
         ServiceProvider serviceProvider = getClientByView(view);
 
         if(validate(serviceProvider)) {
-            new SPUpdateSaveTask(this, serviceProvider).execute();
+            new SPUpdateMainSaveTask(this, serviceProvider).execute();
             SessionManager session = new SessionManager(getActivity());
             session.createLoginSession(serviceProvider.getId(), serviceProvider.getName(), serviceProvider.getEmail(), serviceProvider.getProfileImage(), serviceProvider.getZipCode(), selectedCityId, selectedCityName, serviceProvider.getAddress(), serviceProvider.getNumber(), serviceProvider.getProfileId());
 

@@ -26,6 +26,14 @@ public class ServiceTypesCheckboxAdapter extends ArrayAdapter<ServiceType> {
         this.serviceTypes = new ArrayList();
         this.serviceTypes.addAll(serviceTypes);
         this.serviceTypesCheck = new HashMap();
+
+        for(ServiceType serviceType : serviceTypes) {
+            if(serviceType.isSelected()) {
+                serviceTypesCheck.put(serviceType.getId(), true);
+            } else {
+                serviceTypesCheck.put(serviceType.getId(), false);
+            }
+        }
     }
 
     private class ViewHolder {

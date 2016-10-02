@@ -25,8 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity_task.ClientUpdateLoadTask;
-import com.app.narlocks.delivery_service_app.activity_task.ClientUpdateSaveTask;
+import com.app.narlocks.delivery_service_app.activity_task.ClientUpdateMainLoadTask;
+import com.app.narlocks.delivery_service_app.activity_task.ClientUpdateMainSaveTask;
 import com.app.narlocks.delivery_service_app.adapter.AutocompleteCityAdapter;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.City;
@@ -79,7 +79,7 @@ public class ClientUpdateFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_client_update, container, false);
 
         loadViewComponents(view);
-        new ClientUpdateLoadTask(this).execute(getArguments().getInt("clientId"));
+        new ClientUpdateMainLoadTask(this).execute(getArguments().getInt("clientId"));
 
         return view;
     }
@@ -226,7 +226,7 @@ public class ClientUpdateFragment extends Fragment {
         Client client = getClientByView(view);
 
         if(validate(client)) {
-            new ClientUpdateSaveTask(this, client).execute();
+            new ClientUpdateMainSaveTask(this, client).execute();
             SessionManager session = new SessionManager(getActivity());
             session.createLoginSession(client.getId(), client.getName(), client.getEmail(), client.getProfileImage(), client.getZipCode(), selectedCityId, selectedCityName, client.getAddress(), client.getNumber(), client.getProfileId());
 

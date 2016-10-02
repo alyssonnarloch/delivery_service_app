@@ -3,7 +3,7 @@ package com.app.narlocks.delivery_service_app.activity_task;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.app.narlocks.delivery_service_app.activity.SPUpdateFragment;
+import com.app.narlocks.delivery_service_app.activity.SPUpdateMainFragment;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -12,13 +12,13 @@ import com.app.narlocks.delivery_service_app.service.ServiceProviderService;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class SPUpdateLoadTask extends AsyncTask<Integer, Void, Boolean> {
+public class SPUpdateMainLoadTask extends AsyncTask<Integer, Void, Boolean> {
 
     private ServiceProvider serviceProvider;
-    private SPUpdateFragment fragment;
+    private SPUpdateMainFragment fragment;
     private String errorMessage;
 
-    public SPUpdateLoadTask(SPUpdateFragment fragment) {
+    public SPUpdateMainLoadTask(SPUpdateMainFragment fragment) {
         this.fragment = fragment;
         this.errorMessage = "";
     }

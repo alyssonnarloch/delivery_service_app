@@ -54,19 +54,19 @@ public interface ServiceProviderService {
     @FormUrlEncoded
     @PUT("service_provider/edit/services")
     Call<ResponseBody> updateServices(@Field("id") int id,
-                                    @Field("service_type") List<Integer> serviceTypesId,
+                                    @Field("service_type[]") List<Integer> serviceTypesId,
                                     @Field("experience_description") String experienceDescription,
                                     @Field("available") boolean available);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/areas")
     Call<ResponseBody> updateAreas(@Field("id") int id,
-                                 @Field("occupation_area") List<Integer> occupationAreas);
+                                 @Field("occupation_area[]") List<Integer> occupationAreas);
 
     @FormUrlEncoded
     @PUT("service_provider/edit/portfolio")
     Call<ResponseBody> updatePortfolio(@Field("id") int id,
-                                     @Field("profile_portfolio") List<String> profilePortfolio);
+                                     @Field("profile_portfolio[]") List<String> profilePortfolio);
 
     @FormUrlEncoded
     @POST("service_provider/search")
