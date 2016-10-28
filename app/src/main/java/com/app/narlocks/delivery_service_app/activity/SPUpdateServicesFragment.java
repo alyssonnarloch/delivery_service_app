@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPUpdateServicesLoadTask;
 import com.app.narlocks.delivery_service_app.activity_task.SPUpdateServicesSaveTask;
@@ -115,6 +116,28 @@ public class SPUpdateServicesFragment extends Fragment {
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    private boolean validate() {
+        boolean isValid = true;
+
+        int countSelectedServices = 0;
+        for (Map.Entry<Integer, Boolean> entryServiceType : serviceTypesAdapter.getServiceTypesCheck().entrySet()) {
+            if (entryServiceType.getValue() == true) {
+                countSelectedServices++;
+            }
+        }
+
+        if(countSelectedServices == 0) {
+            isValid = false;
+        }
+
+        if(serviceProvider.getExperienceDescription() == null || serviceProvider.getExperienceDescription().isEmpty()) {
+            isValid = false;
+            etExperienceDescription.setError(res.getString(R.string.service_provider_experience_description_required));
+        }
+
+        return isValid;
+    }
+
     private void update() {
         serviceProvider.setServiceTypeIds(new ArrayList());
         for (Map.Entry<Integer, Boolean> entryServiceType : serviceTypesAdapter.getServiceTypesCheck().entrySet()) {
@@ -125,6 +148,10 @@ public class SPUpdateServicesFragment extends Fragment {
 
         serviceProvider.setExperienceDescription(etExperienceDescription.getText().toString());
 
-        new SPUpdateServicesSaveTask(this, serviceProvider).execute();
+        if (validate()) {
+            new SPUpdateServicesSaveTask(this, serviceProvider).execute();
+        } else {
+            Toast.makeText(getActivity(), R.string.service_provider_services_required, Toast.LENGTH_LONG).show();
+        }
     }
 }

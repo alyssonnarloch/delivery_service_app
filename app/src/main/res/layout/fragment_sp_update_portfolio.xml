@@ -44,7 +44,8 @@
                     android:layout_height="370dp"
                     android:id="@+id/gvPortfolioImages"
                     android:numColumns="2"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
             </LinearLayout>
 
             <LinearLayout

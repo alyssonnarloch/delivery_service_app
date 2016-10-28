@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPProjectFinishedTask;
@@ -38,6 +39,7 @@ public class SPProjectFinishedFragment extends Fragment {
     private TextView tvProjectDescription;
     private ExpandableHeightGridView gvApprovedImages;
     private Button btFinish;
+    private ScrollView svDisplay;
 
     private Project project;
     private int clientId;
@@ -84,6 +86,7 @@ public class SPProjectFinishedFragment extends Fragment {
         gvApprovedImages.setExpanded(true);
         btFinish = (Button) view.findViewById(R.id.btFinish);
         btFinish.setVisibility(View.INVISIBLE);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -147,6 +150,8 @@ public class SPProjectFinishedFragment extends Fragment {
         if(project.getClientQualification() == null) {
             btFinish.setVisibility(View.VISIBLE);
         }
+
+        svDisplay.smoothScrollTo(0, 0);
     }
 
     private List<ImageItem> getApprovedImages(List<ProjectPortfolio> portfolio) {

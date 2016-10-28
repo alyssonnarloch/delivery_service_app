@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.ClientProjectFinishedTask;
@@ -40,6 +41,7 @@ public class ClientProjectFinishedFragment extends Fragment {
     private RatingBar rbServiceProviderEvaluation;
     private GridView gvImages;
     private Button btFinish;
+    private ScrollView svDisplay;
 
     private Project project;
     private int serviceProviderId;
@@ -86,6 +88,7 @@ public class ClientProjectFinishedFragment extends Fragment {
         rbServiceProviderEvaluation = (RatingBar) view.findViewById(R.id.rbServiceProviderEvaluation);
         gvImages = (GridView) view.findViewById(R.id.gvImages);
         btFinish = (Button) view.findViewById(R.id.btFinish);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -151,6 +154,8 @@ public class ClientProjectFinishedFragment extends Fragment {
         serviceProviderId = project.getServiceProvider().getId();
 
         loadViewListeners();
+
+        svDisplay.smoothScrollTo(0, 0);
     }
 
     private List<ImageItem> getNotEvaluated(List<ProjectPortfolio> portfolio) {

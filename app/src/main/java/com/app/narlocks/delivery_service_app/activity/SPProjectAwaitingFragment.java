@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPProjectAwaitingApproveTask;
@@ -30,6 +31,7 @@ public class SPProjectAwaitingFragment extends Fragment {
     private TextView tvProjectDescription;
     private Button btApprove;
     private Button btRefuse;
+    private ScrollView svDisplay;
 
     private Project project;
     private int clientId;
@@ -72,6 +74,7 @@ public class SPProjectAwaitingFragment extends Fragment {
         tvProjectDescription = (TextView) view.findViewById(R.id.tvProjectDescription);
         btApprove = (Button) view.findViewById(R.id.btApprove);
         btRefuse = (Button) view.findViewById(R.id.btRefuse);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -130,6 +133,8 @@ public class SPProjectAwaitingFragment extends Fragment {
         clientId = project.getClient().getId();
 
         loadViewListeners();
+
+        svDisplay.fullScroll(ScrollView.FOCUS_UP);
     }
 
     public void backProjectsList() {

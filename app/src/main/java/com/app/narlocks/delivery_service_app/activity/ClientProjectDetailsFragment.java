@@ -68,7 +68,7 @@ public class ClientProjectDetailsFragment extends Fragment {
         tvProjectDescription.setText(project.getDescription());
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvEvaluationDescription.setText(project.getServiceProviderEvaluation());
-        rbStars.setRating(project.getServiceProviderQualification());
+        rbStars.setRating((int) (project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
 
         ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, getImageItems(project.getPortfolio()), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(adapter);

@@ -4,33 +4,24 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-
     <string name="validation_required">Obrigatório</string>
     <string name="validation_password_confirmation">Confirmação diferente da senha</string>
-
     <string name="client_save_ok">Cadastro efetuado com sucesso</string>
     <string name="client_save_fail">Ocorreu um erro ao salvar o cliente</string>
-
     <string name="service_provider_save_ok">Cadastro efetuado com sucesso</string>
     <string name="service_provider_save_fail">Ocorreu um erro ao salvar o prestador de serviços</string>
     <string name="service_provider_service_type_required">Selecione um tipo de serviço</string>
     <string name="service_provider_areas_required">Adicione uma cidade</string>
-
     <string name="project_save_ok">Projeto cadastrado com sucesso</string>
     <string name="project_finished_ok">Projeto encerrado com sucesso</string>
-
     <string name="portfolio_required">Selecione ao menos uma imagem</string>
-
     <string name="image_upload_fail">Não foi possível carregar a imagem</string>
     <string name="title_activity_default_client">DefaultClientActivity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="login_failure">Erro ao efeuar login</string>
     <string name="project_portfolio_image_delete_ok">Imagem removida do portifólio</string>
     <string name="project_portfolio_image_add_ok">Imagem adicionada ao portifólio</string>
-
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -81,6 +72,10 @@
     <string name="project_portfolio">Portifólio do projeto</string>
     <string name="project_portfolio_approved">Aprovadas pelo cliente</string>
     <string name="update_data_success">Dados atualizados com sucesso</string>
+    <string name="project_filter_awaiting">Em espera</string>
+    <string name="project_filter_execution">Em execução</string>
+    <string name="project_filter_finished">Concluído</string>
+    <string name="project_filter_refused">Recusado</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>
@@ -88,6 +83,10 @@
     <string name="service_service_provider_fail">Falha ao executar ProjectServiceProvider</string>
     <string name="service_city_fail">Falha ao executar CityService</string>
     <string name="service_favorite">Falha ao executar FavoriteService</string>
+
+    <!-- Validation -->
+    <string name="service_provider_services_required">O prestador deve estar vinculado a um tipo de serviço</string>
+    <string name="service_provider_experience_description_required">Sua experiência deve ser descrita</string>
 
     <!-- Titles -->
     <string name="title_my_projects">Meus Projetos</string>

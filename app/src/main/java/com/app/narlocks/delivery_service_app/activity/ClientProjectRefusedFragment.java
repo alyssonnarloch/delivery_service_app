@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.ClientProjectRefusedTask;
@@ -33,6 +34,7 @@ public class ClientProjectRefusedFragment extends Fragment {
     private TextView tvServiceProviderEvaluation;
     private RatingBar rbServiceProviderEvaluation;
     private Button btFinish;
+    private ScrollView svDisplay;
 
     private Project project;
     private int serviceProviderId;
@@ -78,6 +80,7 @@ public class ClientProjectRefusedFragment extends Fragment {
         tvServiceProviderEvaluation = (TextView) view.findViewById(R.id.tvServiceProviderEvaluation);
         rbServiceProviderEvaluation = (RatingBar) view.findViewById(R.id.rbServiceProviderEvaluation);
         btFinish = (Button) view.findViewById(R.id.btFinish);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -128,7 +131,7 @@ public class ClientProjectRefusedFragment extends Fragment {
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvProjectDescription.setText(project.getDescription());
         tvClientEvaluation.setText(project.getClientEvaluation());
-        rbClientEvaluation.setRating((int) project.getClientQualification());
+        rbClientEvaluation.setRating((int) (project.getClientQualification() == null ? 0 : project.getClientQualification()));
         tvServiceProviderEvaluation.setText(project.getServiceProviderEvaluation());
         rbServiceProviderEvaluation.setRating((int) (project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
 
@@ -140,6 +143,7 @@ public class ClientProjectRefusedFragment extends Fragment {
         serviceProviderId = project.getServiceProvider().getId();
 
         loadViewListeners();
+        svDisplay.fullScroll(ScrollView.FOCUS_UP);
     }
 
 }

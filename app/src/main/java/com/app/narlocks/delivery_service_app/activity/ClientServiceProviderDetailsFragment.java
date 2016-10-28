@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
     private ListView lvServiceTypes;
     private ListView lvOccupationAreas;
     private ImageView ivInterested;
+    private ScrollView svDisplay;
 
     private boolean isFavorite;
     private ClientServiceProviderFavorite favorite;
@@ -108,6 +110,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
         llMakeContract = (LinearLayout) view.findViewById(R.id.llMakeContract);
         llInterested = (LinearLayout) view.findViewById(R.id.llIntrested);
         ivInterested = (ImageView) view.findViewById(R.id.ivInterested);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
 
         setServiceProviderData(serviceProviderId);
 
@@ -286,6 +289,8 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
 
                     lvOccupationAreas.setAdapter(occupationAreaAdapter);
                     ExpandHeightListView.getListViewSize(lvOccupationAreas);
+
+                    svDisplay.fullScroll(ScrollView.FOCUS_UP);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_service_provider_fail), Toast.LENGTH_LONG).show();
                 }
@@ -327,6 +332,8 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
 
                     serviceProviderQualification = averageEvaluation;
                     rbStars.setRating((float) averageEvaluation);
+
+                    svDisplay.fullScroll(ScrollView.FOCUS_UP);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }
@@ -350,6 +357,8 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
                     } else {
                         isFavorite = false;
                     }
+
+                    svDisplay.fullScroll(ScrollView.FOCUS_UP);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
                 }

@@ -16,39 +16,100 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
 
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@mipmap/ic_schedule_black_24dp"
-                android:id="@+id/ivAwaiting"
-                android:layout_weight="1"
-                android:padding="2dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@mipmap/ic_schedule_black_24dp"
+                    android:id="@+id/ivAwaiting"
+                    android:layout_weight="1"
+                    android:padding="2dp" />
 
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@mipmap/ic_block_black_24dp"
-                android:id="@+id/ivRefused"
-                android:layout_weight="1"
-                android:padding="2dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/project_filter_awaiting"
+                    android:textStyle="normal"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@mipmap/ic_hourglass_empty_black_24dp"
-                android:id="@+id/ivExecution"
-                android:layout_weight="1"
-                android:padding="2dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@mipmap/ic_block_black_24dp"
+                    android:id="@+id/ivRefused"
+                    android:layout_weight="1"
+                    android:padding="2dp" />
 
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@mipmap/ic_hourglass_full_black_24dp"
-                android:id="@+id/ivFinished"
-                android:layout_weight="1"
-                android:padding="2dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/project_filter_refused"
+                        android:textStyle="normal"
+                        android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@mipmap/ic_hourglass_empty_black_24dp"
+                    android:id="@+id/ivExecution"
+                    android:layout_weight="1"
+                    android:padding="2dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/project_filter_execution"
+                    android:textStyle="normal"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@mipmap/ic_hourglass_full_black_24dp"
+                    android:id="@+id/ivFinished"
+                    android:layout_weight="1"
+                    android:padding="2dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/project_filter_finished"
+                    android:textStyle="normal"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <ListView

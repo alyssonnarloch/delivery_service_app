@@ -15,7 +15,8 @@
         tools:layout_editor_absoluteX="0dp"
         android:weightSum="1"
         android:padding="12dp"
-        android:elevation="1dp">
+        android:elevation="1dp"
+        android:background="@mipmap/app_background">
 
         <TextView
             android:text="Bem vindo ao Pedreirão"
@@ -24,7 +25,10 @@
             android:id="@+id/textView"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:gravity="bottom|center_horizontal"
-            android:layout_weight="0.40" />
+            android:layout_weight="0.40"
+            android:textColor="#a10000"
+            android:textStyle="normal|bold"
+            android:textSize="40sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -33,7 +37,9 @@
             android:ems="10"
             android:id="@+id/etEmail"
             android:hint="E-mail"
-            android:layout_margin="4dp" />
+            android:layout_margin="4dp"
+            android:textStyle="normal|bold"
+            android:textColorHint="@color/button_material_dark" />
 
         <EditText
             android:layout_width="match_parent"
@@ -42,7 +48,9 @@
             android:ems="10"
             android:id="@+id/etPassword"
             android:hint="Senha"
-            android:layout_margin="4dp" />
+            android:layout_margin="4dp"
+            android:textStyle="normal|bold"
+            android:textColorHint="@color/button_material_dark" />
 
         <Button
             android:text="Entrar"

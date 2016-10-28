@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPProjectRefusedTask;
@@ -30,6 +31,7 @@ public class SPProjectRefusedFragment extends Fragment {
     private RatingBar rbClientEvaluation;
     private TextView tvServiceProviderEvaluation;
     private RatingBar rbServiceProviderEvaluation;
+    private ScrollView svDisplay;
 
     private Project project;
     private int clientId;
@@ -74,6 +76,7 @@ public class SPProjectRefusedFragment extends Fragment {
         rbClientEvaluation = (RatingBar) view.findViewById(R.id.rbClientEvaluation);
         tvServiceProviderEvaluation = (TextView) view.findViewById(R.id.tvServiceProviderEvaluation);
         rbServiceProviderEvaluation = (RatingBar) view.findViewById(R.id.rbServiceProviderEvaluation);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -112,6 +115,8 @@ public class SPProjectRefusedFragment extends Fragment {
         clientId = project.getClient().getId();
 
         loadViewListeners();
+
+        svDisplay.fullScroll(ScrollView.FOCUS_UP);
     }
 
 }

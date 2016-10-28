@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.ClientProjectExecutionTask;
@@ -35,6 +36,7 @@ public class ClientProjectExecutionFragment extends Fragment {
     private TextView tvProjectDescription;
     private ExpandableHeightGridView gvImages;
     private Button btFinish;
+    private ScrollView svDisplay;
 
     private Project project;
     private int serviceProviderId;
@@ -78,6 +80,7 @@ public class ClientProjectExecutionFragment extends Fragment {
         gvImages = (ExpandableHeightGridView) view.findViewById(R.id.gvImages);
         gvImages.setExpanded(true);
         btFinish = (Button) view.findViewById(R.id.btFinish);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -135,6 +138,8 @@ public class ClientProjectExecutionFragment extends Fragment {
         gvImages.setAdapter(adapter);
 
         loadViewListeners();
+
+        svDisplay.smoothScrollTo(0, 0);
     }
 
     private List<ProjectPortfolio> getNotEvaluated(List<ProjectPortfolio> portfolio) {

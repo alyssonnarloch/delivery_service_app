@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPClientDetailsTask;
@@ -35,6 +36,7 @@ public class SPClientDetailsFragment extends Fragment {
     private TextView tvCity;
     private TextView tvAddress;
     private Button btUpdate;
+    private ScrollView svDisplay;
 
     private int clientId;
 
@@ -79,6 +81,7 @@ public class SPClientDetailsFragment extends Fragment {
         tvState = (TextView) view.findViewById(R.id.tvState);
         tvCity = (TextView) view.findViewById(R.id.tvCity);
         tvAddress = (TextView) view.findViewById(R.id.tvAddress);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewComponentListeners() {
@@ -109,6 +112,8 @@ public class SPClientDetailsFragment extends Fragment {
 
         setStarsEvaluation(projects);
         loadViewComponentListeners();
+
+        svDisplay.fullScroll(ScrollView.FOCUS_UP);
     }
 
     private void setStarsEvaluation(List<Project> projects) {

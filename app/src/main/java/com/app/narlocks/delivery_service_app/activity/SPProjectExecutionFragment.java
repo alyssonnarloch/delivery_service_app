@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class SPProjectExecutionFragment extends Fragment {
     private ExpandableHeightGridView gvImages;
     private ExpandableHeightGridView gvApprovedImages;
     private Button btFinish;
+    private ScrollView svDisplay;
 
     private Project project;
     private int clientId;
@@ -97,6 +99,8 @@ public class SPProjectExecutionFragment extends Fragment {
         gvApprovedImages.setExpanded(true);
         ivAddImage = (ImageView) view.findViewById(R.id.ivAddImage);
         btFinish = (Button) view.findViewById(R.id.btFinish);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
+
     }
 
     private void loadViewListeners() {
@@ -170,6 +174,8 @@ public class SPProjectExecutionFragment extends Fragment {
         gvApprovedImages.setAdapter(approvedImagesAdapter);
 
         loadViewListeners();
+
+        svDisplay.smoothScrollTo(0, 0);
     }
 
     private List<ProjectPortfolio> getNotEvaluated(List<ProjectPortfolio> portfolio) {

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.ClientProjectAwaitingTask;
@@ -28,6 +29,7 @@ public class ClientProjectAwaitingFragment extends Fragment {
     private TextView tvPeriod;
     private TextView tvProjectDescription;
     private Button btFinish;
+    private ScrollView svDisplay;
 
     private Project project;
     private int serviceProviderId;
@@ -69,6 +71,7 @@ public class ClientProjectAwaitingFragment extends Fragment {
         tvPeriod = (TextView) view.findViewById(R.id.tvPeriod);
         tvProjectDescription = (TextView) view.findViewById(R.id.tvProjectDescription);
         btFinish = (Button) view.findViewById(R.id.btFinish);
+        svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
 
     private void loadViewListeners() {
@@ -123,5 +126,7 @@ public class ClientProjectAwaitingFragment extends Fragment {
         serviceProviderId = project.getServiceProvider().getId();
 
         loadViewListeners();
+
+        svDisplay.fullScroll(ScrollView.FOCUS_UP);
     }
 }
