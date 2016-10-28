@@ -1,6 +1,7 @@
 package com.app.narlocks.delivery_service_app.activity;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -48,6 +49,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
     private LinearLayout llInterested;
     private ImageView ivProfileImageDetail;
     private TextView tvEvaluation;
+    private TextView tvAvailability;
     private TextView tvName;
     private TextView tvEmail;
     private TextView tvPhone;
@@ -95,6 +97,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
         ivProfileImageDetail = (ImageView) view.findViewById(R.id.ivProfileImageDetail);
         rbStars = (RatingBar) view.findViewById(R.id.rbStars);
         tvEvaluation = (TextView) view.findViewById(R.id.tvEvaluation);
+        tvAvailability = (TextView) view.findViewById(R.id.tvAvailability);
         tvName = (TextView) view.findViewById(R.id.tvName);
         tvEmail = (TextView) view.findViewById(R.id.tvEmail);
         tvPhone = (TextView) view.findViewById(R.id.tvPhone);
@@ -175,20 +178,24 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (serviceProvider != null) {
-                    Bundle arguments = new Bundle();
-                    arguments.putInt("serviceProviderId", serviceProvider.getId());
-                    arguments.putDouble("serviceProviderQualification", serviceProviderQualification);
-                    arguments.putString("serviceProviderName", serviceProvider.getName());
-                    arguments.putInt("serviceProviderNumEvaluations", serviceProviderNumEvaluations);
+                    if(serviceProvider.isAvailable()) {
+                        Bundle arguments = new Bundle();
+                        arguments.putInt("serviceProviderId", serviceProvider.getId());
+                        arguments.putDouble("serviceProviderQualification", serviceProviderQualification);
+                        arguments.putString("serviceProviderName", serviceProvider.getName());
+                        arguments.putInt("serviceProviderNumEvaluations", serviceProviderNumEvaluations);
 
-                    Fragment fragment = new ClientMakeContractFragment();
-                    fragment.setArguments(arguments);
+                        Fragment fragment = new ClientMakeContractFragment();
+                        fragment.setArguments(arguments);
 
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
-                    DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
-                    drawer.closeDrawer(GravityCompat.START);
+                        DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
+                        drawer.closeDrawer(GravityCompat.START);
+                    } else {
+                        Toast.makeText(getActivity(), res.getString(R.string.service_provider_unavailable), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -273,6 +280,14 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
                     tvAddress.setText(serviceProvider.getAddress() + ", " + serviceProvider.getNumber());
                     tvExperienceDescription.setText(serviceProvider.getExperienceDescription());
 
+                    if(serviceProvider.isAvailable()) {
+                        tvAvailability.setText(res.getString(R.string.available));
+                        tvAvailability.setTextColor(Color.rgb(64, 178, 73));
+                    } else {
+                        tvAvailability.setText(res.getString(R.string.unavailable));
+                        tvAvailability.setTextColor(Color.RED);
+                    }
+
                     for (ServiceType serviceType : serviceProvider.getServiceTypes()) {
                         serviceTypesName.add(" - " + serviceType.getName());
                     }
@@ -290,7 +305,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
                     lvOccupationAreas.setAdapter(occupationAreaAdapter);
                     ExpandHeightListView.getListViewSize(lvOccupationAreas);
 
-                    svDisplay.fullScroll(ScrollView.FOCUS_UP);
+                    svDisplay.smoothScrollTo(0, 0);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_service_provider_fail), Toast.LENGTH_LONG).show();
                 }
@@ -333,7 +348,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
                     serviceProviderQualification = averageEvaluation;
                     rbStars.setRating((float) averageEvaluation);
 
-                    svDisplay.fullScroll(ScrollView.FOCUS_UP);
+                    svDisplay.smoothScrollTo(0, 0);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }
@@ -358,7 +373,7 @@ public class ClientServiceProviderDetailsFragment extends Fragment {
                         isFavorite = false;
                     }
 
-                    svDisplay.fullScroll(ScrollView.FOCUS_UP);
+                    svDisplay.smoothScrollTo(0, 0);
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_favorite), Toast.LENGTH_LONG).show();
                 }

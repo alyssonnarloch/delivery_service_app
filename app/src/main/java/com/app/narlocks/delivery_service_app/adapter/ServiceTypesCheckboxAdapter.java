@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity.R;
 import com.app.narlocks.delivery_service_app.model.ServiceType;
@@ -37,7 +36,7 @@ public class ServiceTypesCheckboxAdapter extends ArrayAdapter<ServiceType> {
     }
 
     private class ViewHolder {
-        TextView code;
+        //TextView code;
         CheckBox name;
     }
 
@@ -52,7 +51,7 @@ public class ServiceTypesCheckboxAdapter extends ArrayAdapter<ServiceType> {
             convertView = vi.inflate(R.layout.checkbox_layout, null);
 
             holder = new ViewHolder();
-            holder.code = (TextView) convertView.findViewById(R.id.code);
+            //holder.code = (TextView) convertView.findViewById(R.id.code);
             holder.name = (CheckBox) convertView.findViewById(R.id.check);
             convertView.setTag(holder);
 
@@ -71,7 +70,7 @@ public class ServiceTypesCheckboxAdapter extends ArrayAdapter<ServiceType> {
         }
 
         ServiceType serviceType = serviceTypes.get(position);
-        holder.code.setText(" (" + serviceType.getId() + ")");
+        //holder.code.setText(" (" + serviceType.getId() + ")");
         holder.name.setText(serviceType.getName());
         holder.name.setChecked(serviceType.isSelected());
         holder.name.setTag(serviceType);

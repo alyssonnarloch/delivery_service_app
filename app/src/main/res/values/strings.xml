@@ -23,6 +23,7 @@
     <string name="project_portfolio_image_delete_ok">Imagem removida do portifólio</string>
     <string name="project_portfolio_image_add_ok">Imagem adicionada ao portifólio</string>
     <string name="action_settings">Settings</string>
+    <string name="service_provider_unavailable">Prestador de serviços indisponível para contratação</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -76,6 +77,8 @@
     <string name="project_filter_execution">Em execução</string>
     <string name="project_filter_finished">Concluído</string>
     <string name="project_filter_refused">Recusado</string>
+    <string name="available">Disponível</string>
+    <string name="unavailable">Indisponível</string>
 
     <!-- Service Failure -->
     <string name="service_project_fail">Falha ao executar ProjectService</string>
