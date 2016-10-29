@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
+import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.model.User;
 import com.app.narlocks.delivery_service_app.service.AuthService;
 import com.app.narlocks.delivery_service_app.service.ServiceGenerator;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         if (validate(email, password)) {
             AuthService service = ServiceGenerator.createService(AuthService.class);
 
-            Call<User> call = service.authenticateAux(email, password);
+            Call<User> call = service.authenticateAux(email, Extra.getMD5(password));
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

@@ -20,8 +20,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="login_failure">Erro ao efeuar login</string>
-    <string name="project_portfolio_image_delete_ok">Imagem removida do portifólio</string>
-    <string name="project_portfolio_image_add_ok">Imagem adicionada ao portifólio</string>
+    <string name="project_portfolio_image_delete_ok">Imagem removida do portfólio</string>
+    <string name="project_portfolio_image_add_ok">Imagem adicionada ao portfólio</string>
     <string name="action_settings">Settings</string>
     <string name="service_provider_unavailable">Prestador de serviços indisponível para contratação</string>
 
@@ -47,7 +47,7 @@
     <string name="experience_description">Experiência</string>
     <string name="service_types">Serviços prestados</string>
     <string name="occupation_areas">Áreas de atuação</string>
-    <string name="portfolio">Portifólio</string>
+    <string name="portfolio">Portfólio</string>
     <string name="projects">Projetos</string>
     <string name="make_contract">Contratar</string>
     <string name="interested">Tenho interesse</string>
@@ -70,7 +70,7 @@
     <string name="project_client_evaluation">Avaliação recebida</string>
     <string name="project_service_provider_evaluation">Avaliação enviada</string>
     <string name="project_images_to_approve">Imagens para aprovação</string>
-    <string name="project_portfolio">Portifólio do projeto</string>
+    <string name="project_portfolio">Portfólio do projeto</string>
     <string name="project_portfolio_approved">Aprovadas pelo cliente</string>
     <string name="update_data_success">Dados atualizados com sucesso</string>
     <string name="project_filter_awaiting">Em espera</string>
@@ -117,7 +117,7 @@
     <string name="button_main_data">Dados gerais</string>
     <string name="button_services">Serviços prestados</string>
     <string name="button_occupation_areas">Áreas de atuação</string>
-    <string name="button_portfolio">Portifólio</string>
+    <string name="button_portfolio">Portfólio</string>
     <string name="button_evaluations">Avaliações recebidas</string>
     <string name="button_projects">Projetos</string>
 </resources>

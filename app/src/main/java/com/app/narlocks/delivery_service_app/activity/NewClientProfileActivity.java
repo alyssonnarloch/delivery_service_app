@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
+import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.Client;
 import com.app.narlocks.delivery_service_app.service.ClientService;
@@ -127,7 +128,7 @@ public class NewClientProfileActivity extends AppCompatActivity {
                 client.getCityId(),
                 client.getAddress(),
                 client.getNumber(),
-                client.getPassword(),
+                Extra.getMD5(client.getPassword()),
                 client.getProfileImage());
 
         call.enqueue(new Callback<ResponseBody>() {

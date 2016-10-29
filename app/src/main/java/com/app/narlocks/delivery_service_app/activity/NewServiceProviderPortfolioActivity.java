@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.adapter.GridViewPortfolioRemoveAdapter;
 import com.app.narlocks.delivery_service_app.extras.ErrorConversor;
+import com.app.narlocks.delivery_service_app.extras.Extra;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.ImageItem;
 import com.app.narlocks.delivery_service_app.model.ServiceProvider;
@@ -156,7 +157,7 @@ public class NewServiceProviderPortfolioActivity extends AppCompatActivity {
                 serviceProvider.getCityId(),
                 serviceProvider.getAddress(),
                 serviceProvider.getNumber(),
-                serviceProvider.getPassword(),
+                Extra.getMD5(serviceProvider.getPassword()),
                 serviceProvider.getProfileImage(),
                 serviceProvider.getServiceTypeIds(),
                 serviceProvider.getExperienceDescription(),
