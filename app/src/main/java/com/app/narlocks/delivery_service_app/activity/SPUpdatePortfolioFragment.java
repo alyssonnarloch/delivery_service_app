@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPUpdatePortfolioLoadTask;
+import com.app.narlocks.delivery_service_app.activity_task.SPUpdatePortfolioSaveTask;
 import com.app.narlocks.delivery_service_app.adapter.GridViewPortfolioRemoveAdapter;
 import com.app.narlocks.delivery_service_app.extras.Image;
 import com.app.narlocks.delivery_service_app.model.ImageItem;
@@ -141,6 +142,8 @@ public class SPUpdatePortfolioFragment extends Fragment {
         for(ImageItem image : imageItems) {
             serviceProvider.addProfilePortfolioSrc(Image.bitmapToBase64(image.getImage()));
         }
+
+        new SPUpdatePortfolioSaveTask(this, serviceProvider).execute();
     }
 
     public void backDashboard() {
