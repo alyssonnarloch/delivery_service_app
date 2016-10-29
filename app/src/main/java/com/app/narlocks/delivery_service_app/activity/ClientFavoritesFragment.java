@@ -42,7 +42,7 @@ public class ClientFavoritesFragment extends Fragment {
 
         getActivity().setTitle(R.string.title_client_favorites);
 
-        View view = inflater.inflate(R.layout.fragment_favorites, container, false);
+        final View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
         res = getResources();
         session = new SessionManager(getActivity());
@@ -56,8 +56,10 @@ public class ClientFavoritesFragment extends Fragment {
             public void onResponse(Call<List<ServiceProvider>> call, Response<List<ServiceProvider>> response) {
                 if(response.code() == 200) {
                     List<ServiceProvider> serviceProviders = response.body();
+
                     ServiceProviderListAdapter adapter = new ServiceProviderListAdapter(getActivity(), serviceProviders, getActivity().getSupportFragmentManager());
                     lvFavorites.setAdapter(adapter);
+                    lvFavorites.setEmptyView(view.findViewById(R.id.llEmptyInfo));
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_service_provider_fail), Toast.LENGTH_LONG).show();
                 }

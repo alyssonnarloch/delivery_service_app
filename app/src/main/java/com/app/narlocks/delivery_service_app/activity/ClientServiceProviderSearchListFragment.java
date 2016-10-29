@@ -53,6 +53,7 @@ public class ClientServiceProviderSearchListFragment extends Fragment {
     public void loadContentViewComponents(List<ServiceProvider> serviceProviders) {
         serviceProviderListAdapter = new ServiceProviderListAdapter(getActivity(), serviceProviders, getActivity().getSupportFragmentManager());
         lvServiceProvider.setAdapter(serviceProviderListAdapter);
+        lvServiceProvider.setEmptyView(getActivity().findViewById(R.id.llEmptyInfo));
     }
 
 }

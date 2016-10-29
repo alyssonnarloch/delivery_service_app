@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,10 +28,11 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
     private SessionManager session;
     private Resources res;
     private ListView lvClientProjects;
-    private ImageView ivAwaiting;
-    private ImageView ivRefused;
-    private ImageView ivExecution;
-    private ImageView ivFinished;
+    private LinearLayout ivAll;
+    private LinearLayout ivAwaiting;
+    private LinearLayout ivRefused;
+    private LinearLayout ivExecution;
+    private LinearLayout ivFinished;
 
     public ClientProjectsFragment() {
 
@@ -53,11 +54,13 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
         res = getResources();
         session = new SessionManager(getActivity());
         lvClientProjects = (ListView) view.findViewById(R.id.lvClientProjects);
-        ivAwaiting = (ImageView) view.findViewById(R.id.ivAwaiting);
-        ivRefused = (ImageView) view.findViewById(R.id.ivRefused);
-        ivExecution = (ImageView) view.findViewById(R.id.ivExecution);
-        ivFinished = (ImageView) view.findViewById(R.id.ivFinished);
+        ivAll = (LinearLayout) view.findViewById(R.id.ivAll);
+        ivAwaiting = (LinearLayout) view.findViewById(R.id.ivAwaiting);
+        ivRefused = (LinearLayout) view.findViewById(R.id.ivRefused);
+        ivExecution = (LinearLayout) view.findViewById(R.id.ivExecution);
+        ivFinished = (LinearLayout) view.findViewById(R.id.ivFinished);
 
+        ivAll.setOnClickListener(this);
         ivAwaiting.setOnClickListener(this);
         ivRefused.setOnClickListener(this);
         ivExecution.setOnClickListener(this);
@@ -80,6 +83,7 @@ public class ClientProjectsFragment extends Fragment implements View.OnClickList
                     List<Project> clientProjects = response.body();
                     ClientProjectsListAdapter adapter = new ClientProjectsListAdapter(getActivity(), clientProjects, getActivity().getSupportFragmentManager());
                     lvClientProjects.setAdapter(adapter);
+                    lvClientProjects.setEmptyView(getActivity().findViewById(R.id.llEmptyInfo));
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }

@@ -56,5 +56,6 @@ public class SPEvaluationsFragment extends Fragment {
     public void loadContentViewComponents(List<Project> serviceProviderProjects) {
         EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), serviceProviderProjects, User.SERVICE_PROVIDER, getActivity().getSupportFragmentManager());
         lvServiceProviderEvaluations.setAdapter(adapter);
+        lvServiceProviderEvaluations.setEmptyView(getActivity().findViewById(R.id.llEmptyInfo));
     }
 }

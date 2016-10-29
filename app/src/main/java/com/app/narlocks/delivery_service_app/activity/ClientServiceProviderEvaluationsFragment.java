@@ -59,6 +59,7 @@ public class ClientServiceProviderEvaluationsFragment extends Fragment {
                     List<Project> serviceProviderProjects = response.body();
                     EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity(), serviceProviderProjects, User.SERVICE_PROVIDER, getActivity().getSupportFragmentManager());
                     lvServiceProviderEvaluations.setAdapter(adapter);
+                    lvServiceProviderEvaluations.setEmptyView(getActivity().findViewById(R.id.llEmptyInfo));
                 } else {
                     Toast.makeText(getActivity(), res.getString(R.string.service_project_fail), Toast.LENGTH_LONG).show();
                 }

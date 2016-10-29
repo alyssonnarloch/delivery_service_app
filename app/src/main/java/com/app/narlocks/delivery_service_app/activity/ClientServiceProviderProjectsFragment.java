@@ -57,6 +57,7 @@ public class ClientServiceProviderProjectsFragment extends Fragment {
 
                     ServiceProviderProjectsListAdapter adapter = new ServiceProviderProjectsListAdapter(getActivity(), serviceProviderProjects, getActivity().getSupportFragmentManager());
                     lvServiceProviderProjects.setAdapter(adapter);
+                    lvServiceProviderProjects.setEmptyView(getActivity().findViewById(R.id.llEmptyInfo));
                 } else {
 
                 }

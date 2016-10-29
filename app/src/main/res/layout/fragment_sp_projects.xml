@@ -25,12 +25,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
-                android:gravity="center">
+                android:gravity="center"
+                android:id="@+id/ivAll">
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@mipmap/ic_search_black_24dp"
+                    android:layout_weight="1"
+                    android:padding="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/project_filter_all"
+                    android:textStyle="normal"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:id="@+id/ivAwaiting">
                 <ImageView
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:src="@mipmap/ic_schedule_black_24dp"
-                    android:id="@+id/ivAwaiting"
                     android:layout_weight="1"
                     android:padding="2dp" />
 
@@ -40,7 +63,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/project_filter_awaiting"
                     android:textStyle="normal"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -48,14 +71,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
-                android:gravity="center">
+                android:gravity="center"
+                android:id="@+id/ivRefused">
                 <ImageView
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:src="@mipmap/ic_block_black_24dp"
-                    android:id="@+id/ivRefused"
                     android:layout_weight="1"
-                    android:padding="2dp" />
+                    android:padding="2dp"
+                    android:longClickable="false" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,7 +87,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/project_filter_refused"
                     android:textStyle="normal"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -71,12 +95,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
-                android:gravity="center">
+                android:gravity="center"
+                android:id="@+id/ivExecution">
                 <ImageView
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:src="@mipmap/ic_hourglass_empty_black_24dp"
-                    android:id="@+id/ivExecution"
                     android:layout_weight="1"
                     android:padding="2dp" />
                 <TextView
@@ -85,7 +109,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/project_filter_execution"
                     android:textStyle="normal"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -93,12 +117,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
-                android:gravity="center">
+                android:gravity="center"
+                android:id="@+id/ivFinished">
                 <ImageView
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:src="@mipmap/ic_hourglass_full_black_24dp"
-                    android:id="@+id/ivFinished"
                     android:layout_weight="1"
                     android:padding="2dp" />
                 <TextView
@@ -107,7 +131,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/project_filter_finished"
                     android:textStyle="normal"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -115,5 +139,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lvServiceProviderProjects" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="4dp"
+            android:id="@+id/llEmptyInfo"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:src="@mipmap/ic_error_outline_black_24dp"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/empty_view_project"
+                android:id="@+id/textView26"
+                android:layout_margin="2dp" />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

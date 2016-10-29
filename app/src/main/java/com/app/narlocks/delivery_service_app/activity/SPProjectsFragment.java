@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.app.narlocks.delivery_service_app.activity_task.SPProjectsTask;
@@ -20,10 +20,11 @@ import java.util.List;
 public class SPProjectsFragment extends Fragment implements View.OnClickListener {
 
     private ListView lvServiceProviderProjects;
-    private ImageView ivAwaiting;
-    private ImageView ivRefused;
-    private ImageView ivExecution;
-    private ImageView ivFinished;
+    private LinearLayout ivAwaiting;
+    private LinearLayout ivRefused;
+    private LinearLayout ivExecution;
+    private LinearLayout ivFinished;
+    private LinearLayout ivAll;
 
     private SessionManager session;
     private Resources res;
@@ -58,13 +59,15 @@ public class SPProjectsFragment extends Fragment implements View.OnClickListener
 
     private void loadViewComponents(View view) {
         lvServiceProviderProjects = (ListView) view.findViewById(R.id.lvServiceProviderProjects);
-        ivAwaiting = (ImageView) view.findViewById(R.id.ivAwaiting);
-        ivRefused = (ImageView) view.findViewById(R.id.ivRefused);
-        ivExecution = (ImageView) view.findViewById(R.id.ivExecution);
-        ivFinished = (ImageView) view.findViewById(R.id.ivFinished);
+        ivAll = (LinearLayout) view.findViewById(R.id.ivAll);
+        ivAwaiting = (LinearLayout) view.findViewById(R.id.ivAwaiting);
+        ivRefused = (LinearLayout) view.findViewById(R.id.ivRefused);
+        ivExecution = (LinearLayout) view.findViewById(R.id.ivExecution);
+        ivFinished = (LinearLayout) view.findViewById(R.id.ivFinished);
     }
 
     private void loadViewComponentListeners() {
+        ivAll.setOnClickListener(this);
         ivAwaiting.setOnClickListener(this);
         ivRefused.setOnClickListener(this);
         ivExecution.setOnClickListener(this);
@@ -78,6 +81,7 @@ public class SPProjectsFragment extends Fragment implements View.OnClickListener
     public void loadContentViewComponents(List<Project> projects) {
         ServiceProviderProjectsAdapter adapter = new ServiceProviderProjectsAdapter(getActivity(), projects, getActivity().getSupportFragmentManager());
         lvServiceProviderProjects.setAdapter(adapter);
+        lvServiceProviderProjects.setEmptyView(getActivity().findViewById(R.id.llEmptyInfo));
     }
 
     @Override
