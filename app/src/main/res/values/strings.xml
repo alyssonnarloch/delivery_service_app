@@ -66,6 +66,7 @@
     <string name="project_description">Descrição</string>
     <string name="project_address">Endereço</string>
     <string name="project_qualification">Classifique o serviço prestado</string>
+    <string name="project_qualification_sp">Classifique o cliente</string>
     <string name="project_qualification_description">Avalie o serviço prestado</string>
     <string name="project_client_evaluation">Avaliação recebida</string>
     <string name="project_service_provider_evaluation">Avaliação enviada</string>

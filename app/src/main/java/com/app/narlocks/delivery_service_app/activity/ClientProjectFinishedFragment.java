@@ -10,19 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.app.narlocks.delivery_service_app.activity_task.ClientProjectFinishedTask;
-import com.app.narlocks.delivery_service_app.adapter.ProjectPortfolioGridViewAdapter;
+import com.app.narlocks.delivery_service_app.adapter.ImagesToApproveGridViewAdapter;
 import com.app.narlocks.delivery_service_app.extras.Extra;
-import com.app.narlocks.delivery_service_app.extras.Image;
-import com.app.narlocks.delivery_service_app.model.ImageItem;
 import com.app.narlocks.delivery_service_app.model.Project;
 import com.app.narlocks.delivery_service_app.model.ProjectPortfolio;
 import com.app.narlocks.delivery_service_app.session.SessionManager;
+import com.app.narlocks.delivery_service_app.view.ExpandableHeightGridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,7 @@ public class ClientProjectFinishedFragment extends Fragment {
     private RatingBar rbClientEvaluation;
     private TextView tvServiceProviderEvaluation;
     private RatingBar rbServiceProviderEvaluation;
-    private GridView gvImages;
+    private ExpandableHeightGridView gvImages;
     private Button btFinish;
     private ScrollView svDisplay;
 
@@ -86,7 +84,8 @@ public class ClientProjectFinishedFragment extends Fragment {
         rbClientEvaluation = (RatingBar) view.findViewById(R.id.rbClientEvaluation);
         tvServiceProviderEvaluation = (TextView) view.findViewById(R.id.tvServiceProviderEvaluation);
         rbServiceProviderEvaluation = (RatingBar) view.findViewById(R.id.rbServiceProviderEvaluation);
-        gvImages = (GridView) view.findViewById(R.id.gvImages);
+        gvImages = (ExpandableHeightGridView) view.findViewById(R.id.gvImages);
+        gvImages.setExpanded(true);
         btFinish = (Button) view.findViewById(R.id.btFinish);
         svDisplay = (ScrollView) view.findViewById(R.id.svDisplay);
     }
@@ -143,7 +142,7 @@ public class ClientProjectFinishedFragment extends Fragment {
         tvServiceProviderEvaluation.setText(project.getServiceProviderEvaluation());
         rbServiceProviderEvaluation.setRating((int) (project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
 
-        ProjectPortfolioGridViewAdapter adapter = new ProjectPortfolioGridViewAdapter(getActivity(), R.layout.gridview_image_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
+        ImagesToApproveGridViewAdapter adapter = new ImagesToApproveGridViewAdapter(getActivity(), R.layout.gridview_image_approve_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(adapter);
 
         if(project.getServiceProviderEvaluation() != null && !project.getServiceProviderEvaluation().isEmpty()) {
@@ -158,12 +157,12 @@ public class ClientProjectFinishedFragment extends Fragment {
         svDisplay.smoothScrollTo(0, 0);
     }
 
-    private List<ImageItem> getNotEvaluated(List<ProjectPortfolio> portfolio) {
-        List<ImageItem> newPortfolio = new ArrayList();
+    private List<ProjectPortfolio> getNotEvaluated(List<ProjectPortfolio> portfolio) {
+        List<ProjectPortfolio> newPortfolio = new ArrayList();
 
         for (ProjectPortfolio p : portfolio) {
-            if (p.isApproved()) {
-                newPortfolio.add(new ImageItem(Image.base64ToBitmap(p.getImage())));
+            if (p.isApproved() == null || p.isApproved()) {
+                newPortfolio.add(p);
             }
         }
 

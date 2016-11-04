@@ -221,8 +221,8 @@ public class SPProjectExecutionFragment extends Fragment {
         }
     }
 
-    public void realoadGridImages(Project project) {
-        SPProjectPortfolioRemoveGridViewAdapter notEvaluatedImagesAdapter = new SPProjectPortfolioRemoveGridViewAdapter(getActivity(), R.layout.gridview_image_delete_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
+    public void realoadGridImages(List<ProjectPortfolio> projectPortfolio) {
+        SPProjectPortfolioRemoveGridViewAdapter notEvaluatedImagesAdapter = new SPProjectPortfolioRemoveGridViewAdapter(getActivity(), R.layout.gridview_image_delete_layout, getNotEvaluated(projectPortfolio), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(notEvaluatedImagesAdapter);
         loadViewListeners();
     }

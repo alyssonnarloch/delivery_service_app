@@ -63,6 +63,11 @@ public class ImagesToApproveGridViewAdapter extends ArrayAdapter {
             holder.ibApprove = (ImageButton) cell.findViewById(R.id.ibApprove);
             holder.ibReject = (ImageButton) cell.findViewById(R.id.ibReject);
 
+            if(portfolio.get(position).isApproved() != null) {
+                holder.ibApprove.setVisibility(View.INVISIBLE);
+                holder.ibReject.setVisibility(View.INVISIBLE);
+            }
+
             holder.ibApprove.setTag(position);
             holder.ibReject.setTag(position);
 
@@ -81,7 +86,6 @@ public class ImagesToApproveGridViewAdapter extends ArrayAdapter {
                     approveImage(position, false);
                 }
             });
-
 
             cell.setTag(holder);
         } else {
