@@ -58,7 +58,7 @@ public class ClientDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().setTitle(R.string.title_client_update);
+        getActivity().setTitle(R.string.title_client_perfil);
 
         View view = inflater.inflate(R.layout.fragment_client_details, container, false);
 

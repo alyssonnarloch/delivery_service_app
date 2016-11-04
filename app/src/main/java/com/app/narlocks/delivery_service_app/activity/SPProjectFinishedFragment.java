@@ -32,7 +32,9 @@ public class SPProjectFinishedFragment extends Fragment {
     private TextView tvTitle;
     private TextView tvStatus;
     private TextView tvClientName;
+    private TextView tvClientEvaluation;
     private RatingBar rbClientEvaluation;
+    private TextView tvServiceProviderEvaluation;
     private RatingBar rbServiceProviderEvaluation;
     private TextView tvAddress;
     private TextView tvPeriod;
@@ -77,7 +79,9 @@ public class SPProjectFinishedFragment extends Fragment {
         tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         tvStatus = (TextView) view.findViewById(R.id.tvStatus);
         tvClientName = (TextView) view.findViewById(R.id.tvClientName);
+        tvClientEvaluation = (TextView) view.findViewById(R.id.tvClientEvaluation);
         rbClientEvaluation = (RatingBar) view.findViewById(R.id.rbClientEvaluation);
+        tvServiceProviderEvaluation = (TextView) view.findViewById(R.id.tvServiceProviderEvaluation);
         rbServiceProviderEvaluation = (RatingBar) view.findViewById(R.id.rbServiceProviderEvaluation);
         tvAddress = (TextView) view.findViewById(R.id.tvAddress);
         tvPeriod = (TextView) view.findViewById(R.id.tvPeriod);
@@ -136,8 +140,10 @@ public class SPProjectFinishedFragment extends Fragment {
         tvAddress.setText(project.getAddress() + ", " + project.getNumber() + " (" + project.getZipCode() + ")" + " - " + project.getCity().getName() + "/" + project.getCity().getState().getName());
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvProjectDescription.setText(project.getDescription());
-        rbClientEvaluation.setRating((project.getClientQualification() == null ? 0 : project.getClientQualification()));
-        rbServiceProviderEvaluation.setRating((project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
+        tvClientEvaluation.setText(project.getClientEvaluation());
+        rbClientEvaluation.setRating((int) (project.getClientQualification() == null ? 0 : project.getClientQualification()));
+        tvServiceProviderEvaluation.setText(project.getServiceProviderEvaluation());
+        rbServiceProviderEvaluation.setRating((int) (project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
 
         this.project = project;
         clientId = project.getClient().getId();

@@ -116,7 +116,7 @@ public class ClientProjectFinishedFragment extends Fragment {
                 arguments.putString("status", project.getStatus().getName());
                 arguments.putString("serviceProviderName", project.getServiceProvider().getName());
                 arguments.putInt("projectId", project.getId());
-                arguments.putInt("newProjectStatus", Project.REFUSED);
+                arguments.putInt("newProjectStatus", Project.FINISHED);
 
                 Fragment fragment = new ClientProjectEvaluationFragment();
                 fragment.setArguments(arguments);

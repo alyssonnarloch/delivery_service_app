@@ -108,6 +108,7 @@
     <string name="title_client_evaluation">Avaliações recebidas</string>
     <string name="title_client_detail">Meus dados</string>
     <string name="title_client_update">Atualização</string>
+    <string name="title_client_perfil">Perfil</string>
     <string name="title_client_favorites">Prestadores Favoritos</string>
     <string name="title_service_provider_evaluations">Avaliações recebidas</string>
     <string name="title_service_provider_dashboard">Dashboard</string>

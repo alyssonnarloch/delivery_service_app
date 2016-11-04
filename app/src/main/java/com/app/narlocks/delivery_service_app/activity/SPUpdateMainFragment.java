@@ -76,6 +76,8 @@ public class SPUpdateMainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().setTitle(R.string.title_client_update);
+
         View view = inflater.inflate(R.layout.fragment_sp_update_main, container, false);
 
         loadViewComponents(view);
