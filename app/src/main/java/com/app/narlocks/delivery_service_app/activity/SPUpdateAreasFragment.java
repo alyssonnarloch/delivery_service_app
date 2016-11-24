@@ -60,7 +60,6 @@ public class SPUpdateAreasFragment extends Fragment {
 
         this.res = getResources();
         this.session = new SessionManager(getActivity());
-        this.cities = new ArrayList();
     }
 
     @Override
@@ -70,6 +69,8 @@ public class SPUpdateAreasFragment extends Fragment {
         getActivity().setTitle(R.string.title_service_provider_update);
 
         View view = inflater.inflate(R.layout.fragment_sp_update_areas, container, false);
+
+        this.cities = new ArrayList();
 
         loadViewComponents(view);
         loadViewComponentsListeners();

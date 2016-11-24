@@ -59,7 +59,6 @@ public class SPUpdatePortfolioFragment extends Fragment {
 
         this.res = getResources();
         this.session = new SessionManager(getActivity());
-        this.imageItems = new ArrayList();
     }
 
     @Override
@@ -69,6 +68,8 @@ public class SPUpdatePortfolioFragment extends Fragment {
         getActivity().setTitle(R.string.title_service_provider_update);
 
         View view = inflater.inflate(R.layout.fragment_sp_update_portfolio, container, false);
+
+        this.imageItems = new ArrayList();
 
         loadViewComponents(view);
         loadViewComponentListeners();

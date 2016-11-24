@@ -106,20 +106,24 @@ public class ClientSearchServiceProviderFragment extends Fragment {
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle arguments = new Bundle();
-                arguments.putString("serviceProviderName", etServiceProviderName.getText().toString());
-                arguments.putIntegerArrayList("serviceTypeIds", getServiceTypeCheckeds());
-                arguments.putInt("cityId", selectedCityId);
-                arguments.putBoolean("available", cbAvailable.isChecked());
+                if(selectedCityId > 0) {
+                    Bundle arguments = new Bundle();
+                    arguments.putString("serviceProviderName", etServiceProviderName.getText().toString());
+                    arguments.putIntegerArrayList("serviceTypeIds", getServiceTypeCheckeds());
+                    arguments.putInt("cityId", selectedCityId);
+                    arguments.putBoolean("available", cbAvailable.isChecked());
 
-                Fragment fragment = new ClientServiceProviderSearchListFragment();
-                fragment.setArguments(arguments);
+                    Fragment fragment = new ClientServiceProviderSearchListFragment();
+                    fragment.setArguments(arguments);
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
 
-                DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
-                drawer.closeDrawer(GravityCompat.START);
+                    DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    acCity.setError(res.getString(R.string.search_city_required));
+                }
             }
         });
 

@@ -306,6 +306,11 @@ public class ClientMakeContractFragment extends Fragment {
             dtEnd.setError(res.getString(R.string.validation_required));
         }
 
+        if(project.getStartAt().compareTo(project.getEndAt()) >= 0) {
+            isValid = false;
+            dtStart.setError(res.getString(R.string.contract_range_dates));
+        }
+
         return isValid;
     }
 
@@ -327,7 +332,7 @@ public class ClientMakeContractFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 200) {
-                    Toast.makeText(getActivity(), res.getString(R.string.project_save_ok), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), res.getString(R.string.contract_make_ok), Toast.LENGTH_LONG).show();
 
                     Fragment fragment = new ClientProjectsFragment();
 
@@ -336,7 +341,6 @@ public class ClientMakeContractFragment extends Fragment {
 
                     //DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_client_layout);
                     //drawer.closeDrawer(GravityCompat.START);
-
                 } else {
                     Toast.makeText(getActivity(), ErrorConversor.getErrorMessage(response.errorBody()), Toast.LENGTH_LONG).show();
                 }

@@ -127,9 +127,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="4dp"
                     android:layout_weight="0.79"
-                    android:editable="false"
                     android:ems="10"
-                    android:enabled="false"
                     android:hint="Data de início"
                     android:inputType="date" />
 
@@ -157,7 +155,6 @@
                     android:layout_weight="0.79"
                     android:editable="false"
                     android:ems="10"
-                    android:enabled="false"
                     android:hint="Data de término"
                     android:inputType="date" />
 

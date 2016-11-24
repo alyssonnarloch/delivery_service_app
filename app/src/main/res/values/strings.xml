@@ -89,9 +89,14 @@
     <string name="service_city_fail">Falha ao executar CityService</string>
     <string name="service_favorite">Falha ao executar FavoriteService</string>
 
+    <!-- Messages -->
+    <string name="contract_make_ok">Solicitação de contratação efetuada com sucesso! Aguarde a aprovação do prestador de serviços.</string>
+
     <!-- Validation -->
     <string name="service_provider_services_required">O prestador deve estar vinculado a um tipo de serviço</string>
     <string name="service_provider_experience_description_required">Sua experiência deve ser descrita</string>
+    <string name="search_city_required">A região do serviço deve ser informada</string>
+    <string name="contract_range_dates">A data de término deve ser superior a data de início</string>
 
     <!-- Titles -->
     <string name="title_my_projects">Meus Projetos</string>
