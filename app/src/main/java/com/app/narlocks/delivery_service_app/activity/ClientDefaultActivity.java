@@ -122,7 +122,7 @@ public class ClientDefaultActivity extends AppCompatActivity
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_default_client, fragment).commit();
+            fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_client, fragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_client_layout);

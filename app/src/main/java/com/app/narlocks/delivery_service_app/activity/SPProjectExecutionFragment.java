@@ -165,7 +165,7 @@ public class SPProjectExecutionFragment extends Fragment {
         tvProjectDescription.setText(project.getDescription());
 
         this.project = project;
-        clientId = project.getServiceProvider().getId();
+        clientId = project.getClient().getId();
 
         SPProjectPortfolioRemoveGridViewAdapter notEvaluatedImagesAdapter = new SPProjectPortfolioRemoveGridViewAdapter(getActivity(), R.layout.gridview_image_delete_layout, getNotEvaluated(project.getPortfolio()), getActivity().getSupportFragmentManager());
         gvImages.setAdapter(notEvaluatedImagesAdapter);

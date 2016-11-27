@@ -107,7 +107,7 @@ public class SPProjectRefusedFragment extends Fragment {
         tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
         tvProjectDescription.setText(project.getDescription());
         tvClientEvaluation.setText(project.getClientEvaluation());
-        rbClientEvaluation.setRating((int) project.getClientQualification());
+        rbClientEvaluation.setRating((int) (project.getClientQualification() == null ? 0 : project.getClientQualification()));
         tvServiceProviderEvaluation.setText(project.getServiceProviderEvaluation());
         rbServiceProviderEvaluation.setRating((int) (project.getServiceProviderQualification() == null ? 0 : project.getServiceProviderQualification()));
 

@@ -98,22 +98,23 @@ public class ServiceProviderProjectsAdapter extends ArrayAdapter<Project> {
                 }
             });
 
+            viewHolder.tvTitle.setText(project.getTitle());
+            viewHolder.tvClientName.setText(project.getClient().getName());
+            viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
+
+            if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
+                if (project.getClientQualification() != null) {
+                    viewHolder.rbProjectStars.setRating(project.getClientQualification());
+                } else {
+                    viewHolder.rbProjectStars.setRating(0);
+                }
+            }
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvTitle.setText(project.getTitle());
-        viewHolder.tvClientName.setText(project.getClient().getName());
-        viewHolder.tvPeriod.setText(Extra.dateToString(project.getStartAt(), "dd/MM/yyyy") + " - " + Extra.dateToString(project.getEndAt(), "dd/MM/yyyy"));
-
-        if (project.getStatus() != null && (project.getStatus().getId() == Project.FINISHED || project.getStatus().getId() == Project.REFUSED)) {
-            if (project.getClientQualification() != null) {
-                viewHolder.rbProjectStars.setRating(project.getClientQualification());
-            } else {
-                viewHolder.rbProjectStars.setRating(0);
-            }
-        }
 
         int projectStatusId = R.mipmap.ic_schedule_black_24dp;
 

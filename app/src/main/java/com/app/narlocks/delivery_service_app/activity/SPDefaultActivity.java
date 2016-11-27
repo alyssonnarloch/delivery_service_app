@@ -118,7 +118,7 @@ public class SPDefaultActivity extends AppCompatActivity
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_default_sp, fragment).commit();
+            fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.content_default_sp, fragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_sp_layout);
