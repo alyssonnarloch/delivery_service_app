@@ -306,7 +306,7 @@ public class ClientMakeContractFragment extends Fragment {
             dtEnd.setError(res.getString(R.string.validation_required));
         }
 
-        if(project.getStartAt().compareTo(project.getEndAt()) >= 0) {
+        if(project.getStartAt() != null && project.getEndAt() != null && project.getStartAt().compareTo(project.getEndAt()) >= 0) {
             isValid = false;
             dtStart.setError(res.getString(R.string.contract_range_dates));
         }

@@ -56,7 +56,7 @@
                 android:id="@+id/rbStars"
                 android:layout_gravity="center_horizontal"
                 android:numStars="5"
-                android:stepSize="1"
+                android:stepSize="0.5"
                 style="@android:style/Widget.Holo.Light.RatingBar.Small" />
 
         </LinearLayout>
